@@ -5,19 +5,15 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rigidbody2D;
     public float moveSpeed = 10.0f;
-    public InputAction playerControlls;
+
+    public float attackCooldown = 0.5f;
+    private float lastAttackTime = 0f;
 
     Vector2 moveDirection = Vector2.zero;
+    Vector2 attackDirection = Vector2.zero;
 
-    private void OnEnable()
-    {
-        playerControlls.Enable();
-    }
-
-    void OnDisable()
-    {
-        playerControlls.Disable();
-    }
+    // Zdefiniowanie akcji
+    public InputActionReference movement, attack, pointerPosition;
 
     void Start()
     {
@@ -26,13 +22,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // horizontalInput = Input.GetAxis("Horizontal");
-        // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
-        // verticalInput = Input.GetAxis("Vertical");
-        // transform.Translate(Vector3.up * verticalInput * Time.deltaTime * speed);
-
         // Nasłuchiwanie WSADa
-        moveDirection = playerControlls.ReadValue<Vector2>();
+        moveDirection = movement.action.ReadValue<Vector2>();
+        // Nasłuchiwanie lewego przycisku myszki
+        attackDirection = attack.action.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
