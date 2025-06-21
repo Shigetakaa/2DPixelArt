@@ -1,59 +1,43 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
     public int health = 100;
+    public int maxHealth = 100;
 
-    private int MAX_HEALTH = 100;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public UnityEvent<GameObject> OnHit, OnDeath;
+
+    private bool isDead = false;
+
+    // Inizjujemy zdrowie obiektu
+    public void InitializeHealth(int healthValue)
     {
-
+        health = healthValue;
+        maxHealth = healthValue;
+        isDead = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Metoda otrzymywania obrażeń
+    public void GetHit(int damage, GameObject sender)
     {
+        if (isDead)
+            return;
+        if (sender.layer == gameObject.layer)
+            return;
 
-    }
+        health -= damage;
 
-    public void Damage(int damage)
-    {
-        if (damage < 0)
+        if (health < 0)
         {
-            throw new System.ArgumentOutOfRangeException("Nie można miec ujemnych obrażeń");
-        }
-
-        this.health -= damage;
-
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    public void Heal(int heal)
-    {
-        if (heal < 0)
-        {
-            throw new System.ArgumentOutOfRangeException("Nie można mieć ujemnego leczenia");
-        }
-
-        bool OverMaxHealth = health + heal > MAX_HEALTH;
-
-        if (OverMaxHealth)
-        {
-            this.health = MAX_HEALTH;
+            OnDeath?.Invoke(sender);
+            isDead = true;
+            Destroy(gameObject);
         }
         else
         {
-            this.health += heal;
+            OnHit?.Invoke(sender);
         }
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 }
