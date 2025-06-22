@@ -10,7 +10,7 @@ public class WeaponParent : MonoBehaviour
     public float cooldown = 0.5f;
     private bool attackBlocked;
 
-    public Transform circleOrigin;
+    public Transform areaOrigin;
     public float area;
 
     // Obracanie broni w strone kursora
@@ -53,14 +53,14 @@ public class WeaponParent : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Vector3 position = circleOrigin == null ? Vector3.zero : circleOrigin.position;
+        Vector3 position = areaOrigin == null ? Vector3.zero : areaOrigin.position;
         Gizmos.DrawWireSphere(position, area);
     }
 
     // Metoda sprawdzająca kolizje
     public void DetectColliders()
     {
-        foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, area))
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(areaOrigin.position, area))
         {
             Health health;
             if (health = collider.GetComponent<Health>())

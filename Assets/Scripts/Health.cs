@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
 
     private bool isDead = false;
 
-    // Inizjujemy zdrowie obiektu
+    // Inicjujemy zdrowie obiektu
     public void InitializeHealth(int healthValue)
     {
         health = healthValue;
