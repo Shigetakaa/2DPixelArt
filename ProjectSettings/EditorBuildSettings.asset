@@ -21,8 +21,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Upgrades.unity
     guid: 4272de3449dd8d340b54e97f84853d82
   - enabled: 1
-    path: Assets/Scenes/Menu/Instructions.unity
+    path: Assets/Scenes/Menu/Instructions/Instructions.unity
     guid: f4f18d87917ffd843a5effca5baee0c2
+  - enabled: 1
+    path: Assets/Scenes/Menu/Instructions/UpgradesInstructions.unity
+    guid: 1d1b4da90fc62204597c09af3d5c6633
+  - enabled: 1
+    path: Assets/Scenes/Menu/Instructions/Rules.unity
+    guid: 0fd8e27dab53c3c44b7135ef9271d618
+  - enabled: 1
+    path: Assets/Scenes/Menu/Instructions/Interface.unity
+    guid: f67144cec083761439c1f42c6ee4d103
+  - enabled: 1
+    path: Assets/Scenes/Menu/Instructions/Controls.unity
+    guid: be9821e3d3c4d92429430cc266046a47
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1df91978acbdde34ead7b77b92ba1ce9, type: 3}
   m_UseUCBPForAssetBundles: 0

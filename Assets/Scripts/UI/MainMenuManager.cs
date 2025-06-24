@@ -33,4 +33,10 @@ public class MainMenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    // Przycisk wróć do menu głównego
+    public void OnBackPress()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
