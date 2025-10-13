@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int health = 100;
-    public int maxHealth = 100;
+    public float health = 100f;
+    public float maxHealth = 100f;
 
     public bool isPlayer = false;
+
+    public bool isEnemy = true;
+
+    public GameObject expItem;
 
     public UnityEvent<GameObject> OnHit, OnDeath;
 
@@ -28,7 +32,7 @@ public class Health : MonoBehaviour
     }
 
     // Inicjujemy zdrowie obiektu
-    public void InitializeHealth(int healthValue)
+    public void InitializeHealth(float healthValue)
     {
         health = healthValue;
         maxHealth = healthValue;
@@ -36,7 +40,7 @@ public class Health : MonoBehaviour
     }
 
     // Metoda otrzymywania obrażeń
-    public void GetHit(int damage, GameObject sender)
+    public void GetHit(float damage, GameObject sender)
     {
         if (isDead)
             return;
@@ -45,7 +49,7 @@ public class Health : MonoBehaviour
 
         health -= damage;
 
-        if (health < 0)
+        if (health <= 0)
         {
             OnDeath?.Invoke(sender);
             isDead = true;
@@ -56,6 +60,13 @@ public class Health : MonoBehaviour
                 // Aktywowane UI końca gry
                 gameOverScreen.GameOverScreen();
                 Time.timeScale = 0;
+            }
+
+            // Sprawdzenie czy martwy obiekt to wróg
+            if (isEnemy)
+            {
+                // Pojawia się doświadczenie po śmieci wroga
+                Instantiate(expItem, transform.position, Quaternion.identity);
             }
 
             Destroy(gameObject);

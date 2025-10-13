@@ -184,6 +184,8 @@ MonoBehaviour:
   health: 10
   maxHealth: 10
   isPlayer: 0
+  isEnemy: 1
+  expItem: {fileID: 5484196263596612912, guid: e0b8241f2dac1314d9eb89a7a530ea1b, type: 3}
   OnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -264,8 +266,8 @@ MonoBehaviour:
   player: {fileID: 0}
   chaseDistance: 1000
   attackDistance: 0.8
-  attackCooldown: 1
-  passedTime: 1
+  attackCooldown: 0.3
+  passedTime: 0.3
 --- !u!1 &7313898721288907861
 GameObject:
   m_ObjectHideFlags: 0
