@@ -13,6 +13,24 @@ public class EnemyController : MonoBehaviour
     public float attackCooldown = 1;
     public float passedTime = 1;
 
+    private void Start()
+    {
+        // Znajdowania gracza po tagu
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+            }
+            else
+            {
+                Debug.LogWarning($"{name}: Nie znaleziono gracza z tagiem 'Player'!");
+            }
+        }
+    }
+
+
     private void Update()
     {
         if (player == null)
