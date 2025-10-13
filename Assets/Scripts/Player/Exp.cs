@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Exp : MonoBehaviour
 {
@@ -6,6 +8,8 @@ public class Exp : MonoBehaviour
     public float maxExp = 10f;
 
     public int level = 1;
+
+    public TextMeshProUGUI levelText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,7 +20,11 @@ public class Exp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Wartość slidera doświadczenia = wartość doświadczenia gracza
+        GameObject.Find("ExpBar").GetComponent<Slider>().value = exp;
 
+        // Wrtość poziomu postaci w UI
+        levelText.text = "Poziom: " + level.ToString();
     }
 
     // Inicjujemy doświadczenie Gracza
@@ -31,7 +39,7 @@ public class Exp : MonoBehaviour
     {
         exp += amount;
 
-        if (exp == maxExp)
+        if (exp >= maxExp)
         {
             GetLevel();
         }
@@ -40,8 +48,8 @@ public class Exp : MonoBehaviour
     // Metoda otrzymywania poziomów postaci
     public void GetLevel()
     {
-        exp = 0f;
+        level++;
+        exp -= maxExp;
         maxExp += 4f;
-        level += 1;
     }
 }

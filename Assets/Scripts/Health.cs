@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class Health : MonoBehaviour
 
     public bool isEnemy = true;
 
+    public int killedEnemies = 0;
+
     public GameObject expItem;
 
     public UnityEvent<GameObject> OnHit, OnDeath;
@@ -19,16 +22,23 @@ public class Health : MonoBehaviour
     private bool isDead = false;
     private InGameUIManager gameOverScreen;
 
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI killedEnemiesText;
+
     private void Start()
     {
         // Wczytanie UI końca gry
         gameOverScreen = FindObjectOfType<InGameUIManager>();
     }
 
-    // Wartość slidera zdrowia = wartość zdrowia gracza
+
     private void Update()
     {
+        // Wartość slidera zdrowia = wartość zdrowia gracza
         GameObject.Find("HealthBar").GetComponent<Slider>().value = health;
+        
+        // Wartość zdrowia
+        healthText.text = health + " / " + maxHealth;
     }
 
     // Inicjujemy zdrowie obiektu
@@ -60,6 +70,7 @@ public class Health : MonoBehaviour
                 // Aktywowane UI końca gry
                 gameOverScreen.GameOverScreen();
                 Time.timeScale = 0;
+                Destroy(gameObject);
             }
 
             // Sprawdzenie czy martwy obiekt to wróg
@@ -67,9 +78,23 @@ public class Health : MonoBehaviour
             {
                 // Pojawia się doświadczenie po śmieci wroga
                 Instantiate(expItem, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+
+                // Ilość pokonanych wrogów
+                Health player = sender.GetComponent<Health>();
+                if (player != null && player.isPlayer)
+                {
+                    player.killedEnemies++;
+                    if (player.killedEnemiesText != null)
+                    {
+                        player.killedEnemiesText.text = 
+                            "Pokonani wrogowie: " + player.killedEnemies;
+                    }
+                }
             }
 
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
         else
         {
