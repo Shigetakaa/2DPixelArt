@@ -11,6 +11,8 @@ public class Exp : MonoBehaviour
 
     public TextMeshProUGUI levelText;
 
+    public GameObject levelUpScreen;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,5 +53,7 @@ public class Exp : MonoBehaviour
         level++;
         exp -= maxExp;
         maxExp += 4f;
+        levelUpScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 }

@@ -32,10 +32,10 @@ public class InGameUIManager : MonoBehaviour
     public void GameOverScreen()
     {
         gameOverScreen.SetActive(true);
-        // Wyłączenie paska zdrowia po śmierci gracza
-        if (healthBar != null)
-        {
-            healthBar.SetActive(false);
-        }
+        // // Wyłączenie paska zdrowia po śmierci gracza
+        // if (healthBar != null)
+        // {
+        //     healthBar.SetActive(false);
+        // }
     }
 }
