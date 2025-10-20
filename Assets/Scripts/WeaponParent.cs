@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class WeaponParent : MonoBehaviour
@@ -12,6 +13,12 @@ public class WeaponParent : MonoBehaviour
 
     public Transform areaOrigin;
     public float area;
+
+    public bool isPlayer = false;
+    public float playerDamage = 4;
+    public TextMeshProUGUI playerDamageText;
+
+    public float enemyDamage = 2;
 
     // Obracanie broni w strone kursora
     private void Update()
@@ -30,6 +37,10 @@ public class WeaponParent : MonoBehaviour
             scale.y = 1;
         }
         transform.localScale = scale;
+
+
+        // Wartość ataku
+        playerDamageText.text = "Atak: " + playerDamage;
     }
 
     // Metoda animacji ataku
@@ -62,10 +73,18 @@ public class WeaponParent : MonoBehaviour
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(areaOrigin.position, area))
         {
+            // Metoda zadająca obrażenia
             Health health;
             if (health = collider.GetComponent<Health>())
             {
-                health.GetHit(2, transform.parent.gameObject);
+                if (isPlayer)
+                {
+                    health.GetHit(playerDamage, transform.parent.gameObject);
+                }
+                else
+                {
+                    health.GetHit(enemyDamage, transform.parent.gameObject);
+                }
             }
         }
     }
