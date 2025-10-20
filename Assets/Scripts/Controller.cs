@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,8 @@ public class Controller : MonoBehaviour
     public Vector2 MoveDirection { get => moveDirection; set => moveDirection = value; }
 
     private WeaponParent weaponParent;
+
+    public TextMeshProUGUI moveSpeedText;
 
     // Pobranie metody ataku z WeaponParent
     public void PerformAttack()
@@ -32,6 +35,9 @@ public class Controller : MonoBehaviour
     void Update()
     {
         weaponParent.PointerPosition = attackDirection;
+
+        // Wartość prędkości ruchu na ekranie
+        moveSpeedText.text = "Prędkość ruchu: " + moveSpeed;
     }
 
     private void FixedUpdate()
