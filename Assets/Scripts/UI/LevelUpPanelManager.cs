@@ -33,6 +33,14 @@ public class LevelUpPanelManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void OnAttackSpeedPress()
+    {
+        weaponParent.attackSpeed -= 0.05f;
+        levelUpScreen.SetActive(false);
+        characterParameters.SetActive(true);
+        Time.timeScale = 1;
+    }
+
     // Metoda zwiększąjąca zdrowie postaci
     public void OnHealtPress()
     {

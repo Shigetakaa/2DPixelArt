@@ -10,8 +10,8 @@ public class EnemyController : MonoBehaviour
 
     public float chaseDistance = 20, attackDistance = 0.8f;
 
-    public float attackCooldown = 1;
-    public float passedTime = 1;
+    public float attackCooldown = 0.2f;
+    public float passedTime = 0.2f;
 
     private void Start()
     {
