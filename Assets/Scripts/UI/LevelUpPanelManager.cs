@@ -33,6 +33,7 @@ public class LevelUpPanelManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    // Metoda zmniejszająca czas odnowienia ataku
     public void OnAttackCooldownPress()
     {
         weaponParent.attackCooldown -= 0.05f;
@@ -45,6 +46,7 @@ public class LevelUpPanelManager : MonoBehaviour
     public void OnHealtPress()
     {
         health.maxHealth += 5f;
+        health.health += 5f;
         levelUpScreen.SetActive(false);
         characterParameters.SetActive(true);
         Time.timeScale = 1;

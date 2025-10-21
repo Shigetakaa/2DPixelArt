@@ -19,7 +19,7 @@ public class WeaponParent : MonoBehaviour
     public TextMeshProUGUI playerDamageText;
     public TextMeshProUGUI attackCooldownText;
 
-    public float enemyDamage = 2;
+    public float enemyDamage = 10f;
 
     // Obracanie broni w strone kursora
     private void Update()

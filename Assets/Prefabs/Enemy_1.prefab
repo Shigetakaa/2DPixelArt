@@ -185,6 +185,7 @@ MonoBehaviour:
   maxHealth: 10
   isPlayer: 0
   isEnemy: 1
+  killedEnemies: 0
   expItem: {fileID: 5484196263596612912, guid: e0b8241f2dac1314d9eb89a7a530ea1b, type: 3}
   OnHit:
     m_PersistentCalls:
@@ -192,6 +193,8 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  healthText: {fileID: 0}
+  killedEnemiesText: {fileID: 0}
 --- !u!114 &697937896431318708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 3416435313707119773}
   moveSpeed: 3
+  moveSpeedText: {fileID: 0}
 --- !u!114 &5626785403074787418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,9 +349,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3454821492146514828}
-  cooldown: 0.3
+  attackCooldown: 1
   areaOrigin: {fileID: 6270416380084540230}
   area: 1.2
+  isPlayer: 0
+  playerDamage: 4
+  playerDamageText: {fileID: 0}
+  attackCooldownText: {fileID: 0}
+  enemyDamage: 10
 --- !u!1 &8646543505014349528
 GameObject:
   m_ObjectHideFlags: 0
