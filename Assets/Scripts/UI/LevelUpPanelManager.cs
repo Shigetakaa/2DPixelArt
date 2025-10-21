@@ -33,9 +33,9 @@ public class LevelUpPanelManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void OnAttackSpeedPress()
+    public void OnAttackCooldownPress()
     {
-        weaponParent.attackSpeed -= 0.05f;
+        weaponParent.attackCooldown -= 0.05f;
         levelUpScreen.SetActive(false);
         characterParameters.SetActive(true);
         Time.timeScale = 1;

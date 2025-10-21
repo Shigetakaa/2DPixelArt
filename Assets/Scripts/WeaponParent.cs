@@ -8,7 +8,7 @@ public class WeaponParent : MonoBehaviour
     public Vector2 PointerPosition { get; set; }
 
     public Animator animator;
-    public float attackSpeed = 1f;
+    public float attackCooldown = 1f;
     private bool attackBlocked;
 
     public Transform areaOrigin;
@@ -17,7 +17,7 @@ public class WeaponParent : MonoBehaviour
     public bool isPlayer = false;
     public float playerDamage = 4f;
     public TextMeshProUGUI playerDamageText;
-    public TextMeshProUGUI attackSpeedText;
+    public TextMeshProUGUI attackCooldownText;
 
     public float enemyDamage = 2;
 
@@ -44,7 +44,7 @@ public class WeaponParent : MonoBehaviour
         playerDamageText.text = "Atak: " + playerDamage;
 
         //Wartość prędkość ataku
-        attackSpeedText.text = "Prędkość ataku: " + attackSpeed + " atak na sekunde";
+        attackCooldownText.text = "Czas odnowienia ataku: " + attackCooldown + "s";
     }
 
     // Metoda animacji ataku
@@ -54,13 +54,13 @@ public class WeaponParent : MonoBehaviour
             return;
         animator.SetTrigger("Attack");
         attackBlocked = true;
-        StartCoroutine(AttackSpeed());
+        StartCoroutine(AttackCooldown());
     }
 
     // Czekanie na koniec cooldown'u
-    private IEnumerator AttackSpeed()
+    private IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(attackSpeed);
+        yield return new WaitForSeconds(attackCooldown);
         attackBlocked = false;
     }
 
