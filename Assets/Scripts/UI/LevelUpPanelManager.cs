@@ -37,6 +37,7 @@ public class LevelUpPanelManager : MonoBehaviour
     public void OnHealtPress()
     {
         health.maxHealth += 5f;
+        health.health += 5f;
         levelUpScreen.SetActive(false);
         characterParameters.SetActive(true);
         Time.timeScale = 1;
