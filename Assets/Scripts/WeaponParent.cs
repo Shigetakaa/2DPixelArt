@@ -79,6 +79,11 @@ public class WeaponParent : MonoBehaviour
             {
                 if (isPlayer)
                 {
+                    BossHealth bossHealth;
+                    if(bossHealth = collider.GetComponent<BossHealth>())
+                    {
+                        bossHealth.GetHit(playerDamage, transform.parent.gameObject);
+                    }
                     health.GetHit(playerDamage, transform.parent.gameObject);
                 }
                 else

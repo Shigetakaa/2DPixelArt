@@ -7,6 +7,7 @@ public class InGameUIManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject gameOverScreen;
+    public GameObject victoryScreen;
     public GameObject healthBar;
 
     // Przycisk wróć do gry
@@ -37,5 +38,12 @@ public class InGameUIManager : MonoBehaviour
         // {
         //     healthBar.SetActive(false);
         // }
+    }
+
+    // UI Panelu wygranej
+    public void VictoryScreen()
+    {
+        Time.timeScale = 0;
+        victoryScreen.SetActive(true);
     }
 }
