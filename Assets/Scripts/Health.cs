@@ -11,7 +11,9 @@ public class Health : MonoBehaviour
 
     public bool isPlayer = false;
 
-    public bool isEnemy = true;
+    public bool isEnemy = false;
+
+    public bool isBoss = false;
 
     public int killedEnemies = 0;
 
@@ -21,14 +23,16 @@ public class Health : MonoBehaviour
 
     private bool isDead = false;
     private InGameUIManager gameOverScreen;
+    private InGameUIManager victoryScreen;
 
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI killedEnemiesText;
 
     private void Start()
     {
-        // Wczytanie UI końca gry
+        // Wczytanie UI
         gameOverScreen = FindObjectOfType<InGameUIManager>();
+        victoryScreen = FindObjectOfType<InGameUIManager>();
     }
 
 
@@ -64,7 +68,7 @@ public class Health : MonoBehaviour
             OnDeath?.Invoke(sender);
             isDead = true;
 
-            // Sprawdzenie czy martwy obiekt to gracz
+            // Sprawdzenie czy obiekt to gracz
             if (isPlayer && gameOverScreen != null)
             {
                 // Aktywowane UI końca gry
@@ -73,7 +77,7 @@ public class Health : MonoBehaviour
                 Destroy(gameObject);
             }
 
-            // Sprawdzenie czy martwy obiekt to wróg
+            // Sprawdzenie czy obiekt to wróg
             if (isEnemy)
             {
                 // Pojawia się doświadczenie po śmieci wroga
@@ -88,10 +92,16 @@ public class Health : MonoBehaviour
                     player.killedEnemies++;
                     if (player.killedEnemiesText != null)
                     {
-                        player.killedEnemiesText.text = 
+                        player.killedEnemiesText.text =
                             "Pokonani wrogowie: " + player.killedEnemies;
                     }
                 }
+            }
+
+            if (isBoss)
+            {
+                victoryScreen.VictoryScreen();
+                Destroy(gameObject);
             }
 
             // Destroy(gameObject);
