@@ -58,7 +58,7 @@ public class Health : MonoBehaviour
     {
         if (isDead)
             return;
-        if (sender.layer == gameObject.layer)
+        if (sender.layer == gameObject.layer && !sender.CompareTag("BossAttack"))
             return;
 
         health -= damage;

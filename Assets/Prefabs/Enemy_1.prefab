@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8030237471247244032}
   - component: {fileID: 697937896431318708}
   - component: {fileID: 5626785403074787418}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Enemy_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,6 +185,8 @@ MonoBehaviour:
   maxHealth: 10
   isPlayer: 0
   isEnemy: 1
+  isBoss: 0
+  killedEnemies: 0
   expItem: {fileID: 5484196263596612912, guid: e0b8241f2dac1314d9eb89a7a530ea1b, type: 3}
   OnHit:
     m_PersistentCalls:
@@ -192,6 +194,8 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  healthText: {fileID: 0}
+  killedEnemiesText: {fileID: 0}
 --- !u!114 &697937896431318708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 3416435313707119773}
   moveSpeed: 3
+  moveSpeedText: {fileID: 0}
 --- !u!114 &5626785403074787418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3109055385591637343}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: CircleOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3118434280409954478}
   - component: {fileID: 4546937275113506513}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: WeaponParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,6 +353,10 @@ MonoBehaviour:
   cooldown: 0.3
   areaOrigin: {fileID: 6270416380084540230}
   area: 1.2
+  isPlayer: 0
+  playerDamage: 4
+  playerDamageText: {fileID: 0}
+  enemyDamage: 2
 --- !u!1 &8646543505014349528
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +369,7 @@ GameObject:
   - component: {fileID: 4812659606519424886}
   - component: {fileID: 3454821492146514828}
   - component: {fileID: 3142595088815710727}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
