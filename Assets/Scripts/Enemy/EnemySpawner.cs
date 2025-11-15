@@ -5,23 +5,39 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemies;
 
     public Transform player;
+    public GameObject timer;
 
-    public float spawnRadius = 10f;
+    private bool spawnOn = true;
+
+    public float spawnRadius = 30f;
 
     public float spawnCooldown = 1f;
     private float spawnTime;
+
+    private Timer timerScript;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         spawnTime = spawnCooldown;
+        spawnOn = true;
+        timerScript = timer.GetComponent<Timer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Jak timer jest 0 to metoda Spanwer() się nie wywołuje
+        if(timerScript.remainingTime <= 0)
+        {
+            return;
+        }
+
         // Odliczanie
-        if (spawnTime > 0) spawnTime -= Time.deltaTime;
+        if (spawnTime > 0)
+        {
+            spawnTime -= Time.deltaTime;
+        }
 
         // Wróg się pojawia po upłynięciu czasu
         if (spawnTime <= 0)
