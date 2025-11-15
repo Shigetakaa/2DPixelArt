@@ -4,7 +4,7 @@ using UnityEngine;
 public class BossAoe : MonoBehaviour
 {
     public float aoeDamage = 30f;
-    public float aoeRadius = 2.5f;
+    public float aoeRadius = 0.3f;
     public float warnTime = 1f;
 
     private SpriteRenderer sprite;
@@ -18,8 +18,6 @@ public class BossAoe : MonoBehaviour
         aoeAttack = GetComponent<CircleCollider2D>();
         aoeAttack.isTrigger = true;
         aoeAttack.radius = aoeRadius;
-
-        transform.localScale = new Vector3(aoeRadius * 2f, aoeRadius * 2f, 1f);
 
         sprite.color = new Color(1f, 0f, 0f, 0.35f);
 
@@ -41,9 +39,17 @@ public class BossAoe : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        DealDaamage(other);
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        DealDaamage(other);
+    }
 
     // Metoda zadająca obrażenia graczowi
-    private void OnTriggerEnter2D(Collider2D other)
+    public void DealDaamage(Collider2D other)
     {
         if(!dealDamage) return;
 
@@ -53,15 +59,10 @@ public class BossAoe : MonoBehaviour
             if(playerHeath != null)
             {
                 playerHeath.GetHit(aoeDamage, this.gameObject);
+
+                dealDamage = false;
             }
             
         }
-    }
-
-    // Metoda rysująca Gizmo
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, aoeRadius);
     }
 }

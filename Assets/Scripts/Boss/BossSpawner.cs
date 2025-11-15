@@ -1,0 +1,48 @@
+using UnityEngine;
+
+public class BossSpawner : MonoBehaviour
+{
+    public GameObject[] bosses;
+
+    public Transform player;
+    public GameObject timer;
+
+    public float spawnRadius = 30f;
+
+    private bool bossSpawned = false;
+    private Timer timerScript;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        timerScript = timer.GetComponent<Timer>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Jak timer jest 0 to metoda Spanwer() się wywołuje
+        if(!bossSpawned && timerScript.remainingTime <= 0)
+        {
+            Spawner();
+            bossSpawned = true;
+        }
+    }
+
+    // Metoda tworzenia bossa
+    public void Spawner()
+    {
+        // Losowanie pozycji wroga
+        float spawnAngle = Random.Range(0f, Mathf.PI * 2f);
+        float spawnDistance = Random.Range(spawnRadius * 0.8f, spawnRadius);
+        Vector3 positionSpawn = player.position + new Vector3(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle), 0) * spawnDistance;
+        positionSpawn.z = -1f;
+
+        // Losowanie wroga
+        int randomSpawn = Random.Range(0, bosses.Length);
+        GameObject chosenEnemy = bosses[randomSpawn];
+
+        // Tworzenie wroga
+        GameObject spawned = Instantiate(chosenEnemy, positionSpawn, Quaternion.identity);
+    }
+}

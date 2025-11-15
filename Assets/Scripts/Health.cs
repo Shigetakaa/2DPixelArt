@@ -100,11 +100,16 @@ public class Health : MonoBehaviour
 
             if (isBoss)
             {
-                victoryScreen.VictoryScreen();
+                Health player = sender.GetComponent<Health>();
+                if(player != null && player.isPlayer)
+                {
+                    victoryScreen.VictoryScreen(player.killedEnemies);
+                }
+                
                 Destroy(gameObject);
             }
 
-            // Destroy(gameObject);
+            
         }
         else
         {

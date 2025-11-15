@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
     private bool spawnOn = true;
 
-    public float spawnRadius = 10f;
+    public float spawnRadius = 30f;
 
     public float spawnCooldown = 1f;
     private float spawnTime;

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -9,6 +10,9 @@ public class InGameUIManager : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject victoryScreen;
     public GameObject healthBar;
+    public GameObject characterParameters;
+    public GameObject timerText;
+    public TextMeshProUGUI killedEnemiesText;
 
     // Przycisk wróć do gry
     public void OnResumePress()
@@ -33,17 +37,20 @@ public class InGameUIManager : MonoBehaviour
     public void GameOverScreen()
     {
         gameOverScreen.SetActive(true);
-        // // Wyłączenie paska zdrowia po śmierci gracza
-        // if (healthBar != null)
-        // {
-        //     healthBar.SetActive(false);
-        // }
+        // Wyłączenie paska zdrowia po śmierci gracza
+        if (healthBar != null)
+        {
+            healthBar.SetActive(false);
+        }
     }
 
     // UI Panelu wygranej
-    public void VictoryScreen()
+    public void VictoryScreen(int killedEnemies)
     {
         Time.timeScale = 0;
         victoryScreen.SetActive(true);
+        killedEnemiesText.text = "Wrogowie: " + killedEnemies;
+        characterParameters.SetActive(false);
+        timerText.SetActive(false);
     }
 }
