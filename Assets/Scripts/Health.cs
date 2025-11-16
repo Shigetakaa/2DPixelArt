@@ -40,6 +40,9 @@ public class Health : MonoBehaviour
     {
         // Wartość slidera zdrowia = wartość zdrowia gracza
         GameObject.Find("HealthBar").GetComponent<Slider>().value = health;
+
+        // Slider dla bossa
+        GameObject.Find("BossHealthBar").GetComponent<Slider>().value = health;
         
         // Wartość zdrowia
         healthText.text = health + " / " + maxHealth;

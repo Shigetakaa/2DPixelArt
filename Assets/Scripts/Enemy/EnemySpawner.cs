@@ -27,9 +27,10 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Jak timer jest 0 to metoda Spanwer() się nie wywołuje
+        // Jak timer jest 0 to metoda Spanwer() się nie wywołuje oraz wszyscy wrogowie giną
         if(timerScript.remainingTime <= 0)
         {
+            KillAllEnemies();
             return;
         }
 
@@ -62,5 +63,14 @@ public class EnemySpawner : MonoBehaviour
 
         // Tworzenie wroga
         GameObject spawned = Instantiate(chosenEnemy, positionSpawn, Quaternion.identity);
+    }
+
+    public void KillAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 }
