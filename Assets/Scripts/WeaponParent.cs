@@ -13,12 +13,8 @@ public class WeaponParent : MonoBehaviour
 
     public Transform areaOrigin;
     public float area;
-
-    public bool isPlayer = false;
     public float playerDamage = 4;
     public TextMeshProUGUI playerDamageText;
-
-    public float enemyDamage = 2;
 
     // Obracanie broni w strone kursora
     private void Update()
