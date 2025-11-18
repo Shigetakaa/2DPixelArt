@@ -43,6 +43,6 @@ public class BossSpawner : MonoBehaviour
         GameObject chosenEnemy = bosses[randomSpawn];
 
         // Tworzenie wroga
-        GameObject spawned = Instantiate(chosenEnemy, positionSpawn, Quaternion.identity);
+        Instantiate(chosenEnemy, positionSpawn, Quaternion.identity);
     }
 }

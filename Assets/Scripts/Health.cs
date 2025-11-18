@@ -28,21 +28,19 @@ public class Health : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI killedEnemiesText;
 
+    public GameObject healthBar;
+
     private void Start()
     {
         // Wczytanie UI
         gameOverScreen = FindObjectOfType<InGameUIManager>();
-        victoryScreen = FindObjectOfType<InGameUIManager>();
     }
 
 
     private void Update()
     {
         // Wartość slidera zdrowia = wartość zdrowia gracza
-        GameObject.Find("HealthBar").GetComponent<Slider>().value = health;
-
-        // Slider dla bossa
-        GameObject.Find("BossHealthBar").GetComponent<Slider>().value = health;
+        healthBar.GetComponent<Slider>().value = health;
         
         // Wartość zdrowia
         healthText.text = health + " / " + maxHealth;

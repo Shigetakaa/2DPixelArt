@@ -98,9 +98,9 @@ GameObject:
   - component: {fileID: 5970387280298806706}
   - component: {fileID: 3416435313707119773}
   - component: {fileID: 2148615236802158905}
-  - component: {fileID: 8030237471247244032}
   - component: {fileID: 697937896431318708}
   - component: {fileID: 5626785403074787418}
+  - component: {fileID: 4029910418335611399}
   m_Layer: 8
   m_Name: Enemy_1
   m_TagString: Enemy
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 6814836053055430672}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.5, y: -1.36, z: -1}
+  m_LocalPosition: {x: 4.4298, y: 1.0826, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -255,33 +255,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0998373, y: 2.1088386}
   m_EdgeRadius: 0
---- !u!114 &8030237471247244032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6814836053055430672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9ea76691e5359489b45d36ba459cb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  maxHealth: 10
-  isPlayer: 0
-  isEnemy: 1
-  isBoss: 0
-  killedEnemies: 0
-  expItem: {fileID: 5484196263596612912, guid: e0b8241f2dac1314d9eb89a7a530ea1b, type: 3}
-  OnHit:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  healthText: {fileID: 0}
-  killedEnemiesText: {fileID: 0}
 --- !u!114 &697937896431318708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,3 +320,26 @@ MonoBehaviour:
   attackDistance: 0.8
   attackCooldown: 0.3
   passedTime: 0.3
+--- !u!114 &4029910418335611399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6814836053055430672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68dc58288088041499ea1fa0c35ae14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  enemyHealth: 10
+  maxEnemyHealth: 10
+  killedEnemies: 0
+  expItem: {fileID: 5484196263596612912, guid: e0b8241f2dac1314d9eb89a7a530ea1b, type: 3}
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  killedEnemiesText: {fileID: 0}

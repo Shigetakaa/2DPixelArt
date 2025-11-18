@@ -4,10 +4,10 @@ using UnityEngine;
 public class BossMelee : MonoBehaviour
 {
     public GameObject meleeAttack;
-    public float meleeDamage = 30f;
+    public float meleeDamage = 10f;
     public float meleeRadius = 0.8f;
     public float meleeAttackCooldown = 0.5f;
-    public float lastAttack;
+    private float lastAttack;
 
     private CircleCollider2D meleeAttackCollider;
 
@@ -26,15 +26,6 @@ public class BossMelee : MonoBehaviour
     {
         
     }
-
-    // private IEnumerator ActivateMeleeAttack()
-    // {
-    //     while (true)
-    //     {
-    //         yield return new WaitForSeconds(meleeAttackCooldown);
-    //     }
-    // }
-
     
     void OnTriggerEnter2D(Collider2D other)
     {

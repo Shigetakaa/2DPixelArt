@@ -74,17 +74,15 @@ public class WeaponParent : MonoBehaviour
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(areaOrigin.position, area))
         {
             // Metoda zadająca obrażenia
-            Health health;
-            if (health = collider.GetComponent<Health>())
+            BossHealth bossHealth;
+            EnemyHealth enemyHealth;
+            if (bossHealth = collider.GetComponent<BossHealth>())
             {
-                if (isPlayer)
-                {
-                    health.GetHit(playerDamage, transform.parent.gameObject);
-                }
-                else
-                {
-                    health.GetHit(enemyDamage, transform.parent.gameObject);
-                }
+                bossHealth.GetHit(playerDamage, transform.parent.gameObject);
+            }
+            else if(enemyHealth = collider.GetComponent<EnemyHealth>())
+            {
+                enemyHealth.GetHit(playerDamage, transform.parent.gameObject);
             }
         }
     }

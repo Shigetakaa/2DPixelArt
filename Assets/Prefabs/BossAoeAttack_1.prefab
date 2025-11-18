@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5509106844369452171}
   - component: {fileID: 7781469404389152029}
   - component: {fileID: 1265056448240545981}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: BossAoeAttack_1
   m_TagString: BossAttack
   m_Icon: {fileID: 0}

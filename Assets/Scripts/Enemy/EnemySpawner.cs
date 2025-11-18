@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject chosenEnemy = enemies[randomSpawn];
 
         // Tworzenie wroga
-        GameObject spawned = Instantiate(chosenEnemy, positionSpawn, Quaternion.identity);
+        Instantiate(chosenEnemy, positionSpawn, Quaternion.identity);
     }
 
     public void KillAllEnemies()
