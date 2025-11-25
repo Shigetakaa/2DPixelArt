@@ -39,23 +39,23 @@ public class BossAoe : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        DealDaamage(other);
+        DealDamage(collision);    
     }
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        DealDaamage(other);
+        DealDamage(collision);
     }
 
     // Metoda zadająca obrażenia graczowi
-    public void DealDaamage(Collider2D other)
+    public void DealDamage(Collider2D collision)
     {
         if(!dealDamage) return;
 
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            Health playerHeath = other.GetComponent<Health>();
+            Health playerHeath = collision.GetComponent<Health>();
             if(playerHeath != null)
             {
                 playerHeath.GetHit(aoeDamage, this.gameObject);

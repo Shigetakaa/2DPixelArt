@@ -24,25 +24,25 @@ public class EnemyAttack : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        DealDamage(other);    
+        DealDamage(collision);    
     }
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        DealDamage(other);
+        DealDamage(collision);
     }
 
     // Metoda zadająca obrażenia graczowi
-    public void DealDamage(Collider2D other)
+    public void DealDamage(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             if(Time.time >= lastAttack + enemyAttackCooldown)
             {
                 lastAttack = Time.time;
 
-                Health playerHealth = other.GetComponent<Health>();
+                Health playerHealth = collision.GetComponent<Health>();
                 if (playerHealth != null)
                 {
                     playerHealth.GetHit(enemyDamage, this.gameObject);
