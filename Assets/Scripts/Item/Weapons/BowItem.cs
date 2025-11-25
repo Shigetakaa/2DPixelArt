@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class BowItem : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject bow;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("Player"))
+        {
+            bow.SetActive(true);
+            Destroy(gameObject);
+        }
         
     }
 }
