@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Aura : MonoBehaviour
@@ -5,7 +6,6 @@ public class Aura : MonoBehaviour
     public float auraDamage = 3f;
     public float auraRadius = 5f;
     public float auraCooldown = 2f;
-    public float lastAttack;
 
     private CircleCollider2D auraCollider;
 
@@ -15,6 +15,8 @@ public class Aura : MonoBehaviour
         auraCollider = GetComponent<CircleCollider2D>();
         auraCollider.isTrigger = true;
         auraCollider.radius = auraRadius;
+
+        StartCoroutine(ActivateAura());
     }
 
     // Update is called once per frame
@@ -23,34 +25,29 @@ public class Aura : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private IEnumerator ActivateAura()
     {
-        DealDamage(collision);
-    }
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        DealDamage(collision);
+        while (true)
+        {
+            yield return new WaitForSeconds(auraCooldown);
+            DealDamage();
+        }
     }
 
     // Metoda zadająca obrażenia
-    public void DealDamage(Collider2D collision)
+    public void DealDamage()
     {
-        if(collision.CompareTag("Enemy") || collision.CompareTag("Boss"))
+        foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, auraRadius))
         {
-            if(Time.time >= lastAttack + auraCooldown)
+            BossHealth bossHealth = collision.GetComponent<BossHealth>();
+            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+            if (bossHealth != null)
             {
-                lastAttack = Time.time;
-
-                BossHealth bossHealth = collision.GetComponent<BossHealth>();
-                EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
-                if (bossHealth != null)
-                {
-                    bossHealth.GetHit(auraDamage, this.gameObject);
-                }
-                else if (enemyHealth != null)
-                {
-                    enemyHealth.GetHit(auraDamage, this.gameObject);
-                }
+                bossHealth.GetHit(auraDamage, transform.parent.gameObject);
+            }
+            else if (enemyHealth != null)
+            {
+                enemyHealth.GetHit(auraDamage, transform.parent.gameObject);
             }
         }
     }

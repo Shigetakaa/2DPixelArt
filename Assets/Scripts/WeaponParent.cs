@@ -64,19 +64,18 @@ public class WeaponParent : MonoBehaviour
         Gizmos.DrawWireSphere(position, area);
     }
 
-    // Metoda sprawdzająca kolizje
-    public void DetectColliders()
+    // Metoda zadająca obrażenia
+    public void DealDamage()
     {
-        foreach (Collider2D collider in Physics2D.OverlapCircleAll(areaOrigin.position, area))
+        foreach (Collider2D collision in Physics2D.OverlapCircleAll(areaOrigin.position, area))
         {
-            // Metoda zadająca obrażenia
-            BossHealth bossHealth;
-            EnemyHealth enemyHealth;
-            if (bossHealth = collider.GetComponent<BossHealth>())
+            BossHealth bossHealth = collision.GetComponent<BossHealth>();
+            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+            if (bossHealth != null)
             {
                 bossHealth.GetHit(playerDamage, transform.parent.gameObject);
             }
-            else if(enemyHealth = collider.GetComponent<EnemyHealth>())
+            else if (enemyHealth != null)
             {
                 enemyHealth.GetHit(playerDamage, transform.parent.gameObject);
             }
