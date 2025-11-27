@@ -9,6 +9,8 @@ public class Aura : MonoBehaviour
 
     private CircleCollider2D auraCollider;
 
+    public GameObject player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,11 +45,11 @@ public class Aura : MonoBehaviour
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(auraDamage, transform.parent.gameObject);
+                bossHealth.GetHit(auraDamage, player);
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(auraDamage, transform.parent.gameObject);
+                enemyHealth.GetHit(auraDamage, player);
             }
         }
     }

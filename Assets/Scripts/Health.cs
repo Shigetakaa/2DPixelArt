@@ -77,40 +77,6 @@ public class Health : MonoBehaviour
                 Time.timeScale = 0;
                 Destroy(gameObject);
             }
-
-            // Sprawdzenie czy obiekt to wróg
-            if (isEnemy)
-            {
-                // Pojawia się doświadczenie po śmieci wroga
-                Instantiate(expItem, transform.position, Quaternion.identity);
-
-                Destroy(gameObject);
-
-                // Ilość pokonanych wrogów
-                Health player = sender.GetComponent<Health>();
-                if (player != null && player.isPlayer)
-                {
-                    player.killedEnemies++;
-                    if (player.killedEnemiesText != null)
-                    {
-                        player.killedEnemiesText.text =
-                            "Pokonani wrogowie: " + player.killedEnemies;
-                    }
-                }
-            }
-
-            if (isBoss)
-            {
-                Health player = sender.GetComponent<Health>();
-                if(player != null && player.isPlayer)
-                {
-                    victoryScreen.VictoryScreen(player.killedEnemies);
-                }
-                
-                Destroy(gameObject);
-            }
-
-            
         }
         else
         {

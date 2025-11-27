@@ -52,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
             OnDeath?.Invoke(sender);
             isDead = true;
 
-            // Pojawia się doświadczenie po śmieci wroga
+            // Pojawia się doświadczenie po śmierci wroga
             Instantiate(expItem, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
