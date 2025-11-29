@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -7,36 +8,40 @@ public class Staff : MonoBehaviour
 
     public float staffAttackCooldown = 4f;
     public float staffAttackSpeed = 10f;
+    
     public Vector2 areaMinPos = new Vector2(-10f, -10f);
     public Vector2 areaMaxPos = new Vector2(10f, 10f);
-    private float cooldownTimer;
 
     private string[] enemyTags = {"Enemy", "Boss"};
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(StaffAttackCooldown());
     }
 
     // Update is called once per frame
     void Update()
     {
-        cooldownTimer -= Time.deltaTime;
 
-        if(cooldownTimer <= 0f)
+    }
+
+    private IEnumerator StaffAttackCooldown()
+    {
+        while (true)
         {
             GameObject enemy = FindEnemy();
-
+    
             if(enemy != null)
             {
                 Shoot(enemy);
-                cooldownTimer = staffAttackCooldown;
             }
+
+            yield return new WaitForSeconds(staffAttackCooldown);
         }
     }
 
-    public GameObject FindEnemy()
+    private GameObject FindEnemy()
     {
         GameObject closeEnemy = null;
         float shortDistance = Mathf.Infinity;
@@ -65,7 +70,7 @@ public class Staff : MonoBehaviour
         return closeEnemy;  
     }
 
-    public void Shoot(GameObject enemy)
+    private void Shoot(GameObject enemy)
     {
         GameObject staffAttackObject = Instantiate(staffAttack, transform.position, quaternion.identity);
         staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed);

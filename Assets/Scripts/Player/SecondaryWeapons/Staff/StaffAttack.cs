@@ -42,9 +42,9 @@ public class StaffAttack : MonoBehaviour
         }
     }
 
-    public void Initialize(Transform e, float speed)
+    public void Initialize(Transform enemy, float speed)
     {
-        this.enemy = e;
+        this.enemy = enemy;
         this.speed = speed;
     }
 
