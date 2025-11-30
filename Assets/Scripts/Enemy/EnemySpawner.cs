@@ -7,8 +7,6 @@ public class EnemySpawner : MonoBehaviour
     public Transform player;
     public GameObject timer;
 
-    private bool spawnOn = true;
-
     public float spawnRadius = 30f;
 
     public float spawnCooldown = 1f;
@@ -20,7 +18,6 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         spawnTime = spawnCooldown;
-        spawnOn = true;
         timerScript = timer.GetComponent<Timer>();
     }
 

@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac8e5b4b9a8a6742a92fd9f3bc59d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingAttack
-  ringDamage: 10
+  ringDamage: 5
   ringAttackRadius: 0.3
   warnTime: 2
-  dealDamage: 0
+  player: {fileID: 0}

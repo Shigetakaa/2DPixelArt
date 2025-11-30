@@ -72,7 +72,7 @@ public class Staff : MonoBehaviour
 
     private void Shoot(GameObject enemy)
     {
-        GameObject staffAttackObject = Instantiate(staffAttack, transform.position, quaternion.identity);
+        GameObject staffAttackObject = Instantiate(staffAttack, transform.position, Quaternion.identity);
         staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed);
     }
 }
