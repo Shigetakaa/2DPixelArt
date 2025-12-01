@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +9,9 @@ public class Health : MonoBehaviour
 {
     public float health = 100f;
     public float maxHealth = 100f;
+    public float regenHealthAmount = 0.1f;
+    public float regenCooldown = 1f;
+
 
     public bool isPlayer = false;
 
@@ -34,6 +38,8 @@ public class Health : MonoBehaviour
     {
         // Wczytanie UI
         gameOverScreen = FindObjectOfType<InGameUIManager>();
+
+        StartCoroutine(HealthRegen());
     }
 
 
@@ -43,7 +49,7 @@ public class Health : MonoBehaviour
         healthBar.GetComponent<Slider>().value = health;
         
         // Wartość zdrowia
-        healthText.text = health + " / " + maxHealth;
+        healthText.text = health.ToString("F2") + " / " + maxHealth.ToString("F2");
     }
 
     // Inicjujemy zdrowie obiektu
@@ -91,6 +97,23 @@ public class Health : MonoBehaviour
         if(health > maxHealth)
         {
             health = maxHealth;
+        }
+    }
+
+    private IEnumerator HealthRegen()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(regenCooldown);
+
+            if(health < maxHealth)
+            {
+                health += regenHealthAmount;
+                if(health > maxHealth)
+                {
+                    health = maxHealth;
+                }
+            }
         }
     }
 }

@@ -8,8 +8,6 @@ public class CoinsManager : MonoBehaviour
 
     public int Coins { get; private set; }
 
-    public TextMeshProUGUI coinsText;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,10 +17,7 @@ public class CoinsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(coinsText != null)
-        {
-            coinsText.text = "Monety: " + Coins.ToString();
-        }
+        
     }
 
     void Awake()

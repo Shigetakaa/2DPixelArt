@@ -43,6 +43,15 @@ public class LevelUpPanelManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    // Metoda zwiększająca regeneracje zdrowia postaci
+    public void OnRegenHealthPress()
+    {
+        health.regenHealthAmount += 0.2f;
+        levelUpScreen.SetActive(false);
+        characterParameters.SetActive(true);
+        Time.timeScale = 1;
+    }
+
     // Metoda zwiększąjąca prędkość ruchu postaci  
     public void OnMoveSpeedPress()
     {

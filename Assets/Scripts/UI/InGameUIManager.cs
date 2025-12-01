@@ -13,7 +13,13 @@ public class InGameUIManager : MonoBehaviour
     public GameObject characterParameters;
     public GameObject timerText;
     public TextMeshProUGUI killedEnemiesText;
+    public TextMeshProUGUI victoryCoinsText;
     public TextMeshProUGUI coinsText;
+
+    void Update()
+    {
+        coinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
+    }
 
     // Przycisk wróć do gry
     public void OnResumePress()
@@ -51,7 +57,7 @@ public class InGameUIManager : MonoBehaviour
         Time.timeScale = 0;
         victoryScreen.SetActive(true);
         killedEnemiesText.text = "Wrogowie: " + killedEnemies;
-        coinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
+        victoryCoinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
         characterParameters.SetActive(false);
         timerText.SetActive(false);
     }
