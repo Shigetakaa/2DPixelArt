@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     private bool isDead = false;
 
     public GameObject expItem;
+    public GameObject coinItem;
 
     public UnityEvent<GameObject> OnHit, OnDeath;
 
@@ -52,8 +53,9 @@ public class EnemyHealth : MonoBehaviour
             OnDeath?.Invoke(sender);
             isDead = true;
 
-            // Pojawia się doświadczenie po śmierci wroga
+            // Pojawia się doświadczenie i moneta po śmierci wroga
             Instantiate(expItem, transform.position, Quaternion.identity);
+            Instantiate(coinItem, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
 

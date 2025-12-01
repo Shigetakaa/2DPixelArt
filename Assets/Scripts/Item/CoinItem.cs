@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class CoinItem : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int minCoinAmount = 1;
+    public int maxCoinAmount = 5;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            int randomCoinAmount = Random.Range(minCoinAmount, maxCoinAmount + 1);
+            CoinsManager.Instance.GetCoins(randomCoinAmount);
+            Destroy(gameObject);
+        }
     }
 }

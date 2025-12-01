@@ -1,8 +1,16 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public TextMeshProUGUI coinsText;
+
+    void Update()
+    {
+        coinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
+    }
+
     // Przycisk rozpocznij
     public void OnStartGamePress()
     {

@@ -83,4 +83,14 @@ public class Health : MonoBehaviour
             OnHit?.Invoke(sender);
         }
     }
+
+    public void GetHealth(float amount)
+    {
+        health += amount;
+        
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
 }
