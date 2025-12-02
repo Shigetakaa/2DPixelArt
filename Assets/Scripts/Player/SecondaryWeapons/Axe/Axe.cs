@@ -39,7 +39,7 @@ public class Axe : MonoBehaviour
 
         for(int i = 0; i < axeNumber; i++)
         {
-            float angle = i*axeAngle;
+            float angle = i * axeAngle;
 
             Vector2 offset = Quaternion.Euler(0, 0, angle) * Vector2.right * axeSpawnRadius;
             Vector3 axeSpawnPos = transform.position + (Vector3)offset;

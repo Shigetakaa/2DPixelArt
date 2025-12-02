@@ -38,7 +38,7 @@ public class AxeAttack : MonoBehaviour
         }
 
         axeAngle += axeRotateSpeed * Time.deltaTime;
-        float radian = axeAngle * Mathf.Rad2Deg;
+        float radian = axeAngle * Mathf.Deg2Rad;
 
         Vector3 offset = new Vector3(Mathf.Cos(radian), Mathf.Sin(radian), 0) * axeRadius;
         transform.position = center.position + offset;
