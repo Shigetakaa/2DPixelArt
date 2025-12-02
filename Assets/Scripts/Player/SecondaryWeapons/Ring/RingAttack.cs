@@ -36,8 +36,8 @@ public class RingAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(warnTime);
         sprite.color = Color.blue;
-        DealDamage();
         yield return new WaitForSeconds(0.1f);
+        DealDamage();
         Destroy(gameObject);
     }
 

@@ -25,12 +25,6 @@ public class StaffAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemy == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Vector2 direction = (enemy.position - transform.position).normalized;
 
         transform.position += (Vector3)direction * speed * Time.deltaTime;
