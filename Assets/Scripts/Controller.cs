@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour
     private WeaponParent weaponParent;
 
     public TextMeshProUGUI moveSpeedText;
+    public TextMeshProUGUI moveSpeedPauseText;
 
     // Pobranie metody ataku z WeaponParent
     public void PerformAttack()
@@ -38,6 +39,9 @@ public class Controller : MonoBehaviour
 
         // Wartość prędkości ruchu na ekranie
         moveSpeedText.text = "Prędkość ruchu: " + moveSpeed;
+
+        // Wartość prędkości ruchu na ekranie pauzy
+        moveSpeedPauseText.text = "Prędkość ruchu: " + moveSpeed;
     }
 
     private void FixedUpdate()

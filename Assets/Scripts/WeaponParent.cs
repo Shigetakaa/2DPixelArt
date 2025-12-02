@@ -14,15 +14,20 @@ public class WeaponParent : MonoBehaviour
     public Transform areaOrigin;
     public float area;
     public float playerDamage = 4;
-    public TextMeshProUGUI playerDamageText;
 
-    // Obracanie broni w strone kursora
+    public TextMeshProUGUI playerDamageText;
+    public TextMeshProUGUI playerDamageCooldownText;
+
+    public TextMeshProUGUI playerDamagePauseText;
+    public TextMeshProUGUI playerDamageCooldownPauseText;
+
     private void Update()
     {
+        // Obracanie broni w strone kursora
         Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
         transform.right = direction;
 
-        // Zmiana strony broni np. z lewej na prawą
+        // Zmiana strony broni
         Vector2 scale = transform.localScale;
         if (direction.x < 0)
         {
@@ -37,19 +42,31 @@ public class WeaponParent : MonoBehaviour
 
         // Wartość ataku
         playerDamageText.text = "Atak: " + playerDamage;
+
+        // Wartość cooldownu ataku
+        playerDamageCooldownText.text = "Cooldown ataku: " + cooldown.ToString("F2");
+
+
+        // Wartość ataku
+        playerDamagePauseText.text = "Atak: " + playerDamage;
+
+        // Wartość cooldownu ataku
+        playerDamageCooldownPauseText.text = "Cooldown ataku: " + cooldown.ToString("F2");
     }
 
     // Metoda animacji ataku
     public void Attack()
     {
         if (attackBlocked)
+        {
             return;
+        }
         animator.SetTrigger("Attack");
         attackBlocked = true;
         StartCoroutine(AttackCooldown());
     }
 
-    // Czekanie na koniec cooldown'u
+    // Cooldown ataku
     private IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(cooldown);
