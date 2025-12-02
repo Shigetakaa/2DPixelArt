@@ -44,14 +44,14 @@ public class WeaponParent : MonoBehaviour
         playerDamageText.text = "Atak: " + playerDamage;
 
         // Wartość cooldownu ataku
-        playerDamageCooldownText.text = "Cooldown ataku: " + cooldown.ToString("F2");
+        playerDamageCooldownText.text = "Cooldown ataku: " + cooldown.ToString("F2") + "s";
 
 
         // Wartość ataku
         playerDamagePauseText.text = "Atak: " + playerDamage;
 
         // Wartość cooldownu ataku
-        playerDamageCooldownPauseText.text = "Cooldown ataku: " + cooldown.ToString("F2");
+        playerDamageCooldownPauseText.text = "Cooldown ataku: " + cooldown.ToString("F2") + "s";
     }
 
     // Metoda animacji ataku

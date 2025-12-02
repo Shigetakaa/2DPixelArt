@@ -63,20 +63,20 @@ public class Health : MonoBehaviour
         parametersHealthText.text = "Zdrowie: " + health.ToString("F2") + " / " + maxHealth.ToString("F2");
 
         // Wartość regeneracji zdrowia w panelu statystyk
-        parametersHealthRegenText.text = "Regeneracja: " + regenHealthAmount.ToString("F2");
+        parametersHealthRegenText.text = "Regeneracja: " + regenHealthAmount.ToString("F2") + " na s";
 
         // Wartość regeneracji zdrowia w panelu statystyk
-        parametersHealthRegenCooldownText.text = "Cooldown regeneracji: " + regenCooldown.ToString("F2");
+        parametersHealthRegenCooldownText.text = "Cooldown regeneracji: " + regenCooldown.ToString("F2") + "s";
 
 
         // Wartość zdrowia w panelu pauzy
         parametersHealthPauseText.text = "Zdrowie: " + health.ToString("F2") + " / " + maxHealth.ToString("F2");
 
         // Wartość regeneracji zdrowia w panelu pauzy
-        parametersHealthRegenPauseText.text = "Regeneracja: " + regenHealthAmount.ToString("F2");
+        parametersHealthRegenPauseText.text = "Regeneracja: " + regenHealthAmount.ToString("F2") + " na s";
 
         // Wartość regeneracji zdrowia w panelu pauzy
-        parametersHealthRegenCooldownPauseText.text = "Cooldown regeneracji: " + regenCooldown.ToString("F2");
+        parametersHealthRegenCooldownPauseText.text = "Cooldown regeneracji: " + regenCooldown.ToString("F2") + "s";
     }
 
     // Inicjujemy zdrowie obiektu
