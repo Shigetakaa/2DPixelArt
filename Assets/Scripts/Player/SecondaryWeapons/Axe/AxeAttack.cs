@@ -5,11 +5,12 @@ public class AxeAttack : MonoBehaviour
 {
     public float axeDamage = 2f;
     public float axeAttackRadius = 0.5f;
+    public float axeKnockback = 400f;
     private float axeRotateSpeed;
     private float timeLimit;
     private float axeRadius;
     private float axeAngle;
-    private float axeDamageCooldown = 0.3f;
+    public float axeDamageCooldown = 0.3f;
     private float nextAxeDamage;
 
     private Transform center;
@@ -41,6 +42,9 @@ public class AxeAttack : MonoBehaviour
         float radian = axeAngle * Mathf.Deg2Rad;
 
         Vector3 offset = new Vector3(Mathf.Cos(radian), Mathf.Sin(radian), 0) * axeRadius;
+
+        transform.up = offset.normalized;
+
         transform.position = center.position + offset;
 
         DealDamage();
@@ -72,9 +76,24 @@ public class AxeAttack : MonoBehaviour
             else if (enemyHealth != null)
             {
                 enemyHealth.GetHit(axeDamage, player);
+                AxeKnockback(collision.transform);
             }
         }
 
         nextAxeDamage = Time.time + axeDamageCooldown;
+    }
+
+    private void AxeKnockback(Transform enemy)
+    {
+        Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
+
+        if(rb != null)
+        {
+            return;
+        }
+
+        Vector2 direction = (enemy.position - transform.position).normalized;
+
+        rb.AddForce(direction * axeKnockback, ForceMode2D.Impulse);
     }
 }

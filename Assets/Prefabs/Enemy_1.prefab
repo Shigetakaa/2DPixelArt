@@ -195,7 +195,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 10
+  m_LinearDamping: 2
   m_AngularDamping: 0.1
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -270,6 +270,7 @@ MonoBehaviour:
   rigidbody2D: {fileID: 3416435313707119773}
   moveSpeed: 5
   moveSpeedText: {fileID: 0}
+  moveSpeedPauseText: {fileID: 0}
 --- !u!114 &5626785403074787418
 MonoBehaviour:
   m_ObjectHideFlags: 0

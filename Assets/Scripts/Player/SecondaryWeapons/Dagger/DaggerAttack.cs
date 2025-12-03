@@ -59,6 +59,8 @@ public class DaggerAttack : MonoBehaviour
         }
 
         direction = Quaternion.Euler(0, 0, angle) * direction;
+
+        transform.right = -direction;
     }
 
     private void DealDamage()
