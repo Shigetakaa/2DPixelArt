@@ -13,20 +13,21 @@ public class WeaponParent : MonoBehaviour
 
     public Transform areaOrigin;
     public float area;
-
-    public bool isPlayer = false;
     public float playerDamage = 4;
+
     public TextMeshProUGUI playerDamageText;
+    public TextMeshProUGUI playerDamageCooldownText;
 
-    public float enemyDamage = 2;
+    public TextMeshProUGUI playerDamagePauseText;
+    public TextMeshProUGUI playerDamageCooldownPauseText;
 
-    // Obracanie broni w strone kursora
     private void Update()
     {
+        // Obracanie broni w strone kursora
         Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
         transform.right = direction;
 
-        // Zmiana strony broni np. z lewej na prawą
+        // Zmiana strony broni
         Vector2 scale = transform.localScale;
         if (direction.x < 0)
         {
@@ -41,19 +42,31 @@ public class WeaponParent : MonoBehaviour
 
         // Wartość ataku
         playerDamageText.text = "Atak: " + playerDamage;
+
+        // Wartość cooldownu ataku
+        playerDamageCooldownText.text = "Cooldown ataku: " + cooldown.ToString("F2") + "s";
+
+
+        // Wartość ataku
+        playerDamagePauseText.text = "Atak: " + playerDamage;
+
+        // Wartość cooldownu ataku
+        playerDamageCooldownPauseText.text = "Cooldown ataku: " + cooldown.ToString("F2") + "s";
     }
 
     // Metoda animacji ataku
     public void Attack()
     {
         if (attackBlocked)
+        {
             return;
+        }
         animator.SetTrigger("Attack");
         attackBlocked = true;
         StartCoroutine(AttackCooldown());
     }
 
-    // Czekanie na koniec cooldown'u
+    // Cooldown ataku
     private IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(cooldown);
@@ -68,23 +81,20 @@ public class WeaponParent : MonoBehaviour
         Gizmos.DrawWireSphere(position, area);
     }
 
-    // Metoda sprawdzająca kolizje
-    public void DetectColliders()
+    // Metoda zadająca obrażenia
+    public void DealDamage()
     {
-        foreach (Collider2D collider in Physics2D.OverlapCircleAll(areaOrigin.position, area))
+        foreach (Collider2D collision in Physics2D.OverlapCircleAll(areaOrigin.position, area))
         {
-            // Metoda zadająca obrażenia
-            Health health;
-            if (health = collider.GetComponent<Health>())
+            BossHealth bossHealth = collision.GetComponent<BossHealth>();
+            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+            if (bossHealth != null)
             {
-                if (isPlayer)
-                {
-                    health.GetHit(playerDamage, transform.parent.gameObject);
-                }
-                else
-                {
-                    health.GetHit(enemyDamage, transform.parent.gameObject);
-                }
+                bossHealth.GetHit(playerDamage, transform.parent.gameObject);
+            }
+            else if (enemyHealth != null)
+            {
+                enemyHealth.GetHit(playerDamage, transform.parent.gameObject);
             }
         }
     }

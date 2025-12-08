@@ -7,8 +7,6 @@ public class EnemySpawner : MonoBehaviour
     public Transform player;
     public GameObject timer;
 
-    private bool spawnOn = true;
-
     public float spawnRadius = 30f;
 
     public float spawnCooldown = 1f;
@@ -20,16 +18,16 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         spawnTime = spawnCooldown;
-        spawnOn = true;
         timerScript = timer.GetComponent<Timer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Jak timer jest 0 to metoda Spanwer() się nie wywołuje
+        // Jak timer jest 0 to metoda Spanwer() się nie wywołuje oraz wszyscy wrogowie giną
         if(timerScript.remainingTime <= 0)
         {
+            KillAllEnemies();
             return;
         }
 
@@ -61,6 +59,15 @@ public class EnemySpawner : MonoBehaviour
         GameObject chosenEnemy = enemies[randomSpawn];
 
         // Tworzenie wroga
-        GameObject spawned = Instantiate(chosenEnemy, positionSpawn, Quaternion.identity);
+        Instantiate(chosenEnemy, positionSpawn, Quaternion.identity);
+    }
+
+    public void KillAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 }

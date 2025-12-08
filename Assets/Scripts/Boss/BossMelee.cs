@@ -4,10 +4,10 @@ using UnityEngine;
 public class BossMelee : MonoBehaviour
 {
     public GameObject meleeAttack;
-    public float meleeDamage = 30f;
+    public float meleeDamage = 10f;
     public float meleeRadius = 0.8f;
     public float meleeAttackCooldown = 0.5f;
-    public float lastAttack;
+    private float lastAttack;
 
     private CircleCollider2D meleeAttackCollider;
 
@@ -26,35 +26,26 @@ public class BossMelee : MonoBehaviour
     {
         
     }
-
-    // private IEnumerator ActivateMeleeAttack()
-    // {
-    //     while (true)
-    //     {
-    //         yield return new WaitForSeconds(meleeAttackCooldown);
-    //     }
-    // }
-
     
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        DealDamage(other);    
+        DealDamage(collision);    
     }
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        DealDamage(other);
+        DealDamage(collision);
     }
 
     // Metoda zadająca obrażenia graczowi
-    public void DealDamage(Collider2D other)
+    public void DealDamage(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             if(Time.time >= lastAttack + meleeAttackCooldown)
             {
                 lastAttack = Time.time;
 
-                Health playerHealth = other.GetComponent<Health>();
+                Health playerHealth = collision.GetComponent<Health>();
                 if (playerHealth != null)
                 {
                     playerHealth.GetHit(meleeDamage, this.gameObject);

@@ -5,7 +5,7 @@ public class LevelUpPanelManager : MonoBehaviour
 {
     public GameObject levelUpScreen;
 
-    public GameObject characterParameters;
+    public GameObject characterStats;
 
     public WeaponParent weaponParent;
     public Health health;
@@ -29,7 +29,7 @@ public class LevelUpPanelManager : MonoBehaviour
     {
         weaponParent.playerDamage += 1f;
         levelUpScreen.SetActive(false);
-        characterParameters.SetActive(true);
+        characterStats.SetActive(true);
         Time.timeScale = 1;
     }
 
@@ -39,7 +39,16 @@ public class LevelUpPanelManager : MonoBehaviour
         health.maxHealth += 5f;
         health.health += 5f;
         levelUpScreen.SetActive(false);
-        characterParameters.SetActive(true);
+        characterStats.SetActive(true);
+        Time.timeScale = 1;
+    }
+
+    // Metoda zwiększająca regeneracje zdrowia postaci
+    public void OnRegenHealthPress()
+    {
+        health.regenHealthAmount += 0.2f;
+        levelUpScreen.SetActive(false);
+        characterStats.SetActive(true);
         Time.timeScale = 1;
     }
 
@@ -48,7 +57,25 @@ public class LevelUpPanelManager : MonoBehaviour
     {
         player.moveSpeed += 0.5f;
         levelUpScreen.SetActive(false);
-        characterParameters.SetActive(true);
+        characterStats.SetActive(true);
+        Time.timeScale = 1;
+    }
+
+    // Metoda zmiejszająca cooldown ataku
+    public void OnAttackCooldownPress()
+    {
+        weaponParent.cooldown -= 0.1f;
+        levelUpScreen.SetActive(false);
+        characterStats.SetActive(true);
+        Time.timeScale = 1;
+    }
+
+    // Metoda zmiejszająca cooldown regeneracji zdrowia
+    public void OnRegenHealthCooldownPress()
+    {
+        health.regenCooldown -= 0.1f;
+        levelUpScreen.SetActive(false);
+        characterStats.SetActive(true);
         Time.timeScale = 1;
     }
 }

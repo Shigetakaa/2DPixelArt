@@ -18,14 +18,10 @@ public class EnemyController : MonoBehaviour
         // Znajdowania gracza po tagu
         if (player == null)
         {
-            GameObject playerObj = GameObject.FindWithTag("Player");
-            if (playerObj != null)
+            GameObject playerObject = GameObject.FindWithTag("Player");
+            if (playerObject != null)
             {
-                player = playerObj.transform;
-            }
-            else
-            {
-                Debug.LogWarning($"{name}: Nie znaleziono gracza z tagiem 'Player'!");
+                player = playerObject.transform;
             }
         }
     }

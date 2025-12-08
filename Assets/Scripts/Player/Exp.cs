@@ -13,7 +13,7 @@ public class Exp : MonoBehaviour
 
     public GameObject levelUpScreen;
 
-    public GameObject characterParameters;
+    public GameObject characterStats;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,8 +58,7 @@ public class Exp : MonoBehaviour
 
         levelUpScreen.SetActive(true);
 
-        // Wyłączenie widoczności parametrów postaci w ekranie
-        characterParameters.SetActive(false);
+        characterStats.SetActive(false);
 
         Time.timeScale = 0;
     }
