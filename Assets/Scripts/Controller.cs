@@ -49,4 +49,9 @@ public class Controller : MonoBehaviour
         // Ruch obiektu
         rigidbody2D.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
+
+    public void AddMoveSpeedBonus(float bonus)
+    {
+        moveSpeed += bonus;
+    }
 }

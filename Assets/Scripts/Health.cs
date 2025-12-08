@@ -143,4 +143,14 @@ public class Health : MonoBehaviour
             }
         }
     }
+
+    public void AddMaxHealthBonus(float bonus)
+    {
+        maxHealth += bonus;
+    }
+
+    public void AddRegenHealthBonus(float bonus)
+    {
+        regenHealthAmount += bonus;
+    }
 }

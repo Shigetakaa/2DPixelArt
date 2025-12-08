@@ -98,4 +98,14 @@ public class WeaponParent : MonoBehaviour
             }
         }
     }
+
+    public void AddDamageBonus(float bonus)
+    {
+        playerDamage += bonus;
+    }
+
+    public void AddAttackCooldownBonus(float bonus)
+    {
+        cooldown -= bonus;
+    }
 }
