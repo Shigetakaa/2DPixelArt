@@ -19,7 +19,7 @@ public class Upgrades : ScriptableObject
     public int cost = 500;
     public float costMultiplier = 2f;
 
-    public int maxLevel = 4;
+    public int maxLevel = 5;
 
     public float statBonusPerLevel = 1f;
 

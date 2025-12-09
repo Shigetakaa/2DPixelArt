@@ -1114,6 +1114,56 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &797281215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797281217}
+  - component: {fileID: 797281216}
+  m_Layer: 0
+  m_Name: UpgradeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &797281216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797281215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8deb7636f822d48900f73ca7a6bb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradesManager
+  upgrades:
+  - {fileID: 11400000, guid: 9d5b7fe7c92de854d96e3780d1228eca, type: 2}
+  - {fileID: 11400000, guid: ad41460a1ba1f7c4b835dcc5a7a213fb, type: 2}
+  - {fileID: 11400000, guid: 821ef1781e16baf4e920a4622c2dca8f, type: 2}
+  - {fileID: 11400000, guid: 0f8153f8b0eb64f438bd8456a1b7fa48, type: 2}
+  - {fileID: 11400000, guid: 6b56ae4b299e6e1429401a5f24c331f2, type: 2}
+--- !u!4 &797281217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797281215}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 666.459, y: 442.5863, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &817033106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,7 +1598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e053ea948d93964986753f3afb8aca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinsManager
-  coinsText: {fileID: 0}
 --- !u!4 &1062851053
 Transform:
   m_ObjectHideFlags: 0
@@ -2190,3 +2239,4 @@ SceneRoots:
   - {fileID: 435712962}
   - {fileID: 241885289}
   - {fileID: 1062851053}
+  - {fileID: 797281217}

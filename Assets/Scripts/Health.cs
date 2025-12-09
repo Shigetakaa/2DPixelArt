@@ -44,6 +44,8 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        UpgradesManager.Instance.SetUpgrades(this);
+
         // Wczytanie UI
         gameOverScreen = FindObjectOfType<InGameUIManager>();
 
@@ -147,6 +149,7 @@ public class Health : MonoBehaviour
     public void AddMaxHealthBonus(float bonus)
     {
         maxHealth += bonus;
+        health += bonus;
     }
 
     public void AddRegenHealthBonus(float bonus)

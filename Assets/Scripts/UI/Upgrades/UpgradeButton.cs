@@ -24,25 +24,37 @@ public class UpgradeButton : MonoBehaviour
         RefreshUI();
 
         button.onClick.AddListener(OnBuyUpgradePress);
+
+        UpgradesManager.OnUpgradeReset += RefreshUI;
     }
 
-    private void RefreshUI()
+    void OnDestroy()
+    {
+        UpgradesManager.OnUpgradeReset -= RefreshUI;
+    }
+
+    public void RefreshUI()
     {
         upgradeLevel = UpgradeSaveManager.GetUpgradeLevel(upgrades.upgradeName);
         upgradeCost = upgrades.GetCostForLevel(upgradeLevel);
 
         buttonNameText.text = upgrades.upgradeName;
-        buttonLevelText.text = "Level: " + upgradeLevel;
-        buttonCostText.text = upgradeCost + " monet";
+        buttonLevelText.text = "Poziom: " + upgradeLevel;
+        buttonCostText.text = "Koszt: " + upgradeCost;
+        buttonDescriptionText.text = upgrades.upgradeDescription;
 
         button.interactable = (CoinsManager.Instance.Coins >= upgradeCost);
     }
 
-    private void OnBuyUpgradePress()
+    public void OnBuyUpgradePress()
     {
         if(CoinsManager.Instance.Coins < upgradeCost)
         {
             noCoinsWindow.SetActive(true);
+            return;
+        }
+        else if(upgradeLevel == upgrades.maxLevel)
+        {
             return;
         }
 
