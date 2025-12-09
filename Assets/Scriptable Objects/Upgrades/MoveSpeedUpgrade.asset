@@ -17,6 +17,6 @@ MonoBehaviour:
   upgradeIcon: {fileID: 0}
   cost: 500
   costMultiplier: 2
-  maxLevel: 4
+  maxLevel: 5
   statBonusPerLevel: 1
   upgradeType: 0

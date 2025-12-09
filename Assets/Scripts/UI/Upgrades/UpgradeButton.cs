@@ -21,7 +21,7 @@ public class UpgradeButton : MonoBehaviour
     {
         RefreshUI();
 
-        button.onClick.AddListener(OnBuyUpgradePress);
+        // button.onClick.AddListener(OnBuyUpgradePress);
 
         UpgradesManager.OnUpgradeReset += RefreshUI;
     }
