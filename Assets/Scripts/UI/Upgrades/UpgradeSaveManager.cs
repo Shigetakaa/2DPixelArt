@@ -24,9 +24,4 @@ public static class UpgradeSaveManager
         upgradeLevel++;
         SetUpgradeLevel(upgradeName, upgradeLevel);
     }
-
-    public static void ResetUpgrade(string upgradeName)
-    {
-        PlayerPrefs.DeleteKey(Key(upgradeName));
-    }
 }
