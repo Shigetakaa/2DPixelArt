@@ -8,6 +8,8 @@ public class CoinsManager : MonoBehaviour
 
     public int Coins { get; private set; }
 
+    public int coinsDevValue = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,6 +39,12 @@ public class CoinsManager : MonoBehaviour
     private void LoadCoins()
     {
         Coins = PlayerPrefs.GetInt("coins", 0);
+
+        if(coinsDevValue > 0)
+        {
+            Coins = coinsDevValue;
+            SaveCoins();
+        }
     }
 
     public void GetCoins(int amount)

@@ -16,8 +16,6 @@ public class UpgradeButton : MonoBehaviour
     private int upgradeLevel;
     private int upgradeCost;
 
-    public GameObject noCoinsWindow;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,7 +48,6 @@ public class UpgradeButton : MonoBehaviour
     {
         if(CoinsManager.Instance.Coins < upgradeCost)
         {
-            noCoinsWindow.SetActive(true);
             return;
         }
         else if(upgradeLevel == upgrades.maxLevel)
