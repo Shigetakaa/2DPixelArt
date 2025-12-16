@@ -12,6 +12,9 @@ public class StartGameManager : MonoBehaviour
     private Button pressedMapButton;
     private Button pressedDifficultyButton;
 
+    public GameObject mainMenu;
+    public GameObject startGameScreen;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,5 +65,11 @@ public class StartGameManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(GameSettingsManager.Instance.chosenMap);
+    }
+
+    public void OnBackPress()
+    {
+        mainMenu.SetActive(true);
+        startGameScreen.SetActive(false);
     }
 }

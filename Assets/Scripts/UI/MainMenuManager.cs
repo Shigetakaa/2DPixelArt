@@ -15,7 +15,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     // Przycisk rozpocznij
-    public void OnStartGamePress()
+    public void OnStartPress()
     {
         mainMenu.SetActive(false);
         startGameScreen.SetActive(true);
