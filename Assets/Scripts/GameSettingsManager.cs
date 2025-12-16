@@ -7,9 +7,6 @@ public class GameSettingsManager : MonoBehaviour
     public string chosenMap;
     public Difficulty chosenDifficulty;
 
-    public bool IsMapPressed => !string.IsNullOrEmpty(chosenMap);
-    public bool IsDifficultyPressed => true;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
