@@ -6,6 +6,9 @@ public class MainMenuManager : MonoBehaviour
 {
     public TextMeshProUGUI coinsText;
 
+    public GameObject mainMenu;
+    public GameObject startGameScreen;
+
     void Update()
     {
         coinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
@@ -14,8 +17,8 @@ public class MainMenuManager : MonoBehaviour
     // Przycisk rozpocznij
     public void OnStartGamePress()
     {
-        SceneManager.LoadScene("Game");
-        Time.timeScale = 1;
+        mainMenu.SetActive(false);
+        startGameScreen.SetActive(true);
     }
 
     // Przycisk ulepszenia
