@@ -62,7 +62,7 @@ public class StartGameManager : MonoBehaviour
         UpdateStartButton();
     }
 
-    public void StartGame()
+    public void OnStartGamePress()
     {
         SceneManager.LoadScene(GameSettingsManager.Instance.chosenMap);
     }
