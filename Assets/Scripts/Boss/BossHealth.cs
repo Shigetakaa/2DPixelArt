@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -16,8 +17,29 @@ public class BossHealth : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GetDifficulty();
+
         // Wczytanie UI
         victoryScreen = FindObjectOfType<InGameUIManager>();
+    }
+
+    public void GetDifficulty()
+    {
+        switch (GameSettingsManager.Instance.chosenDifficulty)
+        {
+            case Difficulty.Easy:
+                bossHealth = 100f;
+                maxBossHealth = 100f;
+                break;
+            case Difficulty.Normal:
+                bossHealth = 200f;
+                maxBossHealth = 200f;
+                break;
+            case Difficulty.Hard:
+                bossHealth = 400f;
+                maxBossHealth = 400f;
+                break;
+        }
     }
 
     // Update is called once per frame

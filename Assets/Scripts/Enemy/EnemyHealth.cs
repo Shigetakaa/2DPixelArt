@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,7 +22,26 @@ public class EnemyHealth : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        GetDifficulty();
+    }
+
+    public void GetDifficulty()
+    {
+        switch (GameSettingsManager.Instance.chosenDifficulty)
+        {
+            case Difficulty.Easy:
+                enemyHealth = 10f;
+                maxEnemyHealth = 10f;
+                break;
+            case Difficulty.Normal:
+                enemyHealth = 20f;
+                maxEnemyHealth = 20f;
+                break;
+            case Difficulty.Hard:
+                enemyHealth = 40f;
+                maxEnemyHealth = 40f;
+                break;
+        }
     }
 
     // Update is called once per frame
