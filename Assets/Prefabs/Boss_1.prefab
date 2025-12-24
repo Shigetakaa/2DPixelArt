@@ -234,8 +234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Controller
   rigidbody2D: {fileID: 6904465659730336049}
-  moveSpeed: 6
+  moveSpeed: 4
   moveSpeedText: {fileID: 0}
+  moveSpeedPauseText: {fileID: 0}
 --- !u!114 &1870892961957706505
 MonoBehaviour:
   m_ObjectHideFlags: 0

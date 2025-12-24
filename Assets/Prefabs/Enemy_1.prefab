@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 3416435313707119773}
-  moveSpeed: 5
+  moveSpeed: 2
   moveSpeedText: {fileID: 0}
   moveSpeedPauseText: {fileID: 0}
 --- !u!114 &5626785403074787418
