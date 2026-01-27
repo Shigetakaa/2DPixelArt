@@ -32,11 +32,9 @@ public class Health : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI parametersHealthText;
     public TextMeshProUGUI parametersHealthRegenText;
-    public TextMeshProUGUI parametersHealthRegenCooldownText;
 
     public TextMeshProUGUI parametersHealthPauseText;
     public TextMeshProUGUI parametersHealthRegenPauseText;
-    public TextMeshProUGUI parametersHealthRegenCooldownPauseText;
 
     public TextMeshProUGUI killedEnemiesText;
 
@@ -67,18 +65,12 @@ public class Health : MonoBehaviour
         // Wartość regeneracji zdrowia w panelu statystyk
         parametersHealthRegenText.text = "Regeneracja: " + regenHealthAmount.ToString("F2") + " na s";
 
-        // Wartość regeneracji zdrowia w panelu statystyk
-        parametersHealthRegenCooldownText.text = "Cooldown regeneracji: " + regenCooldown.ToString("F2") + "s";
-
 
         // Wartość zdrowia w panelu pauzy
         parametersHealthPauseText.text = "Zdrowie: " + health.ToString("F2") + " / " + maxHealth.ToString("F2");
 
         // Wartość regeneracji zdrowia w panelu pauzy
         parametersHealthRegenPauseText.text = "Regeneracja: " + regenHealthAmount.ToString("F2") + " na s";
-
-        // Wartość regeneracji zdrowia w panelu pauzy
-        parametersHealthRegenCooldownPauseText.text = "Cooldown regeneracji: " + regenCooldown.ToString("F2") + "s";
     }
 
     // Inicjujemy zdrowie obiektu

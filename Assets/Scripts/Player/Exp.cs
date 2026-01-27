@@ -15,6 +15,9 @@ public class Exp : MonoBehaviour
 
     public GameObject characterStats;
 
+    public LevelUpPanelManager levelUpPanelManager;
+    public LevelUpUIManager levelUpUIManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,7 +59,8 @@ public class Exp : MonoBehaviour
         exp -= maxExp;
         maxExp += 4f;
 
-        levelUpScreen.SetActive(true);
+        var perks = levelUpPanelManager.GetRandomPerks();
+        levelUpUIManager.ShowButtons(perks);
 
         characterStats.SetActive(false);
 

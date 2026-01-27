@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class LevelUpUIManager : MonoBehaviour
+{
+    public GameObject levelUpPanel;
+    public GameObject characterStats;
+
+    public Button button1;
+    public Button button2;
+    public Button button3;
+
+    public TextMeshProUGUI button1Text;
+    public TextMeshProUGUI button2Text;
+    public TextMeshProUGUI button3Text;
+
+    private LevelUpPanelManager levelUpPanelManager;
+    private List<StatPerk> currentPerks;
+
+    public void Initialize(LevelUpPanelManager manager)
+    {
+        levelUpPanelManager = manager;
+    }
+
+    public void ShowButtons(List<StatPerk> perks)
+    {
+        Time.timeScale = 0;
+        levelUpPanel.SetActive(true);
+
+        currentPerks = perks;
+
+        button1Text.text = perks[0].perkName;
+        button2Text.text = perks[1].perkName;
+        button3Text.text = perks[2].perkName;
+
+        button1.onClick.RemoveAllListeners();
+        button2.onClick.RemoveAllListeners();
+        button3.onClick.RemoveAllListeners();
+
+        button1.onClick.AddListener(() => ChoosePerk(0));
+        button2.onClick.AddListener(() => ChoosePerk(1));
+        button3.onClick.AddListener(() => ChoosePerk(2));
+    }
+
+    public void ChoosePerk(int i)
+    {
+        currentPerks[i].applyPerk.Invoke();
+
+        Time.timeScale = 1;
+        levelUpPanel.SetActive(false);
+        characterStats.SetActive(true);
+    }
+}
