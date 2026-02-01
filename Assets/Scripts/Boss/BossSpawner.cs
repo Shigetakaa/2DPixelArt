@@ -36,7 +36,7 @@ public class BossSpawner : MonoBehaviour
         float spawnAngle = Random.Range(0f, Mathf.PI * 2f);
         float spawnDistance = Random.Range(spawnRadius * 0.8f, spawnRadius);
         Vector3 positionSpawn = player.position + new Vector3(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle), 0) * spawnDistance;
-        positionSpawn.z = -1f;
+        positionSpawn.z = -2f;
 
         // Losowanie wroga
         int randomSpawn = Random.Range(0, bosses.Length);
