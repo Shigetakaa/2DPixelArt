@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,7 @@ public class EnemyController : MonoBehaviour
 
     public Transform player;
 
-    public float chaseDistance = 20, attackDistance = 0.8f;
+    public float chaseDistance = 200, attackDistance = 0.8f;
 
     public float attackCooldown = 1;
     public float passedTime = 1;
@@ -55,6 +56,7 @@ public class EnemyController : MonoBehaviour
             {
                 // Ruch w strone gracza
                 Vector2 direction = player.position - transform.position;
+
                 OnMovement?.Invoke(direction.normalized);
             }
         }

@@ -65,6 +65,7 @@ public class StartGameManager : MonoBehaviour
     public void OnStartGamePress()
     {
         SceneManager.LoadScene(GameSettingsManager.Instance.chosenMap);
+        Time.timeScale = 1;
     }
 
     public void OnBackPress()

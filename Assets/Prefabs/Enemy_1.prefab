@@ -321,6 +321,11 @@ MonoBehaviour:
   attackDistance: 0.8
   attackCooldown: 0.3
   passedTime: 0.3
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  avoidWaterDistance: 0.6
+  avoidWaterStrength: 1.5
 --- !u!114 &4029910418335611399
 MonoBehaviour:
   m_ObjectHideFlags: 0
