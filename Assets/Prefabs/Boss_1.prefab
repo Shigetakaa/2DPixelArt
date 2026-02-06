@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1523207962583109561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.29656, y: -1.29722, z: 0}
+  m_LocalPosition: {x: 0.33607, y: 0.27526, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7381693903638611956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.043657064, y: 0.09458995}
+  m_Offset: {x: -0.043657064, y: -0.38942903}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -169,7 +169,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9667878, y: 2.0832062}
+  m_Size: {x: 0.9667878, y: 1.115168}
   m_EdgeRadius: 0
 --- !u!114 &305775372328173875
 MonoBehaviour:
@@ -221,6 +221,10 @@ MonoBehaviour:
   attackDistance: 0.8
   attackCooldown: 1
   passedTime: 1
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  waterDistance: 2
 --- !u!114 &3381016548336897773
 MonoBehaviour:
   m_ObjectHideFlags: 0

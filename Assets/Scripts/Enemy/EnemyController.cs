@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,10 +9,13 @@ public class EnemyController : MonoBehaviour
 
     public Transform player;
 
-    public float chaseDistance = 20, attackDistance = 0.8f;
+    public float chaseDistance = 200, attackDistance = 0.8f;
 
     public float attackCooldown = 1;
     public float passedTime = 1;
+
+    public LayerMask waterLayer;
+    public float waterDistance = 2f;
 
     private void Start()
     {
@@ -54,8 +58,23 @@ public class EnemyController : MonoBehaviour
             else
             {
                 // Ruch w strone gracza
-                Vector2 direction = player.position - transform.position;
-                OnMovement?.Invoke(direction.normalized);
+                Vector2 direction = (player.position - transform.position).normalized;
+
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, waterDistance, waterLayer);
+
+                Color rayColor = hit.collider != null ? Color.blue : Color.red;
+                Debug.DrawRay(transform.position, direction * waterDistance, rayColor);
+
+                // Skręt w bok gdy wykrywa wode
+                if(hit.collider != null)
+                {
+                    Vector2 avoidDirection = Vector2.Perpendicular(direction);
+                    OnMovement?.Invoke(avoidDirection.normalized);
+                }
+                else
+                {
+                    OnMovement?.Invoke(direction);
+                }
             }
         }
 

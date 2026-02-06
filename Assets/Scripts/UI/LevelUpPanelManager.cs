@@ -1,5 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class LevelUpPanelManager : MonoBehaviour
 {
@@ -12,16 +17,71 @@ public class LevelUpPanelManager : MonoBehaviour
     public Exp exp;
     public Controller player;
 
+    public List<Button> buttons;
+
+    public List<StatPerk> perks;
+    public List<StatPerk> currrentPerks;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        perks = new List<StatPerk>()
+        {
+            new StatPerk("Zwiększ zdrowie +5", () =>
+            {
+                health.maxHealth += 5f;
+                health.health += 5f;
+            }),
+            new StatPerk("Zwiększ atak +1", () =>
+            {
+                weaponParent.playerDamage += 1f;
+            }),
+            new StatPerk("Zwiększ regeneracje zdrowie +0.2", () =>
+            {
+                health.regenHealthAmount += 0.2f;
+            }),
+            new StatPerk("Zmniejsz czas odnowienia ataku -0.05s", () =>
+            {
+                weaponParent.cooldown -= 0.05f;
+            }),
+            new StatPerk("Zwiększ prędkość ruchu +0.5", () =>
+            {
+                player.moveSpeed += 0.5f;
+            })
+        };
+
+        currrentPerks = new List<StatPerk>(perks);
+    }
+
+    public List<StatPerk> GetRandomPerks()
+    {
+        return currrentPerks
+            .OrderBy(x => Random.value)
+            .Take(3)
+            .ToList();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void ShowRandomButtons()
+    {
+        foreach (Button button in buttons)
+        {
+            button.gameObject.SetActive(false);
+        }
+
+        List<Button> temp = new List<Button>(buttons);
+
+        for (int i=0; i<3; i++)
+        {
+            int random = Random.Range(0, temp.Count);
+            temp[random].gameObject.SetActive(true);
+            temp.RemoveAt(random);
+        }
     }
 
     // Metoda zwiększąjąca atak postaci
@@ -64,18 +124,18 @@ public class LevelUpPanelManager : MonoBehaviour
     // Metoda zmiejszająca cooldown ataku
     public void OnAttackCooldownPress()
     {
-        weaponParent.cooldown -= 0.1f;
+        weaponParent.cooldown -= 0.05f;
         levelUpScreen.SetActive(false);
         characterStats.SetActive(true);
         Time.timeScale = 1;
     }
 
-    // Metoda zmiejszająca cooldown regeneracji zdrowia
-    public void OnRegenHealthCooldownPress()
-    {
-        health.regenCooldown -= 0.1f;
-        levelUpScreen.SetActive(false);
-        characterStats.SetActive(true);
-        Time.timeScale = 1;
-    }
+    // // Metoda zmiejszająca cooldown regeneracji zdrowia
+    // public void OnRegenHealthCooldownPress()
+    // {
+    //     health.regenCooldown -= 0.1f;
+    //     levelUpScreen.SetActive(false);
+    //     characterStats.SetActive(true);
+    //     Time.timeScale = 1;
+    // }
 }

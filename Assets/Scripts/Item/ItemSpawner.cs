@@ -18,6 +18,10 @@ public class ItemSpawner : MonoBehaviour
 
     public Vector2 itemMinPos = new Vector2(-207f, -141f);
     public Vector2 itemMaxPos = new Vector2(207f, 141f);
+
+    public LayerMask waterLayer;
+    public float checkRadius = 0.5f;
+    public int spawnAttempts = 10;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,12 +35,27 @@ public class ItemSpawner : MonoBehaviour
     {
         for(int i = 0; i < foodNumber; i++)
         {
-            Vector2 foodPos = new Vector2(
-                Random.Range(itemMinPos.x, itemMaxPos.x),
-                Random.Range(itemMinPos.y, itemMaxPos.y)
-            );
+            Vector2 foodPosition = Vector2.zero;
+            bool validPosition = false;
 
-            Instantiate(food, new Vector3(foodPos.x, foodPos.y, -1f), Quaternion.identity);
+            for(int j = 0; j < spawnAttempts; j++)
+            {
+                foodPosition = new Vector2(
+                    Random.Range(itemMinPos.x, itemMaxPos.x),
+                    Random.Range(itemMinPos.y, itemMaxPos.y)
+                );
+
+                if(!Physics2D.OverlapCircle(foodPosition, checkRadius, waterLayer))
+                {
+                    validPosition = true;
+                    break;
+                }
+            }
+
+            if (validPosition)
+            {
+                Instantiate(food, new Vector3(foodPosition.x, foodPosition.y, -1f), Quaternion.identity);
+            }
         }
     }
 
@@ -44,12 +63,27 @@ public class ItemSpawner : MonoBehaviour
     {
         for(int i = 0; i < potionNumber; i++)
         {
-            Vector2 potionPos = new Vector2(
-                Random.Range(itemMinPos.x, itemMaxPos.x),
-                Random.Range(itemMinPos.y, itemMaxPos.y)
-            );
+            Vector2 potionPosition = Vector2.zero;
+            bool validPosition = false;
 
-            Instantiate(potion, new Vector3(potionPos.x, potionPos.y, -1f), Quaternion.identity);
+            for(int j = 0; j < spawnAttempts; j++)
+            {
+                potionPosition = new Vector2(
+                    Random.Range(itemMinPos.x, itemMaxPos.x),
+                    Random.Range(itemMinPos.y, itemMaxPos.y)
+                );
+
+                if(!Physics2D.OverlapCircle(potionPosition, checkRadius, waterLayer))
+                {
+                    validPosition = true;
+                    break;
+                }
+            }
+
+            if (validPosition)
+            {
+                Instantiate(potion, new Vector3(potionPosition.x, potionPosition.y, -1f), Quaternion.identity);
+            }
         }
     }
 
@@ -63,16 +97,31 @@ public class ItemSpawner : MonoBehaviour
     {
         for(int i = 0; i < chestNumber; i++)
         {
-            Vector2 chestPos = new Vector2(
-                Random.Range(chestMinPos.x, chestMaxPos.x),
-                Random.Range(chestMinPos.y, chestMaxPos.y)
-            );
+            Vector2 chestPosition = Vector2.zero;
+            bool validPosition = false;
 
-            GameObject chestObject = Instantiate(chest, new Vector3(chestPos.x, chestPos.y, -1f), Quaternion.identity);
+            for(int j = 0; j < spawnAttempts; j++)
+            {
+                chestPosition = new Vector2(
+                    Random.Range(chestMinPos.x, chestMaxPos.x),
+                    Random.Range(chestMinPos.y, chestMaxPos.y)
+                );
 
-            ChestItem chestItem = chestObject.GetComponent<ChestItem>();
+                if(!Physics2D.OverlapCircle(chestPosition, checkRadius, waterLayer))
+                {
+                    validPosition = true;
+                    break;
+                }
+            }
 
-            chestItem.Initialize(secondaryWeapons, chestUI);
+            if (validPosition)
+            {
+                GameObject chestObject = Instantiate(chest, new Vector3(chestPosition.x, chestPosition.y, -1f), Quaternion.identity);
+
+                ChestItem chestItem = chestObject.GetComponent<ChestItem>();
+
+                chestItem.Initialize(secondaryWeapons, chestUI);
+            }
         }
     }
 }
