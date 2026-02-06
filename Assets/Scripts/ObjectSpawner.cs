@@ -18,6 +18,10 @@ public class ObjectSpawner : MonoBehaviour
 
     public GameSettingsManager settings;
 
+    public LayerMask blockedLayers;
+    public float checkRadius = 5f;
+    public int spawnAttempts = 10;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,14 +35,29 @@ public class ObjectSpawner : MonoBehaviour
     {
         for(int i = 0; i < waterNumber; i++)
         {
-            Vector2 waterPos = new Vector2(
-                UnityEngine.Random.Range(waterMinPos.x, waterMaxPos.x),
-                UnityEngine.Random.Range(waterMinPos.y, waterMaxPos.y)
-            );
+            Vector2 waterPosition = Vector2.zero;
+            bool validPosition = false;
 
-            int randomSpawn = UnityEngine.Random.Range(0, water.Length);
-            GameObject chosenWater = water[randomSpawn];
-            Instantiate(chosenWater, new Vector3(waterPos.x, waterPos.y, 0), Quaternion.identity);
+            for(int j = 0; j < spawnAttempts; j++)
+            {
+                waterPosition = new Vector2(
+                    UnityEngine.Random.Range(waterMinPos.x, waterMaxPos.x),
+                    UnityEngine.Random.Range(waterMinPos.y, waterMaxPos.y)
+                );
+
+                if (!Physics2D.OverlapCircle(waterPosition, checkRadius, blockedLayers))
+                {
+                    validPosition = true;
+                    break;
+                }
+            }
+
+            if (validPosition)
+            {
+                int randomSpawn = UnityEngine.Random.Range(0, water.Length);
+                GameObject chosenWater = water[randomSpawn];
+                Instantiate(chosenWater, new Vector3(waterPosition.x, waterPosition.y, 0), Quaternion.identity);
+            }
         }
     }
 

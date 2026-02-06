@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Unity.Mathematics;
-using UnityEditor.Timeline;
 using UnityEngine;
 
 public class Dagger : MonoBehaviour

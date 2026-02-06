@@ -14,6 +14,10 @@ public class EnemySpawner : MonoBehaviour
 
     private Timer timerScript;
 
+    public LayerMask waterLayer;
+    public float checkRadius = 0.5f;
+    public int spawnAttempts = 20;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -48,11 +52,34 @@ public class EnemySpawner : MonoBehaviour
     // Metoda tworzenia wroga
     public void Spawner()
     {
-        // Losowanie pozycji wroga
-        float spawnAngle = Random.Range(0f, Mathf.PI * 2f);
-        float spawnDistance = Random.Range(spawnRadius * 0.8f, spawnRadius);
-        Vector3 positionSpawn = player.position + new Vector3(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle), 0) * spawnDistance;
-        positionSpawn.z = -2f;
+        Vector3 positionSpawn = Vector3.zero;
+        bool validPostition = false;
+
+        for (int i = 0; i< spawnAttempts; i++)
+        {
+            // Losowanie pozycji wroga
+            float spawnAngle = Random.Range(0f, Mathf.PI * 2f);
+            float spawnDistance = Random.Range(spawnRadius * 0.8f, spawnRadius);
+            positionSpawn = player.position + new Vector3(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle), 0) * spawnDistance;
+            positionSpawn.z = -2f;
+
+            if(!Physics2D.OverlapCircle(positionSpawn, checkRadius, waterLayer))
+            {
+                validPostition = true;
+                break;
+            }
+        }
+
+        if (!validPostition)
+        {
+            return;
+        }
+
+        // // Losowanie pozycji wroga
+        // float spawnAngle = Random.Range(0f, Mathf.PI * 2f);
+        // float spawnDistance = Random.Range(spawnRadius * 0.8f, spawnRadius);
+        // Vector3 positionSpawn = player.position + new Vector3(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle), 0) * spawnDistance;
+        // positionSpawn.z = -2f;
 
         // Losowanie wroga
         int randomSpawn = Random.Range(0, enemies.Length);

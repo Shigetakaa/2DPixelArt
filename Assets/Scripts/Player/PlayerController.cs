@@ -13,12 +13,25 @@ public class PlayerController : MonoBehaviour
     // Wczytanie przycisków
     public InputActionReference movement, attack, pointerPosition, pause;
 
+    public Vector2 minBounds = new Vector2(-208f, -150f);
+    public Vector2 maxBounds = new Vector2(233f, 142f);
+
     private void Update()
     {
         // Ruch postaci gracza
         OnMovement?.Invoke(movement.action.ReadValue<Vector2>());
         // Wczytanie pozycji kursora
         OnPointer?.Invoke(GetAttackDirection());
+    }
+
+    void LateUpdate()
+    {
+        Vector3 position = transform.position;
+
+        position.x = Mathf.Clamp(position.x, minBounds.x, maxBounds.x);
+        position.y = Mathf.Clamp(position.y, minBounds.y, maxBounds.y);
+
+        transform.position = position;
     }
 
     // Metoda wczytująca pozycje kursora

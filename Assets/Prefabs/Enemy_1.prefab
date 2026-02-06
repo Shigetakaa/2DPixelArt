@@ -324,8 +324,7 @@ MonoBehaviour:
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
-  avoidWaterDistance: 0.6
-  avoidWaterStrength: 1.5
+  waterDistance: 2
 --- !u!114 &4029910418335611399
 MonoBehaviour:
   m_ObjectHideFlags: 0

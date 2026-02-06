@@ -14,6 +14,9 @@ public class EnemyController : MonoBehaviour
     public float attackCooldown = 1;
     public float passedTime = 1;
 
+    public LayerMask waterLayer;
+    public float waterDistance = 2f;
+
     private void Start()
     {
         // Znajdowania gracza po tagu
@@ -55,9 +58,23 @@ public class EnemyController : MonoBehaviour
             else
             {
                 // Ruch w strone gracza
-                Vector2 direction = player.position - transform.position;
+                Vector2 direction = (player.position - transform.position).normalized;
 
-                OnMovement?.Invoke(direction.normalized);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, waterDistance, waterLayer);
+
+                Color rayColor = hit.collider != null ? Color.blue : Color.red;
+                Debug.DrawRay(transform.position, direction * waterDistance, rayColor);
+
+                // Skręt w bok gdy wykrywa wode
+                if(hit.collider != null)
+                {
+                    Vector2 avoidDirection = Vector2.Perpendicular(direction);
+                    OnMovement?.Invoke(avoidDirection.normalized);
+                }
+                else
+                {
+                    OnMovement?.Invoke(direction);
+                }
             }
         }
 

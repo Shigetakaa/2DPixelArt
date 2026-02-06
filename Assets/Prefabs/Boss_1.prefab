@@ -124,7 +124,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7381693903638611956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -221,6 +221,10 @@ MonoBehaviour:
   attackDistance: 0.8
   attackCooldown: 1
   passedTime: 1
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  waterDistance: 2
 --- !u!114 &3381016548336897773
 MonoBehaviour:
   m_ObjectHideFlags: 0
