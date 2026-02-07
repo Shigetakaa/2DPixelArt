@@ -56,7 +56,7 @@ public class CoinsManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    [ContextMenu("Dodaj 100 monet")]
+    [ContextMenu("Dodaj 1000 monet")]
     void AddCoins()
     {
         GetCoins(1000);
