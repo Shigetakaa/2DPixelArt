@@ -8,12 +8,15 @@ public class CoinsManager : MonoBehaviour
 
     public int Coins { get; private set; }
 
-    public int coinsDevValue = 0;
+    private int coinsDev = -1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (coinsDev >= 0)
+        {
+            SetCoins(coinsDev);
+        }
     }
 
     // Update is called once per frame
@@ -38,13 +41,7 @@ public class CoinsManager : MonoBehaviour
 
     private void LoadCoins()
     {
-        Coins = PlayerPrefs.GetInt("coins", 0);
-
-        if(coinsDevValue > 0)
-        {
-            Coins = coinsDevValue;
-            SaveCoins();
-        }
+        Coins = PlayerPrefs.GetInt("coins", 0); 
     }
 
     public void GetCoins(int amount)
@@ -57,5 +54,17 @@ public class CoinsManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("coins", Coins);
         PlayerPrefs.Save();
+    }
+
+    [ContextMenu("Dodaj 100 monet")]
+    void AddCoins()
+    {
+        GetCoins(1000);
+    }
+
+    public void SetCoins(int amount)
+    {
+        Coins = amount;
+        SaveCoins();
     }
 }
