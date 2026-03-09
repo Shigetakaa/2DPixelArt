@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651011afc835281489fd6ac2cd63b775, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: Assembly-CSharp::SecondaryWeapons
+  weaponName: Siekiery
+  weaponIcon: {fileID: 0}
+  weaponDescription: "Odpycha przeciwnik\xF3w wok\xF3\u0142 postaci."
+  secondaryWeapon: {fileID: 3470995729740314969, guid: 524c2f5b19c705e49b70a37134af64ca, type: 3}

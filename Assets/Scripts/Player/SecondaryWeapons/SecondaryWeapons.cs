@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class SecondaryWeapons : MonoBehaviour
+[CreateAssetMenu(fileName = "SecondaryWeapons", menuName = "Scriptable Objects/SecondaryWeapons")]
+public class SecondaryWeapons : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public string weaponName;
+    public Sprite weaponIcon;
+    public string weaponDescription;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject secondaryWeapon;
 }
