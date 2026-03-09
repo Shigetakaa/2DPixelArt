@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651011afc835281489fd6ac2cd63b775, type: 3}
+  m_Name: Ring
+  m_EditorClassIdentifier: Assembly-CSharp::SecondaryWeapons
+  weaponName: "Pier\u015Bcie\u0144 Piorun\xF3w"
+  weaponIcon: {fileID: 0}
+  weaponDescription: Strzela piorunami z nieba w losowe miejsca.
+  secondaryWeapon: {fileID: 7446267848933028548, guid: 3cf2c417a15a7fb4a86cf238bcb168d6, type: 3}

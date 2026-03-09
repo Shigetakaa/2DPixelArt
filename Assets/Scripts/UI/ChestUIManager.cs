@@ -13,9 +13,15 @@ public class ChestUIManager : MonoBehaviour
     public TextMeshProUGUI button1Text;
     public TextMeshProUGUI button2Text;
     public TextMeshProUGUI button3Text;
+    public TextMeshProUGUI button1Description;
+    public TextMeshProUGUI button2Description;
+    public TextMeshProUGUI button3Description;
+    public Image button1Icon;
+    public Image button2Icon;
+    public Image button3Icon;
 
     private SecondaryWeaponsManager secondaryWeapons;
-    private List<GameObject> currentButtons;
+    private List<SecondaryWeapons> currentButtons;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,15 +40,23 @@ public class ChestUIManager : MonoBehaviour
         secondaryWeapons = secondaryWeaponsManager;
     }
 
-    public void ShowButtons(List<GameObject> buttons)
+    public void ShowButtons(List<SecondaryWeapons> buttons)
     {
         Time.timeScale = 0;
         chestPanel.SetActive(true);
         currentButtons = buttons;
 
-        button1Text.text = buttons[0].name;
-        button2Text.text = buttons[1].name;
-        button3Text.text = buttons[2].name;
+        button1Text.text = buttons[0].weaponName;
+        button2Text.text = buttons[1].weaponName;
+        button3Text.text = buttons[2].weaponName;
+
+        button1Description.text = buttons[0].weaponDescription;
+        button2Description.text = buttons[1].weaponDescription;
+        button3Description.text = buttons[2].weaponDescription;
+
+        button1Icon.sprite = buttons[0].weaponIcon;
+        button2Icon.sprite = buttons[1].weaponIcon;
+        button3Icon.sprite = buttons[2].weaponIcon;
 
         button1.onClick.RemoveAllListeners();
         button2.onClick.RemoveAllListeners();
