@@ -35,6 +35,12 @@ public class MainMenuManager : MonoBehaviour
         scoreboardScreen.SetActive(true);
     }
 
+    public void OnScoreboardBackPress()
+    {
+        mainMenu.SetActive(true);
+        scoreboardScreen.SetActive(false);
+    }
+
     // Przycisk ustawienia
     public void OnSettingsPress()
     {

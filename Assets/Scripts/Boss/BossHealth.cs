@@ -75,6 +75,8 @@ public class BossHealth : MonoBehaviour
             Health player = sender.GetComponent<Health>();
             if(player != null)
             {
+                GameSettingsManager.Instance.SaveKilledEnemies(player.killedEnemies);
+
                 victoryScreen.VictoryScreen(player.killedEnemies);
             }
 
