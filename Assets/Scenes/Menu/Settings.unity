@@ -718,6 +718,7 @@ MonoBehaviour:
   coinsText: {fileID: 0}
   mainMenu: {fileID: 0}
   startGameScreen: {fileID: 0}
+  scoreboardScreen: {fileID: 0}
 --- !u!4 &318227793
 Transform:
   m_ObjectHideFlags: 0

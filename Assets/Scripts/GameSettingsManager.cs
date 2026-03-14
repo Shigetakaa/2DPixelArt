@@ -22,4 +22,33 @@ public class GameSettingsManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private string GetScoreKey(string map, Difficulty difficulty)
+    {
+        return "Wynik: " + map + " " + difficulty;
+    }
+
+    public string GetScoreKey()
+    {
+        return GetScoreKey(chosenMap, chosenDifficulty);
+    }
+
+    public void SaveKilledEnemies(int killedEnemies)
+    {
+        string key = GetScoreKey();
+
+        int bestScore = PlayerPrefs.GetInt(key, 0);
+
+        if (killedEnemies > bestScore)
+        {
+            PlayerPrefs.SetInt(key, killedEnemies);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public int GetKilledEnemies(string map, Difficulty difficulty)
+    {
+        string key = GetScoreKey(map, difficulty);
+        return PlayerPrefs.GetInt(key, 0);
+    }
 }

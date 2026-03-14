@@ -1,11 +1,21 @@
-public class StatPerk
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "StatPerk", menuName = "Scriptable Objects/StatPerk")]
+public class StatPerk : ScriptableObject
 {
     public string perkName;
-    public System.Action applyPerk;
+    public string perkDescription;
+    public Sprite perkIcon;
 
-    public StatPerk(string name, System.Action perk)
-    {
-        this.perkName = name;
-        this.applyPerk = perk;
-    }
+    public PerkType perkType;
+    public float perkValue;
+}
+
+public enum PerkType
+{
+    MaxHealth,
+    Damage,
+    HealthRegen,
+    Cooldown,
+    MoveSpeed
 }

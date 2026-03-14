@@ -8,6 +8,7 @@ public class MainMenuManager : MonoBehaviour
 
     public GameObject mainMenu;
     public GameObject startGameScreen;
+    public GameObject scoreboardScreen;
 
     void Update()
     {
@@ -27,10 +28,17 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("Upgrades");
     }
 
-    // Przycisk instrukcja
-    public void OnInstructionsPress()
+    // Przycisk wyniki
+    public void OnScoreboardPress()
     {
-        SceneManager.LoadScene("Instructions");
+        mainMenu.SetActive(false);
+        scoreboardScreen.SetActive(true);
+    }
+
+    public void OnScoreboardBackPress()
+    {
+        mainMenu.SetActive(true);
+        scoreboardScreen.SetActive(false);
     }
 
     // Przycisk ustawienia

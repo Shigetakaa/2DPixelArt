@@ -56,7 +56,7 @@ public class ObjectSpawner : MonoBehaviour
             {
                 int randomSpawn = UnityEngine.Random.Range(0, water.Length);
                 GameObject chosenWater = water[randomSpawn];
-                Instantiate(chosenWater, new Vector3(waterPosition.x, waterPosition.y, 0), Quaternion.identity);
+                Instantiate(chosenWater, new Vector3(waterPosition.x, waterPosition.y, -1), Quaternion.identity);
             }
         }
     }
