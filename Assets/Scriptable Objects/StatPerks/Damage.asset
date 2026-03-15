@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Damage
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Atak
-  perkDescription: "Zwi\u0119ksza obra\u017Cenia miecza."
+  perkDescription: "Zwi\u0119ksza wszystkie obra\u017Cenia."
   perkIcon: {fileID: 0}
   perkType: 1
   perkValue: 1

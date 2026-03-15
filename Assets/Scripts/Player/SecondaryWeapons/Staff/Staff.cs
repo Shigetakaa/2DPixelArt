@@ -52,19 +52,19 @@ public class Staff : MonoBehaviour
 
             foreach (GameObject enemy in enemies)
             {
-                Vector2 position = enemy.transform.position;
+                // Vector2 position = enemy.transform.position;
 
-                if (position.x >= areaMinPos.x && position.x <= areaMaxPos.x &&
-                    position.y >= areaMinPos.y && position.y <= areaMaxPos.y)
-                {
-                    float distance = Vector2.Distance(transform.position, position);
+                // if (position.x >= areaMinPos.x && position.x <= areaMaxPos.x &&
+                //     position.y >= areaMinPos.y && position.y <= areaMaxPos.y)
+                // {
+                    float distance = Vector2.Distance(transform.position, enemy.transform.position);
 
                     if(distance <= shortDistance)
                     {
                         shortDistance = distance;
                         closeEnemy = enemy;
                     }
-                }
+                // }
             }
         }
         return closeEnemy;  

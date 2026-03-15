@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DaggerAttack
   daggerDamage: 2
-  daggerXY: {x: -0.35, y: 0.01}
+  daggerAttackXY: {x: -0.35, y: 0.01}
   pierceNumber: 3
   maxTimeLimit: 3
   player: {fileID: 0}

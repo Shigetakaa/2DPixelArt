@@ -16,4 +16,4 @@ MonoBehaviour:
   perkDescription: "Zwi\u0119ksza regeneracj\u0119 zdrowia na sekunde."
   perkIcon: {fileID: 0}
   perkType: 2
-  perkValue: 0.2
+  perkValue: 0.1

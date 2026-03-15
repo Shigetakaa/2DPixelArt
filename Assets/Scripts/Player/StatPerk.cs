@@ -17,5 +17,8 @@ public enum PerkType
     Damage,
     HealthRegen,
     Cooldown,
-    MoveSpeed
+    MoveSpeed,
+    BonusExp,
+    ItemMagnet,
+    Difficulty
 }

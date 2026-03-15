@@ -14,8 +14,22 @@ public class PlayerController : MonoBehaviour
     // Wczytanie przycisków
     public InputActionReference movement, attack, pointerPosition, pause;
 
+    public CircleCollider2D magnet;
+
     public Vector2 minBounds = new Vector2(-208f, -150f);
     public Vector2 maxBounds = new Vector2(233f, 142f);
+
+    public float magnetRadius = 3f;
+
+    void Start()
+    {
+        UpdateMagnetRange();
+    }
+
+    public void UpdateMagnetRange()
+    {
+        magnet.radius = magnetRadius;
+    }
 
     private void Update()
     {
@@ -27,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
+        // Okroślenie obszaru po którym gracz może się poruszać
         Vector3 position = transform.position;
 
         position.x = Mathf.Clamp(position.x, minBounds.x, maxBounds.x);
