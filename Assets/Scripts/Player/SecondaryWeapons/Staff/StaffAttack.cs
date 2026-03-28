@@ -12,12 +12,15 @@ public class StaffAttack : MonoBehaviour
 
     public GameObject player;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
         staffAttack = GetComponent<CircleCollider2D>();
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
         staffAttack.isTrigger = true;
         staffAttack.radius = staffAttackRadius;
     }
@@ -50,17 +53,19 @@ public class StaffAttack : MonoBehaviour
 
     public void DealDamage()
     {
+        float finalDamage = staffDamage * statsMultiplier.damageMultiplier;
+
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, staffAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(staffDamage, player);
+                bossHealth.GetHit(finalDamage, player);
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(staffDamage, player);
+                enemyHealth.GetHit(finalDamage, player);
             }
         }
     }

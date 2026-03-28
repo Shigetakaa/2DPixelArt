@@ -19,12 +19,15 @@ public class DaggerAttack : MonoBehaviour
 
     public GameObject player;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
         daggerAttack = GetComponent<CapsuleCollider2D>();
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
         daggerAttack.isTrigger = true;
     }
 
@@ -65,6 +68,8 @@ public class DaggerAttack : MonoBehaviour
 
     private void DealDamage()
     {
+        float finalDamage = daggerDamage * statsMultiplier.damageMultiplier;
+
         foreach (Collider2D collision in Physics2D.OverlapCapsuleAll(
             transform.position, 
             daggerAttackXY,
@@ -75,12 +80,12 @@ public class DaggerAttack : MonoBehaviour
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(daggerDamage, player);
+                bossHealth.GetHit(finalDamage, player);
                 PierceCount();
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(daggerDamage, player);
+                enemyHealth.GetHit(finalDamage, player);
                 PierceCount();
             }
         }

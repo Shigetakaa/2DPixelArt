@@ -12,10 +12,7 @@ public class LevelUpPanelManager : MonoBehaviour
 
     public GameObject characterStats;
 
-    public WeaponParent weaponParent;
-    public Health health;
-    public Exp exp;
-    public Controller player;
+    public PlayerStatsMultiplier statsMultiplier;
 
     // public List<Button> buttons;
 
@@ -66,24 +63,23 @@ public class LevelUpPanelManager : MonoBehaviour
         switch (perk.perkType)
         {
             case PerkType.MaxHealth:
-                health.maxHealth += perk.perkValue;
-                health.health += perk.perkValue;
+                statsMultiplier.healthMultiplier += perk.perkValue;
                 break;
             
             case PerkType.Damage:
-                weaponParent.playerDamage += perk.perkValue;
+                statsMultiplier.damageMultiplier += perk.perkValue;
                 break;
 
             case PerkType.HealthRegen:
-                health.regenHealthAmount += perk.perkValue;
+                statsMultiplier.healthRegenMultiplier += perk.perkValue;
                 break;
             
             case PerkType.Cooldown:
-                weaponParent.cooldown -= perk.perkValue;
+                statsMultiplier.cooldownMultiplier -= perk.perkValue;
                 break;
 
             case PerkType.MoveSpeed:
-                player.moveSpeed += perk.perkValue;
+                statsMultiplier.moveSpeedMultiplier += perk.perkValue;
                 break;
         }
     }

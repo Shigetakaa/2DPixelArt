@@ -15,9 +15,15 @@ public class Dagger : MonoBehaviour
 
     private string[] enemyTags = {"Enemy", "Boss"};
 
+    private GameObject player;
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         StartCoroutine(DaggerAttackCooldown());
     }
 
@@ -29,6 +35,8 @@ public class Dagger : MonoBehaviour
 
     private IEnumerator DaggerAttackCooldown()
     {
+        float finalCooldown = daggerAttackCooldown * statsMultiplier.cooldownMultiplier;
+
         while (true)
         {
             GameObject enemy = FindEnemy();
@@ -38,7 +46,7 @@ public class Dagger : MonoBehaviour
                 Throw(enemy.transform);
             }
 
-            yield return new WaitForSeconds(daggerAttackCooldown);
+            yield return new WaitForSeconds(finalCooldown);
         }
     }
 

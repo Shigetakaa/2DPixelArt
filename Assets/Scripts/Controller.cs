@@ -17,6 +17,8 @@ public class Controller : MonoBehaviour
     public TextMeshProUGUI moveSpeedText;
     public TextMeshProUGUI moveSpeedPauseText;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Pobranie metody ataku z WeaponParent
     public void PerformAttack()
     {
@@ -30,7 +32,7 @@ public class Controller : MonoBehaviour
 
     void Start()
     {
-
+        statsMultiplier = GetComponent<PlayerStatsMultiplier>();
     }
 
     void Update()
@@ -47,11 +49,18 @@ public class Controller : MonoBehaviour
     private void FixedUpdate()
     {
         // Ruch obiektu
-        rigidbody2D.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        float finalMoveSpeed = moveSpeed;
+
+        if(statsMultiplier != null)
+        {
+            finalMoveSpeed *= statsMultiplier.moveSpeedMultiplier;
+        }
+
+        rigidbody2D.linearVelocity = new Vector2(moveDirection.x * finalMoveSpeed, moveDirection.y * finalMoveSpeed);
     }
 
-    public void AddMoveSpeedBonus(float bonus)
-    {
-        moveSpeed += bonus;
-    }
+    // public void AddMoveSpeedBonus(float bonus)
+    // {
+    //     moveSpeed += bonus;
+    // }
 }

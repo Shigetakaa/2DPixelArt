@@ -14,9 +14,15 @@ public class Staff : MonoBehaviour
 
     private string[] enemyTags = {"Enemy", "Boss"};
 
+    private GameObject player;
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         StartCoroutine(StaffAttackCooldown());
     }
 
@@ -28,6 +34,8 @@ public class Staff : MonoBehaviour
 
     private IEnumerator StaffAttackCooldown()
     {
+        float finalCooldown = staffAttackCooldown * statsMultiplier.cooldownMultiplier;
+
         while (true)
         {
             GameObject enemy = FindEnemy();
@@ -37,7 +45,7 @@ public class Staff : MonoBehaviour
                 Shoot(enemy);
             }
 
-            yield return new WaitForSeconds(staffAttackCooldown);
+            yield return new WaitForSeconds(finalCooldown);
         }
     }
 

@@ -17,6 +17,7 @@ public class AxeAttack : MonoBehaviour
     private GameObject player;
     private SpriteRenderer sprite;
     private CircleCollider2D axeAttack;
+    private PlayerStatsMultiplier statsMultiplier;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +25,7 @@ public class AxeAttack : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
         axeAttack = GetComponent<CircleCollider2D>();
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
         axeAttack.isTrigger = true;
         axeAttack.radius = axeAttackRadius;
     }
@@ -65,17 +67,19 @@ public class AxeAttack : MonoBehaviour
     {
         if(Time.time < nextAxeDamage) return;
 
+        float finalDamage = axeDamage * statsMultiplier.damageMultiplier;
+
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, axeAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(axeDamage, player);
+                bossHealth.GetHit(finalDamage, player);
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(axeDamage, player);
+                enemyHealth.GetHit(finalDamage, player);
                 AxeKnockback(collision.transform);
             }
         }
@@ -87,7 +91,7 @@ public class AxeAttack : MonoBehaviour
     {
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
 
-        if(rb != null)
+        if(rb == null)
         {
             return;
         }

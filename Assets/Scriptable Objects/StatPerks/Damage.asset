@@ -16,4 +16,4 @@ MonoBehaviour:
   perkDescription: "Zwi\u0119ksza wszystkie obra\u017Cenia."
   perkIcon: {fileID: 0}
   perkType: 1
-  perkValue: 1
+  perkValue: 0.1

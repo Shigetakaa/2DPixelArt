@@ -21,6 +21,8 @@ public class WeaponParent : MonoBehaviour
     public TextMeshProUGUI playerDamagePauseText;
     public TextMeshProUGUI playerDamageCooldownPauseText;
 
+    public PlayerStatsMultiplier statsMultiplier;
+
     private void Update()
     {
         // Obracanie broni w strone kursora
@@ -69,7 +71,9 @@ public class WeaponParent : MonoBehaviour
     // Cooldown ataku
     private IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(cooldown);
+        float finalCooldown = cooldown * statsMultiplier.cooldownMultiplier;
+
+        yield return new WaitForSeconds(finalCooldown);
         attackBlocked = false;
     }
 
@@ -84,28 +88,30 @@ public class WeaponParent : MonoBehaviour
     // Metoda zadająca obrażenia
     public void DealDamage()
     {
+        float finalDamage = playerDamage * statsMultiplier.damageMultiplier;
+
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(areaOrigin.position, area))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(playerDamage, transform.parent.gameObject);
+                bossHealth.GetHit(finalDamage, transform.parent.gameObject);
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(playerDamage, transform.parent.gameObject);
+                enemyHealth.GetHit(finalDamage, transform.parent.gameObject);
             }
         }
     }
 
-    public void AddDamageBonus(float bonus)
-    {
-        playerDamage += bonus;
-    }
+    // public void AddDamageBonus(float bonus)
+    // {
+    //     playerDamage += bonus;
+    // }
 
-    public void AddAttackCooldownBonus(float bonus)
-    {
-        cooldown -= bonus;
-    }
+    // public void AddAttackCooldownBonus(float bonus)
+    // {
+    //     cooldown -= bonus;
+    // }
 }

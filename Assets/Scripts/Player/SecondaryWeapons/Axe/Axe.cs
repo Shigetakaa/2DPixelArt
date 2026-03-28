@@ -12,9 +12,15 @@ public class Axe : MonoBehaviour
     public float timeLimit = 4f;
     public float axeAttackCooldown = 4f;
 
+    private GameObject player;
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         StartCoroutine(AxeAttackCooldown());
     }
 
@@ -26,10 +32,12 @@ public class Axe : MonoBehaviour
 
     private IEnumerator AxeAttackCooldown()
     {
+        float finalCooldown = axeAttackCooldown * statsMultiplier.cooldownMultiplier;
+
         while (true)
         {
             SpawnAxeAttack();
-            yield return new WaitForSeconds(axeAttackCooldown);
+            yield return new WaitForSeconds(finalCooldown);
         }
     }
 

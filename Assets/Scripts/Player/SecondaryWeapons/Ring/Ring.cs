@@ -10,9 +10,15 @@ public class Ring : MonoBehaviour
     public Vector2 areaMinPos = new Vector2(-10f, -10f);
     public Vector2 areaMaxPos = new Vector2(10f, 10f);
 
+    private GameObject player;
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         StartCoroutine(RingAttackCooldown());
     }
 
@@ -24,9 +30,11 @@ public class Ring : MonoBehaviour
 
     private IEnumerator RingAttackCooldown()
     {
+        float finalCooldown = ringAttackCooldown * statsMultiplier.cooldownMultiplier;
+
         while (true)
         {
-            yield return new WaitForSeconds(ringAttackCooldown);
+            yield return new WaitForSeconds(finalCooldown);
             SpawnRingAttack();
         }
     }

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: RegenHealthUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Upgrades
   upgradeName: Regeneracja zdrowia
-  upgradeDescription: "Zwi\u0119ksza regeneracje zdrowia"
+  upgradeDescription: "Zwi\u0119ksza regeneracje zdrowia."
   upgradeIcon: {fileID: 0}
   cost: 500
   costMultiplier: 2
   maxLevel: 5
-  statBonusPerLevel: 0.2
+  statBonusPerLevel: 0.1
   upgradeType: 3

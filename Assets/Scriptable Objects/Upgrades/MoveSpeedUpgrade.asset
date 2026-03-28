@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MoveSpeedUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Upgrades
   upgradeName: "Szybko\u015B\u0107 ruchu"
-  upgradeDescription: "Zwi\u0119ksza szybko\u015B\u0107 poruszania si\u0119"
+  upgradeDescription: "Zwi\u0119ksza szybko\u015B\u0107 poruszania si\u0119."
   upgradeIcon: {fileID: 0}
   cost: 500
   costMultiplier: 2
   maxLevel: 5
-  statBonusPerLevel: 1
+  statBonusPerLevel: 0.3
   upgradeType: 0

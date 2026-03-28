@@ -11,8 +11,7 @@ public class UpgradesManager : MonoBehaviour
 
     public List<Upgrades> upgrades;
 
-    private Controller controller;
-    private WeaponParent weaponParent;
+    private PlayerStatsMultiplier statsMultiplier;
     private Health health;
 
     void Awake()
@@ -41,8 +40,8 @@ public class UpgradesManager : MonoBehaviour
     public void SetUpgrades(Health newHealth)
     {
         health = newHealth;
-        controller = newHealth.GetComponent<Controller>();
-        weaponParent = newHealth.GetComponentInChildren<WeaponParent>();
+        // controller = newHealth.GetComponent<Controller>();
+        statsMultiplier = newHealth.GetComponent<PlayerStatsMultiplier>();
 
         GetUpgrades();
     }
@@ -69,15 +68,15 @@ public class UpgradesManager : MonoBehaviour
         switch (upgradeType)
         {
             case UpgradeType.MoveSpeed:
-                controller?.AddMoveSpeedBonus(bonus);
+                statsMultiplier?.AddMoveSpeedBonus(bonus);
                 break;
 
             case UpgradeType.Damage:
-                weaponParent?.AddDamageBonus(bonus);
+                statsMultiplier?.AddDamageBonus(bonus);
                 break;
 
             case UpgradeType.AttackCooldown:
-                weaponParent?.AddAttackCooldownBonus(bonus);
+                statsMultiplier?.AddAttackCooldownBonus(bonus);
                 break;
             
             case UpgradeType.MaxHealth:
