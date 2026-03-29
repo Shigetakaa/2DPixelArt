@@ -21,6 +21,8 @@ public class Exp : MonoBehaviour
     public LevelUpPanelManager levelUpPanelManager;
     public LevelUpUIManager levelUpUIManager;
 
+    public PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,7 +53,9 @@ public class Exp : MonoBehaviour
     // Metoda otrzymywania doświadczenia
     public void GetExp(float amount)
     {
-        exp += amount;
+        float finalAmount = amount * statsMultiplier.expMultiplier;
+
+        exp += finalAmount;
 
         if (exp >= maxExp)
         {

@@ -50,4 +50,19 @@ public class PlayerStatsMultiplier : MonoBehaviour
     {
         moveSpeedMultiplier += bonus;
     }
+
+    public void AddExpBonus(float bonus)
+    {
+        expMultiplier += bonus;
+    }
+
+    public void AddItemMagnetBonus(float bonus)
+    {
+        itemMagnetMultiplier += bonus;
+    }
+
+    public void AddDifficultyBonus(float bonus)
+    {
+        difficultyMultiplier += bonus;
+    }
 }

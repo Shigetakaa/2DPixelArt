@@ -86,6 +86,18 @@ public class UpgradesManager : MonoBehaviour
             case UpgradeType.RegenHealth:
                 health?.AddRegenHealthBonus(bonus);
                 break;
+
+            case UpgradeType.BonusExp:
+                statsMultiplier?.AddExpBonus(bonus);
+                break;
+
+            case UpgradeType.ItemMagnet:
+                statsMultiplier?.AddItemMagnetBonus(bonus);
+                break;
+
+            case UpgradeType.Difficulty:
+                statsMultiplier?.AddDifficultyBonus(bonus);
+                break;
         }
     }
 

@@ -81,6 +81,18 @@ public class LevelUpPanelManager : MonoBehaviour
             case PerkType.MoveSpeed:
                 statsMultiplier.moveSpeedMultiplier += perk.perkValue;
                 break;
+            
+            case PerkType.BonusExp:
+                statsMultiplier.expMultiplier += perk.perkValue;
+                break;
+
+            case PerkType.ItemMagnet:
+                statsMultiplier.itemMagnetMultiplier += perk.perkValue;
+                break;
+            
+            case PerkType.Difficulty:
+                statsMultiplier.difficultyMultiplier += perk.perkValue;
+                break;
         }
     }
 
