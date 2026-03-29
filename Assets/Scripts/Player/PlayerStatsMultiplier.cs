@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerStatsMultiplier : MonoBehaviour
@@ -11,6 +12,13 @@ public class PlayerStatsMultiplier : MonoBehaviour
     public float itemMagnetMultiplier = 1.0f;
     public float difficultyMultiplier = 1.0f;
 
+    public TextMeshProUGUI damageMultiplierText;
+    public TextMeshProUGUI cooldownMultiplierText;
+    public TextMeshProUGUI moveSpeedMultiplierText;
+    public TextMeshProUGUI expMultiplierText;
+    public TextMeshProUGUI itemMagnetMultiplierText;
+    public TextMeshProUGUI difficultyMultiplierText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +28,12 @@ public class PlayerStatsMultiplier : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        damageMultiplierText.text = "x" + damageMultiplier.ToString("F2");
+        cooldownMultiplierText.text = "x" + cooldownMultiplier.ToString("F2");
+        moveSpeedMultiplierText.text = "x" + moveSpeedMultiplier.ToString("F2");
+        expMultiplierText.text = "x" + expMultiplier.ToString("F2");
+        itemMagnetMultiplierText.text = "x" + itemMagnetMultiplier.ToString("F2");
+        difficultyMultiplierText.text = "x" + difficultyMultiplier.ToString("F2");
     }
 
     public void AddDamageBonus(float bonus)

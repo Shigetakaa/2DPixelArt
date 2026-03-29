@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7f0910294d274cb0141141a08fe64, type: 3}
   m_Name: Damage
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
-  perkName: Atak
+  perkName: "Obra\u017Cenia"
   perkDescription: "Zwi\u0119ksza wszystkie obra\u017Cenia."
   perkIcon: {fileID: 0}
   perkType: 1
