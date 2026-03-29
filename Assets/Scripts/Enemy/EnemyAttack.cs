@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public GameObject enemyAttack;
-    public float enemyDamage = 5f;
+    public float enemyDamage = 5.0f;
     public float enemyRadius = 0.7f;
     public float enemyAttackCooldown = 0.5f;
     public float lastAttack;
@@ -22,6 +22,24 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GetDifficulty()
+    {
+        switch (GameSettingsManager.Instance.chosenDifficulty)
+        {
+            case Difficulty.Easy:
+                enemyDamage = 5.0f;
+                break;
+
+            case Difficulty.Normal:
+                enemyDamage = 10.0f;
+                break;
+
+            case Difficulty.Hard:
+                enemyDamage = 20.0f;
+                break;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

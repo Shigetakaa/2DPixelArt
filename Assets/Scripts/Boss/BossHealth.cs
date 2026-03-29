@@ -28,16 +28,18 @@ public class BossHealth : MonoBehaviour
         switch (GameSettingsManager.Instance.chosenDifficulty)
         {
             case Difficulty.Easy:
-                bossHealth = 100f;
-                maxBossHealth = 100f;
+                bossHealth = 100.0f;
+                maxBossHealth = 100.0f;
                 break;
+
             case Difficulty.Normal:
-                bossHealth = 200f;
-                maxBossHealth = 200f;
+                bossHealth = 200.0f;
+                maxBossHealth = 200.0f;
                 break;
+
             case Difficulty.Hard:
-                bossHealth = 400f;
-                maxBossHealth = 400f;
+                bossHealth = 400.0f;
+                maxBossHealth = 400.0f;
                 break;
         }
     }

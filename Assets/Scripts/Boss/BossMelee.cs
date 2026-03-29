@@ -4,7 +4,7 @@ using UnityEngine;
 public class BossMelee : MonoBehaviour
 {
     public GameObject meleeAttack;
-    public float meleeDamage = 10f;
+    public float meleeDamage = 10.0f;
     public float meleeRadius = 0.8f;
     public float meleeAttackCooldown = 0.5f;
     private float lastAttack;
@@ -25,6 +25,24 @@ public class BossMelee : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GetDifficulty()
+    {
+        switch (GameSettingsManager.Instance.chosenDifficulty)
+        {
+            case Difficulty.Easy:
+                meleeDamage = 10.0f;
+                break;
+
+            case Difficulty.Normal:
+                meleeDamage = 20.0f;
+                break;
+
+            case Difficulty.Hard:
+                meleeDamage = 40.0f;
+                break;
+        }
     }
     
     void OnTriggerEnter2D(Collider2D collision)

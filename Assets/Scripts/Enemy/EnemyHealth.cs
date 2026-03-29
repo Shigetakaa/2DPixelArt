@@ -30,16 +30,18 @@ public class EnemyHealth : MonoBehaviour
         switch (GameSettingsManager.Instance.chosenDifficulty)
         {
             case Difficulty.Easy:
-                enemyHealth = 10f;
-                maxEnemyHealth = 10f;
+                enemyHealth = 10.0f;
+                maxEnemyHealth = 10.0f;
                 break;
+
             case Difficulty.Normal:
-                enemyHealth = 20f;
-                maxEnemyHealth = 20f;
+                enemyHealth = 20.0f;
+                maxEnemyHealth = 20.0f;
                 break;
+
             case Difficulty.Hard:
-                enemyHealth = 40f;
-                maxEnemyHealth = 40f;
+                enemyHealth = 40.0f;
+                maxEnemyHealth = 40.0f;
                 break;
         }
     }

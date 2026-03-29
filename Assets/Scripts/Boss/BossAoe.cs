@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BossAoe : MonoBehaviour
 {
-    public float aoeDamage = 30f;
+    public float aoeDamage = 30.0f;
     public float aoeRadius = 0.3f;
     public float warnTime = 1f;
 
@@ -28,6 +28,24 @@ public class BossAoe : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GetDifficulty()
+    {
+        switch (GameSettingsManager.Instance.chosenDifficulty)
+        {
+            case Difficulty.Easy:
+                aoeDamage = 30.0f;
+                break;
+
+            case Difficulty.Normal:
+                aoeDamage = 50.0f;
+                break;
+
+            case Difficulty.Hard:
+                aoeDamage = 70.0f;
+                break;
+        }
     }
 
     private IEnumerator ActivateAoeAttack()
