@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Aura : MonoBehaviour
 {
-    public float auraDamage = 3f;
+    public float auraDamage = 10f;
+    public float finalDamage;
     public float auraRadius = 5f;
     public float auraCooldown = 2f;
 
@@ -18,6 +19,7 @@ public class Aura : MonoBehaviour
     {
         auraCollider = GetComponent<CircleCollider2D>();
         statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         auraCollider.isTrigger = true;
         auraCollider.radius = auraRadius;
 
@@ -44,7 +46,7 @@ public class Aura : MonoBehaviour
     // Metoda zadająca obrażenia
     public void DealDamage()
     {
-        float finalDamage = auraDamage * statsMultiplier.damageMultiplier;
+        finalDamage = (auraDamage + statsMultiplier.auraBonus) * statsMultiplier.damageMultiplier;
 
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, auraRadius))
         {

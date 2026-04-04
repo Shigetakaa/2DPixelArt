@@ -11,10 +11,14 @@ public class BossMelee : MonoBehaviour
 
     private CircleCollider2D meleeAttackCollider;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         meleeAttackCollider = GetComponent<CircleCollider2D>();
+        statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+
         meleeAttackCollider.isTrigger = true;
         meleeAttackCollider.radius = meleeRadius;
 
@@ -57,6 +61,8 @@ public class BossMelee : MonoBehaviour
     // Metoda zadająca obrażenia graczowi
     public void DealDamage(Collider2D collision)
     {
+        float finalDamage = meleeDamage * statsMultiplier.difficultyMultiplier;
+
         if (collision.CompareTag("Player"))
         {
             if(Time.time >= lastAttack + meleeAttackCooldown)
@@ -66,7 +72,7 @@ public class BossMelee : MonoBehaviour
                 Health playerHealth = collision.GetComponent<Health>();
                 if (playerHealth != null)
                 {
-                    playerHealth.GetHit(meleeDamage, this.gameObject);
+                    playerHealth.GetHit(finalDamage, this.gameObject);
                 }
             }
         }

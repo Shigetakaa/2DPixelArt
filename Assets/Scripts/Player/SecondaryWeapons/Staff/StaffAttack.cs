@@ -3,6 +3,7 @@ using UnityEngine;
 public class StaffAttack : MonoBehaviour
 {
     public float staffDamage = 10f;
+    public float finalDamage;
     public float staffAttackRadius = 0.03f;
     private float speed;
 
@@ -21,6 +22,7 @@ public class StaffAttack : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         staffAttack = GetComponent<CircleCollider2D>();
         statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         staffAttack.isTrigger = true;
         staffAttack.radius = staffAttackRadius;
     }
@@ -53,7 +55,7 @@ public class StaffAttack : MonoBehaviour
 
     public void DealDamage()
     {
-        float finalDamage = staffDamage * statsMultiplier.damageMultiplier;
+        finalDamage = (staffDamage + statsMultiplier.staffBonus) * statsMultiplier.damageMultiplier;
 
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, staffAttackRadius))
         {

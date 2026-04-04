@@ -12,6 +12,13 @@ public class PlayerStatsMultiplier : MonoBehaviour
     public float itemMagnetMultiplier = 1.0f;
     public float difficultyMultiplier = 1.0f;
 
+    public float axeBonus = 0f;
+    public float daggerBonus = 0f;
+    public float auraBonus = 0f;
+    public float staffBonus = 0f;
+    public float ringBonus = 0f;
+    public float swordBonus = 0f;
+
     public TextMeshProUGUI damageMultiplierText;
     public TextMeshProUGUI cooldownMultiplierText;
     public TextMeshProUGUI moveSpeedMultiplierText;

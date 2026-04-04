@@ -4,6 +4,7 @@ using UnityEngine;
 public class AxeAttack : MonoBehaviour
 {
     public float axeDamage = 2f;
+    public float finalDamage;
     public float axeAttackRadius = 0.5f;
     public float axeKnockback = 400f;
     private float axeRotateSpeed;
@@ -26,6 +27,7 @@ public class AxeAttack : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         axeAttack = GetComponent<CircleCollider2D>();
         statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         axeAttack.isTrigger = true;
         axeAttack.radius = axeAttackRadius;
     }
@@ -67,7 +69,7 @@ public class AxeAttack : MonoBehaviour
     {
         if(Time.time < nextAxeDamage) return;
 
-        float finalDamage = axeDamage * statsMultiplier.damageMultiplier;
+        finalDamage = (axeDamage + statsMultiplier.axeBonus) * statsMultiplier.damageMultiplier;
 
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, axeAttackRadius))
         {

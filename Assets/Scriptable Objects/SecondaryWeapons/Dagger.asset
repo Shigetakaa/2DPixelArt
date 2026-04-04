@@ -16,3 +16,4 @@ MonoBehaviour:
   weaponIcon: {fileID: 0}
   weaponDescription: "Strzela trzema przebijaj\u0105cymi sztyletami w przeciwnik\xF3w."
   secondaryWeapon: {fileID: 2781011503195241831, guid: 4265d82e86a1fd8429688fab1128d058, type: 3}
+  weaponPerk: {fileID: 11400000, guid: 5e20712d4bd115647bb27390e953076d, type: 2}

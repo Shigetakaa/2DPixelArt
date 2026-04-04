@@ -11,11 +11,15 @@ public class BossAoe : MonoBehaviour
     private CircleCollider2D aoeAttack;
     public bool dealDamage = false;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         aoeAttack = GetComponent<CircleCollider2D>();
+        statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+
         aoeAttack.isTrigger = true;
         aoeAttack.radius = aoeRadius;
 
@@ -71,12 +75,14 @@ public class BossAoe : MonoBehaviour
     {
         if(!dealDamage) return;
 
+        float finalDamage = aoeDamage * statsMultiplier.difficultyMultiplier;
+
         if (collision.CompareTag("Player"))
         {
             Health playerHeath = collision.GetComponent<Health>();
             if(playerHeath != null)
             {
-                playerHeath.GetHit(aoeDamage, this.gameObject);
+                playerHeath.GetHit(finalDamage, this.gameObject);
 
                 dealDamage = false;
             }

@@ -10,10 +10,14 @@ public class EnemyAttack : MonoBehaviour
 
     private CircleCollider2D enemyAttackCollider;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         enemyAttackCollider = GetComponent<CircleCollider2D>();
+        statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+
         enemyAttackCollider.isTrigger = true;
         enemyAttackCollider.radius = enemyRadius;
     }
@@ -54,6 +58,8 @@ public class EnemyAttack : MonoBehaviour
     // Metoda zadająca obrażenia graczowi
     public void DealDamage(Collider2D collision)
     {
+        float finalDamage = enemyDamage * statsMultiplier.difficultyMultiplier;
+
         if (collision.CompareTag("Player"))
         {
             if(Time.time >= lastAttack + enemyAttackCooldown)
@@ -63,7 +69,7 @@ public class EnemyAttack : MonoBehaviour
                 Health playerHealth = collision.GetComponent<Health>();
                 if (playerHealth != null)
                 {
-                    playerHealth.GetHit(enemyDamage, this.gameObject);
+                    playerHealth.GetHit(finalDamage, this.gameObject);
                 }
             }
         }

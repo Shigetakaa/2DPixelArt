@@ -16,3 +16,4 @@ MonoBehaviour:
   weaponIcon: {fileID: 0}
   weaponDescription: "Odpycha przeciwnik\xF3w wok\xF3\u0142 postaci."
   secondaryWeapon: {fileID: 3470995729740314969, guid: 524c2f5b19c705e49b70a37134af64ca, type: 3}
+  weaponPerk: {fileID: 11400000, guid: 26f0b2ea9e1e1e347ae32edb7c07e2fc, type: 2}

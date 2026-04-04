@@ -14,6 +14,7 @@ public class WeaponParent : MonoBehaviour
     public Transform areaOrigin;
     public float area;
     public float playerDamage = 4;
+    public float finalDamage;
 
     public TextMeshProUGUI playerDamageText;
     public TextMeshProUGUI playerDamageCooldownText;
@@ -88,7 +89,7 @@ public class WeaponParent : MonoBehaviour
     // Metoda zadająca obrażenia
     public void DealDamage()
     {
-        float finalDamage = playerDamage * statsMultiplier.damageMultiplier;
+        finalDamage = (playerDamage + statsMultiplier.swordBonus) * statsMultiplier.damageMultiplier;
 
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(areaOrigin.position, area))
         {

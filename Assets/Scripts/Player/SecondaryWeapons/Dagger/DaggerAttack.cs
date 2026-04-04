@@ -6,6 +6,7 @@ using UnityEngine;
 public class DaggerAttack : MonoBehaviour
 {
     public float daggerDamage = 2f;
+    public float finalDamage;
     public Vector2 daggerAttackXY = new Vector2(-0.35f, 0.01f);
     public int pierceNumber = 3;
     public float maxTimeLimit = 3f;
@@ -28,6 +29,7 @@ public class DaggerAttack : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         daggerAttack = GetComponent<CapsuleCollider2D>();
         statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         daggerAttack.isTrigger = true;
     }
 
@@ -68,7 +70,7 @@ public class DaggerAttack : MonoBehaviour
 
     private void DealDamage()
     {
-        float finalDamage = daggerDamage * statsMultiplier.damageMultiplier;
+        finalDamage = (daggerDamage + statsMultiplier.daggerBonus) * statsMultiplier.damageMultiplier;
 
         foreach (Collider2D collision in Physics2D.OverlapCapsuleAll(
             transform.position, 

@@ -20,5 +20,11 @@ public enum PerkType
     MoveSpeed,
     BonusExp,
     ItemMagnet,
-    Difficulty
+    Difficulty,
+    AxePerk,
+    AuraPerk,
+    StaffPerk,
+    DaggerPerk,
+    RingPerk,
+    SwordPerk
 }

@@ -8,4 +8,6 @@ public class SecondaryWeapons : ScriptableObject
     public string weaponDescription;
 
     public GameObject secondaryWeapon;
+
+    public StatPerk weaponPerk;
 }

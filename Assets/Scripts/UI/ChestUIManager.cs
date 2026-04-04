@@ -23,6 +23,8 @@ public class ChestUIManager : MonoBehaviour
     private SecondaryWeaponsManager secondaryWeapons;
     private List<SecondaryWeapons> currentButtons;
 
+    public LevelUpPanelManager levelUpPanelManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,20 +59,17 @@ public class ChestUIManager : MonoBehaviour
         button1Icon.sprite = buttons[0].weaponIcon;
         button2Icon.sprite = buttons[1].weaponIcon;
         button3Icon.sprite = buttons[2].weaponIcon;
-
-        button1.onClick.RemoveAllListeners();
-        button2.onClick.RemoveAllListeners();
-        button3.onClick.RemoveAllListeners();
-
-        button1.onClick.AddListener(() => ChooseButtons(0));
-        button2.onClick.AddListener(() => ChooseButtons(1));
-        button3.onClick.AddListener(() => ChooseButtons(2));
     }
 
-    private void ChooseButtons(int i)
+    public void ChooseButtons(int i)
     {
         var weapon = currentButtons[i];
         secondaryWeapons.ActivateWeapon(weapon);
+
+        if(weapon.weaponPerk != null)
+        {
+            levelUpPanelManager.AddWeaponPerk(weapon.weaponPerk);
+        }
 
         Time.timeScale = 1;
         chestPanel.SetActive(false);

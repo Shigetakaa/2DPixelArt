@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aura
   auraDamage: 10
+  baseDamage: 3
   auraRadius: 7
   auraCooldown: 2
   player: {fileID: 0}

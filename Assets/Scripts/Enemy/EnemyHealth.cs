@@ -5,8 +5,9 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float enemyHealth = 10f;
-    public float maxEnemyHealth = 10f;
+    public float enemyHealth;
+    public float baseMaxEnemyHealth = 10f;
+    private float lastMaxHealth;
 
     public int killedEnemies = 0;
 
@@ -19,10 +20,18 @@ public class EnemyHealth : MonoBehaviour
 
     public TextMeshProUGUI killedEnemiesText;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+
         GetDifficulty();
+
+        float maxHealth = GetFinalMaxHealth();
+        enemyHealth = maxHealth;
+        lastMaxHealth = maxHealth;
     }
 
     public void GetDifficulty()
@@ -30,18 +39,15 @@ public class EnemyHealth : MonoBehaviour
         switch (GameSettingsManager.Instance.chosenDifficulty)
         {
             case Difficulty.Easy:
-                enemyHealth = 10.0f;
-                maxEnemyHealth = 10.0f;
+                baseMaxEnemyHealth = 10.0f;
                 break;
 
             case Difficulty.Normal:
-                enemyHealth = 20.0f;
-                maxEnemyHealth = 20.0f;
+                baseMaxEnemyHealth = 20.0f;
                 break;
 
             case Difficulty.Hard:
-                enemyHealth = 40.0f;
-                maxEnemyHealth = 40.0f;
+                baseMaxEnemyHealth = 40.0f;
                 break;
         }
     }
@@ -49,15 +55,26 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float currentMaxHealth = GetFinalMaxHealth();
+
+        if(currentMaxHealth != lastMaxHealth)
+        {
+            CalculateHealth(currentMaxHealth);
+        }
     }
 
-    // Inicjujemy zdrowie obiektu
-    public void InitializeHealth(float healthValue)
+    public float GetFinalMaxHealth()
     {
-        enemyHealth = healthValue;
-        maxEnemyHealth = healthValue;
-        isDead = false;
+        return baseMaxEnemyHealth * statsMultiplier.difficultyMultiplier;
+    }
+
+    public void CalculateHealth(float newMaxHealth)
+    {
+        float healthPercent = enemyHealth / lastMaxHealth;
+
+        enemyHealth = newMaxHealth * healthPercent;
+
+        lastMaxHealth = newMaxHealth;
     }
 
     // Metoda otrzymywania obrażeń

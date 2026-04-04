@@ -5,19 +5,31 @@ using UnityEngine.UI;
 
 public class BossHealth : MonoBehaviour
 {
-    public float bossHealth = 100f;
-    public float maxBossHealth = 100f;
+    public float bossHealth;
+    public float baseMaxBossHealth = 100f;
+    private float lastMaxHealth;
 
     public UnityEvent<GameObject> OnHit, OnDeath;
+
+    public Slider healthBar;
 
     private bool isDead = false;
 
     private InGameUIManager victoryScreen;
 
+    public PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+        healthBar = GameObject.Find("BossHealthBar").GetComponent<Slider>();
+
         GetDifficulty();
+
+        float maxHealth = GetFinalMaxHealth();
+        bossHealth = maxHealth;
+        lastMaxHealth = maxHealth;
 
         // Wczytanie UI
         victoryScreen = FindObjectOfType<InGameUIManager>();
@@ -28,18 +40,15 @@ public class BossHealth : MonoBehaviour
         switch (GameSettingsManager.Instance.chosenDifficulty)
         {
             case Difficulty.Easy:
-                bossHealth = 100.0f;
-                maxBossHealth = 100.0f;
+                baseMaxBossHealth = 100.0f;
                 break;
 
             case Difficulty.Normal:
-                bossHealth = 200.0f;
-                maxBossHealth = 200.0f;
+                baseMaxBossHealth = 200.0f;
                 break;
 
             case Difficulty.Hard:
-                bossHealth = 400.0f;
-                maxBossHealth = 400.0f;
+                baseMaxBossHealth = 400.0f;
                 break;
         }
     }
@@ -47,16 +56,30 @@ public class BossHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float currentMaxHealth = GetFinalMaxHealth();
+
+        if(currentMaxHealth != lastMaxHealth)
+        {
+            CalculateHealth(currentMaxHealth);
+        }
+
         // Slider dla bossa
-        GameObject.Find("BossHealthBar").GetComponent<Slider>().value = bossHealth;
+        healthBar.maxValue = currentMaxHealth;
+        healthBar.value = bossHealth;
     }
 
-    // Inicjujemy zdrowie obiektu
-    public void InitializeHealth(float healthValue)
+    public float GetFinalMaxHealth()
     {
-        bossHealth = healthValue;
-        maxBossHealth = healthValue;
-        isDead = false;
+        return baseMaxBossHealth * statsMultiplier.difficultyMultiplier;
+    }
+
+    public void CalculateHealth(float newMaxHealth)
+    {
+        float healthPercent = bossHealth / lastMaxHealth;
+
+        bossHealth = newMaxHealth * healthPercent;
+
+        lastMaxHealth = newMaxHealth;
     }
 
     // Metoda otrzymywania obrażeń

@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float health = 100.0f;
+    public float health;
     public float baseMaxHealth = 100.0f;
+    private float lastMaxHealth;
     public float baseRegenHealthAmount = 0.1f;
     public float regenCooldown = 1.0f;
 
@@ -48,27 +49,36 @@ public class Health : MonoBehaviour
         // Wczytanie UI
         gameOverScreen = FindObjectOfType<InGameUIManager>();
 
+        float maxHealth = GetFinalMaxHealth();
+        health = maxHealth;
+        lastMaxHealth = maxHealth;
+
         StartCoroutine(HealthRegen());
     }
 
 
     private void Update()
     {
-        float finalMaxHealth = GetFinalMaxHealth();
+        float currentMaxHealth = GetFinalMaxHealth();
         float finalRegenHealthAmount = GetFinalRegenHealthAmount();
 
+        if(currentMaxHealth != lastMaxHealth)
+        {
+            CalculateHealth(currentMaxHealth);
+        }
+
         // // Wartość slidera zdrowia = wartość zdrowia gracza
-        healthBar.maxValue = finalMaxHealth;
+        healthBar.maxValue = currentMaxHealth;
         healthBar.value = health;
 
         // // Wartość slidera zdrowia = wartość zdrowia gracza
         // healthBar.GetComponent<Slider>().value = health;
         
         // Wartość zdrowia
-        healthText.text = health.ToString("F2") + " / " + finalMaxHealth.ToString("F2");
+        healthText.text = health.ToString("F2") + " / " + currentMaxHealth.ToString("F2");
 
         // Wartość zdrowia w panelu statystyk
-        parametersHealthText.text = health.ToString("F2") + " / " + finalMaxHealth.ToString("F2");
+        parametersHealthText.text = health.ToString("F2") + " / " + currentMaxHealth.ToString("F2");
 
         // Wartość regeneracji zdrowia w panelu statystyk
         parametersHealthRegenText.text = finalRegenHealthAmount.ToString("F2") + " na s";
@@ -97,6 +107,15 @@ public class Health : MonoBehaviour
     public float GetFinalRegenHealthAmount()
     {
         return baseRegenHealthAmount * statsMultiplier.healthRegenMultiplier;
+    }
+
+    public void CalculateHealth(float newMaxHealth)
+    {
+        float healthPercent = health / lastMaxHealth;
+
+        health = newMaxHealth * healthPercent;
+
+        lastMaxHealth = newMaxHealth;
     }
 
     // Metoda otrzymywania obrażeń
@@ -165,7 +184,6 @@ public class Health : MonoBehaviour
     public void AddMaxHealthBonus(float bonus)
     {
         baseMaxHealth += bonus;
-        health += bonus;
     }
 
     public void AddRegenHealthBonus(float bonus)
