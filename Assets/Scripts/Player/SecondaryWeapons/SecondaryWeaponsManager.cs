@@ -12,11 +12,6 @@ public class SecondaryWeaponsManager : MonoBehaviour
     void Start()
     {
         currentSecondaryWeapons = new List<SecondaryWeapons>(secondaryWeapons);
-
-        // foreach (var weapon in currentSecondaryWeapons)
-        // {
-        //     weapon.secondaryWeapon.SetActive(false);
-        // }
     }
 
     // Update is called once per frame

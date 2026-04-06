@@ -6,9 +6,10 @@ using UnityEngine;
 public class DaggerAttack : MonoBehaviour
 {
     public float daggerDamage = 2f;
+    public float finalDamage;
     public Vector2 daggerAttackXY = new Vector2(-0.35f, 0.01f);
     public int pierceNumber = 3;
-    public float maxTimeLimit = 3f;
+    public float maxTimeLimit = 1f;
     private float speed;
     private Vector2 direction;
     private float timeLimit;
@@ -19,12 +20,16 @@ public class DaggerAttack : MonoBehaviour
 
     public GameObject player;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
         daggerAttack = GetComponent<CapsuleCollider2D>();
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         daggerAttack.isTrigger = true;
     }
 
@@ -65,6 +70,8 @@ public class DaggerAttack : MonoBehaviour
 
     private void DealDamage()
     {
+        finalDamage = (daggerDamage + statsMultiplier.daggerBonus) * statsMultiplier.damageMultiplier;
+
         foreach (Collider2D collision in Physics2D.OverlapCapsuleAll(
             transform.position, 
             daggerAttackXY,
@@ -75,24 +82,12 @@ public class DaggerAttack : MonoBehaviour
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(daggerDamage, player);
-                PierceCount();
+                bossHealth.GetHit(finalDamage, player);
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(daggerDamage, player);
-                PierceCount();
+                enemyHealth.GetHit(finalDamage, player);
             }
-        }
-    }
-
-    private void PierceCount()
-    {
-        pierceNumber--;
-
-        if (pierceNumber <= 0)
-        {
-            Destroy(gameObject);
         }
     }
 }

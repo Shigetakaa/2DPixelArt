@@ -4,8 +4,8 @@ using UnityEngine;
 public class AxeAttack : MonoBehaviour
 {
     public float axeDamage = 2f;
+    public float finalDamage;
     public float axeAttackRadius = 0.5f;
-    public float axeKnockback = 400f;
     private float axeRotateSpeed;
     private float timeLimit;
     private float axeRadius;
@@ -17,6 +17,7 @@ public class AxeAttack : MonoBehaviour
     private GameObject player;
     private SpriteRenderer sprite;
     private CircleCollider2D axeAttack;
+    private PlayerStatsMultiplier statsMultiplier;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +25,8 @@ public class AxeAttack : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
         axeAttack = GetComponent<CircleCollider2D>();
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         axeAttack.isTrigger = true;
         axeAttack.radius = axeAttackRadius;
     }
@@ -65,35 +68,22 @@ public class AxeAttack : MonoBehaviour
     {
         if(Time.time < nextAxeDamage) return;
 
+        finalDamage = (axeDamage + statsMultiplier.axeBonus) * statsMultiplier.damageMultiplier;
+
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, axeAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(axeDamage, player);
+                bossHealth.GetHit(finalDamage, player);
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(axeDamage, player);
-                AxeKnockback(collision.transform);
+                enemyHealth.GetHit(finalDamage, player);
             }
         }
 
         nextAxeDamage = Time.time + axeDamageCooldown;
-    }
-
-    private void AxeKnockback(Transform enemy)
-    {
-        Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
-
-        if(rb != null)
-        {
-            return;
-        }
-
-        Vector2 direction = (enemy.position - transform.position).normalized;
-
-        rb.AddForce(direction * axeKnockback, ForceMode2D.Impulse);
     }
 }

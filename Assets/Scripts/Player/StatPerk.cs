@@ -17,5 +17,15 @@ public enum PerkType
     Damage,
     HealthRegen,
     Cooldown,
-    MoveSpeed
+    MoveSpeed,
+    BonusExp,
+    ItemMagnet,
+    Difficulty,
+    AxePerk,
+    AuraPerk,
+    StaffPerk,
+    DaggerPerk,
+    RingPerk,
+    SwordPerk,
+    Number
 }

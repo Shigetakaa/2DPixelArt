@@ -7,6 +7,9 @@ public class Controller : MonoBehaviour
     public Rigidbody2D rigidbody2D;
     public float moveSpeed = 10.0f;
 
+    private Vector2 externalVelocity;
+    private float knobkackTime;
+
     private Vector2 moveDirection, attackDirection;
 
     public Vector2 AttackDirection { get => attackDirection; set => attackDirection = value; }
@@ -16,6 +19,8 @@ public class Controller : MonoBehaviour
 
     public TextMeshProUGUI moveSpeedText;
     public TextMeshProUGUI moveSpeedPauseText;
+
+    private PlayerStatsMultiplier statsMultiplier;
 
     // Pobranie metody ataku z WeaponParent
     public void PerformAttack()
@@ -30,7 +35,7 @@ public class Controller : MonoBehaviour
 
     void Start()
     {
-
+        statsMultiplier = GetComponent<PlayerStatsMultiplier>();
     }
 
     void Update()
@@ -47,11 +52,13 @@ public class Controller : MonoBehaviour
     private void FixedUpdate()
     {
         // Ruch obiektu
-        rigidbody2D.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-    }
+        float finalMoveSpeed = moveSpeed;
 
-    public void AddMoveSpeedBonus(float bonus)
-    {
-        moveSpeed += bonus;
+        if(statsMultiplier != null)
+        {
+            finalMoveSpeed *= statsMultiplier.moveSpeedMultiplier;
+        }
+
+        rigidbody2D.linearVelocity = new Vector2(moveDirection.x * finalMoveSpeed, moveDirection.y * finalMoveSpeed);
     }
 }

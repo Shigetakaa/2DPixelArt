@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MaxHealthUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Upgrades
   upgradeName: Zdrowie
-  upgradeDescription: "Zwi\u0119ksza maksymalne zdrowie"
+  upgradeDescription: "Zwi\u0119ksza maksymalne zdrowie."
   upgradeIcon: {fileID: 0}
   cost: 500
   costMultiplier: 2
   maxLevel: 5
-  statBonusPerLevel: 50
+  statBonusPerLevel: 10
   upgradeType: 2

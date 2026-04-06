@@ -3,17 +3,21 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public GameObject enemyAttack;
-    public float enemyDamage = 5f;
+    public float enemyDamage = 5.0f;
     public float enemyRadius = 0.7f;
     public float enemyAttackCooldown = 0.5f;
     public float lastAttack;
 
     private CircleCollider2D enemyAttackCollider;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         enemyAttackCollider = GetComponent<CircleCollider2D>();
+        statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+
         enemyAttackCollider.isTrigger = true;
         enemyAttackCollider.radius = enemyRadius;
     }
@@ -22,6 +26,24 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GetDifficulty()
+    {
+        switch (GameSettingsManager.Instance.chosenDifficulty)
+        {
+            case Difficulty.Easy:
+                enemyDamage = 5.0f;
+                break;
+
+            case Difficulty.Normal:
+                enemyDamage = 10.0f;
+                break;
+
+            case Difficulty.Hard:
+                enemyDamage = 20.0f;
+                break;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +58,8 @@ public class EnemyAttack : MonoBehaviour
     // Metoda zadająca obrażenia graczowi
     public void DealDamage(Collider2D collision)
     {
+        float finalDamage = enemyDamage * statsMultiplier.difficultyMultiplier;
+
         if (collision.CompareTag("Player"))
         {
             if(Time.time >= lastAttack + enemyAttackCooldown)
@@ -45,7 +69,7 @@ public class EnemyAttack : MonoBehaviour
                 Health playerHealth = collision.GetComponent<Health>();
                 if (playerHealth != null)
                 {
-                    playerHealth.GetHit(enemyDamage, this.gameObject);
+                    playerHealth.GetHit(finalDamage, this.gameObject);
                 }
             }
         }

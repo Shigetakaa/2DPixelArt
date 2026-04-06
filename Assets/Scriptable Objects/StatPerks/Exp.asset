@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a7f0910294d274cb0141141a08fe64, type: 3}
+  m_Name: Exp
+  m_EditorClassIdentifier: Assembly-CSharp::StatPerk
+  perkName: "Do\u015Bwiadczenie"
+  perkDescription: "Zwi\u0119ksza ilo\u015B\u0107 zdobywanych punkt\xF3w do\u015Bwiadczenia."
+  perkIcon: {fileID: 0}
+  perkType: 5
+  perkValue: 0.1

@@ -24,6 +24,7 @@ public class InGameUIManager : MonoBehaviour
     // Przycisk wróć do gry
     public void OnResumePress()
     {
+        characterParameters.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }

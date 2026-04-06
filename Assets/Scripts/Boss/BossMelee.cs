@@ -4,17 +4,21 @@ using UnityEngine;
 public class BossMelee : MonoBehaviour
 {
     public GameObject meleeAttack;
-    public float meleeDamage = 10f;
+    public float meleeDamage = 10.0f;
     public float meleeRadius = 0.8f;
     public float meleeAttackCooldown = 0.5f;
     private float lastAttack;
 
     private CircleCollider2D meleeAttackCollider;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         meleeAttackCollider = GetComponent<CircleCollider2D>();
+        statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+
         meleeAttackCollider.isTrigger = true;
         meleeAttackCollider.radius = meleeRadius;
 
@@ -25,6 +29,24 @@ public class BossMelee : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GetDifficulty()
+    {
+        switch (GameSettingsManager.Instance.chosenDifficulty)
+        {
+            case Difficulty.Easy:
+                meleeDamage = 10.0f;
+                break;
+
+            case Difficulty.Normal:
+                meleeDamage = 20.0f;
+                break;
+
+            case Difficulty.Hard:
+                meleeDamage = 40.0f;
+                break;
+        }
     }
     
     void OnTriggerEnter2D(Collider2D collision)
@@ -39,6 +61,8 @@ public class BossMelee : MonoBehaviour
     // Metoda zadająca obrażenia graczowi
     public void DealDamage(Collider2D collision)
     {
+        float finalDamage = meleeDamage * statsMultiplier.difficultyMultiplier;
+
         if (collision.CompareTag("Player"))
         {
             if(Time.time >= lastAttack + meleeAttackCooldown)
@@ -48,7 +72,7 @@ public class BossMelee : MonoBehaviour
                 Health playerHealth = collision.GetComponent<Health>();
                 if (playerHealth != null)
                 {
-                    playerHealth.GetHit(meleeDamage, this.gameObject);
+                    playerHealth.GetHit(finalDamage, this.gameObject);
                 }
             }
         }

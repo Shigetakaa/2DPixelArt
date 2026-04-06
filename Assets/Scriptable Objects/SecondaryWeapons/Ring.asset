@@ -16,3 +16,4 @@ MonoBehaviour:
   weaponIcon: {fileID: 0}
   weaponDescription: Strzela piorunami z nieba w losowe miejsca.
   secondaryWeapon: {fileID: 7446267848933028548, guid: 3cf2c417a15a7fb4a86cf238bcb168d6, type: 3}
+  weaponPerk: {fileID: 11400000, guid: 748b83450d25ecd48a2967fb6c58e42d, type: 2}

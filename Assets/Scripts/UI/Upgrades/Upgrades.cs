@@ -6,7 +6,10 @@ public enum UpgradeType
     AttackCooldown,
     MaxHealth,
     RegenHealth,
-    Damage
+    Damage,
+    BonusExp,
+    ItemMagnet,
+    Difficulty
 }
 
 [CreateAssetMenu(fileName = "Upgrades", menuName = "Scriptable Objects/Upgrades")]

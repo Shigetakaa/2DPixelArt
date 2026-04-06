@@ -8,15 +8,23 @@ public class Staff : MonoBehaviour
 
     public float staffAttackCooldown = 4f;
     public float staffAttackSpeed = 10f;
+    public int staffNumber = 1;
+    public float finalNumber;
     
     public Vector2 areaMinPos = new Vector2(-10f, -10f);
     public Vector2 areaMaxPos = new Vector2(10f, 10f);
 
     private string[] enemyTags = {"Enemy", "Boss"};
 
+    private GameObject player;
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         StartCoroutine(StaffAttackCooldown());
     }
 
@@ -28,16 +36,18 @@ public class Staff : MonoBehaviour
 
     private IEnumerator StaffAttackCooldown()
     {
+        float finalCooldown = staffAttackCooldown * statsMultiplier.cooldownMultiplier;
+
         while (true)
         {
             GameObject enemy = FindEnemy();
     
             if(enemy != null)
             {
-                Shoot(enemy);
+                StartCoroutine(Shoot(enemy));
             }
 
-            yield return new WaitForSeconds(staffAttackCooldown);
+            yield return new WaitForSeconds(finalCooldown);
         }
     }
 
@@ -52,27 +62,34 @@ public class Staff : MonoBehaviour
 
             foreach (GameObject enemy in enemies)
             {
-                Vector2 position = enemy.transform.position;
+                // Vector2 position = enemy.transform.position;
 
-                if (position.x >= areaMinPos.x && position.x <= areaMaxPos.x &&
-                    position.y >= areaMinPos.y && position.y <= areaMaxPos.y)
-                {
-                    float distance = Vector2.Distance(transform.position, position);
+                // if (position.x >= areaMinPos.x && position.x <= areaMaxPos.x &&
+                //     position.y >= areaMinPos.y && position.y <= areaMaxPos.y)
+                // {
+                    float distance = Vector2.Distance(transform.position, enemy.transform.position);
 
                     if(distance <= shortDistance)
                     {
                         shortDistance = distance;
                         closeEnemy = enemy;
                     }
-                }
+                // }
             }
         }
         return closeEnemy;  
     }
 
-    private void Shoot(GameObject enemy)
+    private IEnumerator Shoot(GameObject enemy)
     {
-        GameObject staffAttackObject = Instantiate(staffAttack, transform.position, Quaternion.identity);
-        staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed);
+        finalNumber = (staffNumber + statsMultiplier.staffNumberBonus) * statsMultiplier.numberMultiplier;
+
+        for(int i = 0; i < finalNumber; i++)
+        {
+            GameObject staffAttackObject = Instantiate(staffAttack, transform.position, Quaternion.identity);
+            staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed);
+
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

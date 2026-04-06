@@ -7,17 +7,26 @@ public class Dagger : MonoBehaviour
 {
     public GameObject daggerAttack;
 
+    public int daggerNumber = 1;
+    public float finalNumber;
     public float daggerAttackSpeed = 10f;
     public float daggerAttackCooldown = 2f;
+    float finalCooldown;
 
     public Vector2 areaMinPos = new Vector2(-10, -10);
     public Vector2 areaMaxPos = new Vector2(10, 10);
 
     private string[] enemyTags = {"Enemy", "Boss"};
 
+    private GameObject player;
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         StartCoroutine(DaggerAttackCooldown());
     }
 
@@ -29,6 +38,8 @@ public class Dagger : MonoBehaviour
 
     private IEnumerator DaggerAttackCooldown()
     {
+        finalCooldown = (daggerAttackCooldown + statsMultiplier.daggerCooldownBonus) * statsMultiplier.cooldownMultiplier;
+
         while (true)
         {
             GameObject enemy = FindEnemy();
@@ -38,7 +49,7 @@ public class Dagger : MonoBehaviour
                 Throw(enemy.transform);
             }
 
-            yield return new WaitForSeconds(daggerAttackCooldown);
+            yield return new WaitForSeconds(finalCooldown);
         }
     }
 
@@ -53,19 +64,19 @@ public class Dagger : MonoBehaviour
 
             foreach(GameObject enemy in enemies)
             {
-                Vector2 position = enemy.transform.position;
+                // Vector2 position = enemy.transform.position;
 
-                if (position.x >= areaMinPos.x && position.x <= areaMaxPos.x &&
-                    position.y >= areaMinPos.y && position.y <= areaMaxPos.y)
-                {
-                    float distance = Vector2.Distance(transform.position, position);
+                // if (position.x >= areaMinPos.x && position.x <= areaMaxPos.x &&
+                //     position.y >= areaMinPos.y && position.y <= areaMaxPos.y)
+                // {
+                    float distance = Vector2.Distance(transform.position, enemy.transform.position);
 
                     if (distance < shortDistance)
                     {
                         shortDistance = distance;
                         closeEnemy = enemy;
                     }
-                }
+                // }
             }
         }
         return closeEnemy;
@@ -73,10 +84,32 @@ public class Dagger : MonoBehaviour
 
     private void Throw(Transform enemy)
     {
-        float[] angles = {-10f, 0f, 10f};
+        finalNumber = (daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier;
 
-        foreach (float angle in angles)
+        float spread = Mathf.Clamp(20f + finalNumber * 4f, 20f, 100f);
+
+        float angleStep = 0f;
+
+        if(finalNumber > 1)
         {
+            angleStep = spread / (finalNumber - 1);
+        }
+
+        float startAngle = -spread / 2;
+
+        for(int i = 0; i < finalNumber; i++)
+        {
+            float angle;
+
+            if(finalNumber == 1)
+            {
+                angle = 0f;
+            }
+            else
+            {
+                angle = startAngle + (i * angleStep);
+            }
+
             GameObject daggerAttackObject = Instantiate(daggerAttack, transform.position, Quaternion.identity);
             daggerAttackObject.GetComponent<DaggerAttack>().Initialize(enemy, daggerAttackSpeed, angle);
         }

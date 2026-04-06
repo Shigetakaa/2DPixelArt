@@ -3,18 +3,24 @@ using UnityEngine;
 
 public class Aura : MonoBehaviour
 {
-    public float auraDamage = 3f;
+    public float auraDamage = 10f;
+    public float finalDamage;
     public float auraRadius = 5f;
     public float auraCooldown = 2f;
+    float finalCooldown;
 
     private CircleCollider2D auraCollider;
 
     public GameObject player;
 
+    private PlayerStatsMultiplier statsMultiplier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         auraCollider = GetComponent<CircleCollider2D>();
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
+
         auraCollider.isTrigger = true;
         auraCollider.radius = auraRadius;
 
@@ -29,9 +35,11 @@ public class Aura : MonoBehaviour
 
     private IEnumerator ActivateAura()
     {
+        finalCooldown = (auraCooldown + statsMultiplier.auraCooldownBonus) * statsMultiplier.cooldownMultiplier;
+
         while (true)
         {
-            yield return new WaitForSeconds(auraCooldown);
+            yield return new WaitForSeconds(finalCooldown);
             DealDamage();
         }
     }
@@ -39,17 +47,19 @@ public class Aura : MonoBehaviour
     // Metoda zadająca obrażenia
     public void DealDamage()
     {
+        finalDamage = (auraDamage + statsMultiplier.auraBonus) * statsMultiplier.damageMultiplier;
+
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, auraRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(auraDamage, player);
+                bossHealth.GetHit(finalDamage, player);
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(auraDamage, player);
+                enemyHealth.GetHit(finalDamage, player);
             }
         }
     }
