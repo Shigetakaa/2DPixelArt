@@ -7,6 +7,7 @@ public class Aura : MonoBehaviour
     public float finalDamage;
     public float auraRadius = 5f;
     public float auraCooldown = 2f;
+    float finalCooldown;
 
     private CircleCollider2D auraCollider;
 
@@ -34,7 +35,7 @@ public class Aura : MonoBehaviour
 
     private IEnumerator ActivateAura()
     {
-        float finalCooldown = auraCooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = (auraCooldown + statsMultiplier.auraCooldownBonus) * statsMultiplier.cooldownMultiplier;
 
         while (true)
         {

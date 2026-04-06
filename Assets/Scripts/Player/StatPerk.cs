@@ -26,5 +26,6 @@ public enum PerkType
     StaffPerk,
     DaggerPerk,
     RingPerk,
-    SwordPerk
+    SwordPerk,
+    Number
 }

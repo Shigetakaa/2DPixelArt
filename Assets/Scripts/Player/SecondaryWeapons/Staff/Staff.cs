@@ -8,6 +8,8 @@ public class Staff : MonoBehaviour
 
     public float staffAttackCooldown = 4f;
     public float staffAttackSpeed = 10f;
+    public int staffNumber = 1;
+    public float finalNumber;
     
     public Vector2 areaMinPos = new Vector2(-10f, -10f);
     public Vector2 areaMaxPos = new Vector2(10f, 10f);
@@ -42,7 +44,7 @@ public class Staff : MonoBehaviour
     
             if(enemy != null)
             {
-                Shoot(enemy);
+                StartCoroutine(Shoot(enemy));
             }
 
             yield return new WaitForSeconds(finalCooldown);
@@ -78,9 +80,16 @@ public class Staff : MonoBehaviour
         return closeEnemy;  
     }
 
-    private void Shoot(GameObject enemy)
+    private IEnumerator Shoot(GameObject enemy)
     {
-        GameObject staffAttackObject = Instantiate(staffAttack, transform.position, Quaternion.identity);
-        staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed);
+        finalNumber = (staffNumber + statsMultiplier.staffNumberBonus) * statsMultiplier.numberMultiplier;
+
+        for(int i = 0; i < finalNumber; i++)
+        {
+            GameObject staffAttackObject = Instantiate(staffAttack, transform.position, Quaternion.identity);
+            staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed);
+
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

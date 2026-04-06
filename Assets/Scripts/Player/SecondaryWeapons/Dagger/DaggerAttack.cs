@@ -9,7 +9,7 @@ public class DaggerAttack : MonoBehaviour
     public float finalDamage;
     public Vector2 daggerAttackXY = new Vector2(-0.35f, 0.01f);
     public int pierceNumber = 3;
-    public float maxTimeLimit = 3f;
+    public float maxTimeLimit = 1f;
     private float speed;
     private Vector2 direction;
     private float timeLimit;
@@ -83,23 +83,11 @@ public class DaggerAttack : MonoBehaviour
             if (bossHealth != null)
             {
                 bossHealth.GetHit(finalDamage, player);
-                PierceCount();
             }
             else if (enemyHealth != null)
             {
                 enemyHealth.GetHit(finalDamage, player);
-                PierceCount();
             }
-        }
-    }
-
-    private void PierceCount()
-    {
-        pierceNumber--;
-
-        if (pierceNumber <= 0)
-        {
-            Destroy(gameObject);
         }
     }
 }

@@ -7,6 +7,9 @@ public class Controller : MonoBehaviour
     public Rigidbody2D rigidbody2D;
     public float moveSpeed = 10.0f;
 
+    private Vector2 externalVelocity;
+    private float knobkackTime;
+
     private Vector2 moveDirection, attackDirection;
 
     public Vector2 AttackDirection { get => attackDirection; set => attackDirection = value; }
@@ -58,9 +61,4 @@ public class Controller : MonoBehaviour
 
         rigidbody2D.linearVelocity = new Vector2(moveDirection.x * finalMoveSpeed, moveDirection.y * finalMoveSpeed);
     }
-
-    // public void AddMoveSpeedBonus(float bonus)
-    // {
-    //     moveSpeed += bonus;
-    // }
 }

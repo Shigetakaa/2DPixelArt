@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Axe
   axeAttack: {fileID: 636521988557298964, guid: 1937d97948513284bb7701ef281a503c, type: 3}
-  axeNumber: 8
+  axeNumber: 2
+  finalNumber: 0
   axeSpawnRadius: 2
   axeRotateSpeed: 100
   timeLimit: 5

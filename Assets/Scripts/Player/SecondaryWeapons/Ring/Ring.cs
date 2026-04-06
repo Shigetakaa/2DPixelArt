@@ -6,7 +6,8 @@ public class Ring : MonoBehaviour
 {
     public GameObject ringAttack;
     public float ringAttackCooldown = 4f;
-    public int attackAmount = 5;
+    public int attackAmount = 3;
+    public float finalNumber;
     public Vector2 areaMinPos = new Vector2(-10f, -10f);
     public Vector2 areaMaxPos = new Vector2(10f, 10f);
 
@@ -42,7 +43,9 @@ public class Ring : MonoBehaviour
 
     private void SpawnRingAttack()
     {
-        for (int i = 0; i < attackAmount; i++)
+        finalNumber = (attackAmount + statsMultiplier.ringNumberBonus) * statsMultiplier.numberMultiplier;
+
+        for (int i = 0; i < finalNumber; i++)
         {
             Vector2 attackPos = new Vector2(
                 UnityEngine.Random.Range(areaMinPos.x, areaMaxPos.x),

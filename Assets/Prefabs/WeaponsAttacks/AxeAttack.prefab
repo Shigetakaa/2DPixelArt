@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AxeAttack
   axeDamage: 2
+  finalDamage: 0
   axeAttackRadius: 0.5
-  axeKnockback: 400
+  axeKnockback: 10
   axeDamageCooldown: 0.3

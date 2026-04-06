@@ -7,8 +7,11 @@ public class Dagger : MonoBehaviour
 {
     public GameObject daggerAttack;
 
+    public int daggerNumber = 1;
+    public float finalNumber;
     public float daggerAttackSpeed = 10f;
     public float daggerAttackCooldown = 2f;
+    float finalCooldown;
 
     public Vector2 areaMinPos = new Vector2(-10, -10);
     public Vector2 areaMaxPos = new Vector2(10, 10);
@@ -35,7 +38,7 @@ public class Dagger : MonoBehaviour
 
     private IEnumerator DaggerAttackCooldown()
     {
-        float finalCooldown = daggerAttackCooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = (daggerAttackCooldown + statsMultiplier.daggerCooldownBonus) * statsMultiplier.cooldownMultiplier;
 
         while (true)
         {
@@ -81,10 +84,32 @@ public class Dagger : MonoBehaviour
 
     private void Throw(Transform enemy)
     {
-        float[] angles = {-10f, 0f, 10f};
+        finalNumber = (daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier;
 
-        foreach (float angle in angles)
+        float spread = Mathf.Clamp(20f + finalNumber * 4f, 20f, 100f);
+
+        float angleStep = 0f;
+
+        if(finalNumber > 1)
         {
+            angleStep = spread / (finalNumber - 1);
+        }
+
+        float startAngle = -spread / 2;
+
+        for(int i = 0; i < finalNumber; i++)
+        {
+            float angle;
+
+            if(finalNumber == 1)
+            {
+                angle = 0f;
+            }
+            else
+            {
+                angle = startAngle + (i * angleStep);
+            }
+
             GameObject daggerAttackObject = Instantiate(daggerAttack, transform.position, Quaternion.identity);
             daggerAttackObject.GetComponent<DaggerAttack>().Initialize(enemy, daggerAttackSpeed, angle);
         }

@@ -68,28 +68,42 @@ public class LevelUpPanelManager : MonoBehaviour
                 statsMultiplier.difficultyMultiplier += perk.perkValue;
                 break;
 
+            case PerkType.Number:
+                statsMultiplier.numberMultiplier += perk.perkValue;
+                break;
+
             case PerkType.AxePerk:
                 statsMultiplier.axeBonus += perk.perkValue;
+                statsMultiplier.axeCooldownBonus -= 0.05f;
+                statsMultiplier.axeNumberBonus += 1f;
                 break;
 
             case PerkType.AuraPerk:
                 statsMultiplier.auraBonus += perk.perkValue;
+                statsMultiplier.auraCooldownBonus -= 0.05f;
                 break;
 
             case PerkType.DaggerPerk:
                 statsMultiplier.daggerBonus += perk.perkValue;
+                statsMultiplier.daggerCooldownBonus -= 0.05f;
+                statsMultiplier.daggerNumberBonus += 1f;
                 break;
 
             case PerkType.RingPerk:
                 statsMultiplier.ringBonus += perk.perkValue;
+                statsMultiplier.ringCooldownBonus -= 0.05f;
+                statsMultiplier.ringNumberBonus += 1;
                 break;
 
             case PerkType.StaffPerk:
                 statsMultiplier.staffBonus += perk.perkValue;
+                statsMultiplier.staffCooldownBonus -= 0.05f;
+                statsMultiplier.staffNumberBonus += 1f;
                 break;
 
             case PerkType.SwordPerk:
                 statsMultiplier.swordBonus += perk.perkValue;
+                statsMultiplier.swordCooldownBonus -= 0.05f;
                 break;
         }
     }
