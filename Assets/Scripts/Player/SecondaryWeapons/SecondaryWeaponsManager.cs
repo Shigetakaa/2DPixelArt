@@ -5,6 +5,7 @@ public class SecondaryWeaponsManager : MonoBehaviour
 {
     public List<SecondaryWeapons> secondaryWeapons;
     public List<SecondaryWeapons> currentSecondaryWeapons;
+    public List<SecondaryWeapons> ownedSecondaryWeapons;
 
     public Transform secondaryWeaponsManager;
 
@@ -12,6 +13,7 @@ public class SecondaryWeaponsManager : MonoBehaviour
     void Start()
     {
         currentSecondaryWeapons = new List<SecondaryWeapons>(secondaryWeapons);
+        ownedSecondaryWeapons = new List<SecondaryWeapons>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,8 @@ public class SecondaryWeaponsManager : MonoBehaviour
     public void ActivateWeapon(SecondaryWeapons chosenWeapon)
     {
         Instantiate(chosenWeapon.secondaryWeapon, secondaryWeaponsManager);
+
         currentSecondaryWeapons.Remove(chosenWeapon);
+        ownedSecondaryWeapons.Add(chosenWeapon);
     }
 }

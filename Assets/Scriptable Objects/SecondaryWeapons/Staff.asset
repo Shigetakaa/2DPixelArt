@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Staff
   m_EditorClassIdentifier: Assembly-CSharp::SecondaryWeapons
   weaponName: "R\xF3\u017Cd\u017Cka Ognia"
-  weaponIcon: {fileID: 0}
+  weaponIcon: {fileID: 8117952710303009403, guid: 284e94ec97dfd604ba0cc871504d5876, type: 3}
   weaponDescription: "Strzela pociskami ognia w przeciwnik\xF3w."
   secondaryWeapon: {fileID: 7349901945000584181, guid: 0d3b1529d7ee3234cb3632ef3bf06adb, type: 3}
   weaponPerk: {fileID: 11400000, guid: 70b4fb3be4941e048a3ce1cce50912d9, type: 2}

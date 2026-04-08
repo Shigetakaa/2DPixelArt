@@ -24,6 +24,10 @@ public class ChestUIManager : MonoBehaviour
     private List<SecondaryWeapons> currentButtons;
 
     public LevelUpPanelManager levelUpPanelManager;
+    public Transform weaponsPanel;
+    public GameObject weaponIconPrefab;
+
+    private List<GameObject> spawnedIcons = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,6 +70,8 @@ public class ChestUIManager : MonoBehaviour
         var weapon = currentButtons[i];
         secondaryWeapons.ActivateWeapon(weapon);
 
+        // RefreshWeaponsPanel();
+
         if(weapon.weaponPerk != null)
         {
             levelUpPanelManager.AddWeaponPerk(weapon.weaponPerk);
@@ -73,5 +79,18 @@ public class ChestUIManager : MonoBehaviour
 
         Time.timeScale = 1;
         chestPanel.SetActive(false);
+    }
+
+    public void RefreshWeaponsPanel()
+    {
+        foreach(var weapon in secondaryWeapons.currentSecondaryWeapons)
+        {
+            GameObject iconObject = Instantiate(weaponIconPrefab, weaponsPanel);
+            Image image = iconObject.GetComponent<Image>();
+
+            image.sprite = weapon.weaponIcon;
+
+            spawnedIcons.Add(iconObject);
+        }
     }
 }
