@@ -11,20 +11,30 @@ public class InGameUIManager : MonoBehaviour
     public GameObject victoryScreen;
     public GameObject healthBar;
     public GameObject characterParameters;
+    public GameObject characterStats;
     public GameObject timerText;
+    public Health player;
+
     public TextMeshProUGUI killedEnemiesText;
     public TextMeshProUGUI victoryCoinsText;
+    public TextMeshProUGUI gameOverCoinsText;
     public TextMeshProUGUI coinsText;
+
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<Health>();
+    }
 
     void Update()
     {
-        coinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
+        coinsText.text = "Monety: " + player.coins;
     }
 
     // Przycisk wróć do gry
     public void OnResumePress()
     {
         characterParameters.SetActive(true);
+        characterStats.SetActive(false);
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
@@ -45,7 +55,9 @@ public class InGameUIManager : MonoBehaviour
     public void GameOverScreen()
     {
         gameOverScreen.SetActive(true);
-        // Wyłączenie paska zdrowia po śmierci gracza
+
+        gameOverCoinsText.text = "Zdobyte monety: " + player.coins;
+        
         if (healthBar != null)
         {
             healthBar.SetActive(false);
@@ -57,8 +69,10 @@ public class InGameUIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         victoryScreen.SetActive(true);
+
         killedEnemiesText.text = "Wrogowie: " + killedEnemies;
-        victoryCoinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
+        victoryCoinsText.text = "Zdobyte monety: " + player.coins;
+
         characterParameters.SetActive(false);
         timerText.SetActive(false);
     }

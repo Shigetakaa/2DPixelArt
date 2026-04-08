@@ -7,18 +7,12 @@ public class Controller : MonoBehaviour
     public Rigidbody2D rigidbody2D;
     public float moveSpeed = 10.0f;
 
-    private Vector2 externalVelocity;
-    private float knobkackTime;
-
     private Vector2 moveDirection, attackDirection;
 
     public Vector2 AttackDirection { get => attackDirection; set => attackDirection = value; }
     public Vector2 MoveDirection { get => moveDirection; set => moveDirection = value; }
 
     private WeaponParent weaponParent;
-
-    public TextMeshProUGUI moveSpeedText;
-    public TextMeshProUGUI moveSpeedPauseText;
 
     private PlayerStatsMultiplier statsMultiplier;
 
@@ -41,12 +35,6 @@ public class Controller : MonoBehaviour
     void Update()
     {
         weaponParent.PointerPosition = attackDirection;
-
-        // Wartość prędkości ruchu na ekranie
-        moveSpeedText.text = "Prędkość ruchu: " + moveSpeed;
-
-        // Wartość prędkości ruchu na ekranie pauzy
-        moveSpeedPauseText.text = "Prędkość ruchu: " + moveSpeed;
     }
 
     private void FixedUpdate()

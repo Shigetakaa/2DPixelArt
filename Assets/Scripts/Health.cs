@@ -20,14 +20,12 @@ public class Health : MonoBehaviour
     public bool isBoss = false;
 
     public int killedEnemies = 0;
-
-    public GameObject expItem;
+    public int coins;
 
     public UnityEvent<GameObject> OnHit, OnDeath;
 
     private bool isDead = false;
     private InGameUIManager gameOverScreen;
-    private InGameUIManager victoryScreen;
 
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI parametersHealthText;
@@ -138,6 +136,9 @@ public class Health : MonoBehaviour
             {
                 // Aktywowane UI końca gry
                 gameOverScreen.GameOverScreen();
+
+                CoinsManager.Instance.GetCoins(coins);
+
                 Time.timeScale = 0;
                 Destroy(gameObject);
             }
@@ -189,5 +190,10 @@ public class Health : MonoBehaviour
     public void AddRegenHealthBonus(float bonus)
     {
         baseRegenHealthAmount += bonus;
+    }
+
+    public void GetInGameCoins(int amount)
+    {
+        coins += amount;
     }
 }

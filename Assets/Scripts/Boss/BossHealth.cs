@@ -101,6 +101,7 @@ public class BossHealth : MonoBehaviour
             if(player != null)
             {
                 GameSettingsManager.Instance.SaveKilledEnemies(player.killedEnemies);
+                CoinsManager.Instance.GetCoins(player.coins);
 
                 victoryScreen.VictoryScreen(player.killedEnemies);
             }

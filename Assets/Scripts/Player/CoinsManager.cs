@@ -50,17 +50,17 @@ public class CoinsManager : MonoBehaviour
         SaveCoins();
     }
 
-    private void SaveCoins()
+    public void SaveCoins()
     {
         PlayerPrefs.SetInt("coins", Coins);
         PlayerPrefs.Save();
     }
 
-    [ContextMenu("Dodaj 1000 monet")]
-    void AddCoins()
-    {
-        GetCoins(1000);
-    }
+    // [ContextMenu("Dodaj 1000 monet")]
+    // void AddCoins()
+    // {
+    //     GetCoins(1000);
+    // }
 
     public void SetCoins(int amount)
     {
