@@ -8,7 +8,8 @@ public class WeaponParent : MonoBehaviour
     public Vector2 PointerPosition { get; set; }
 
     public Animator animator;
-    public float cooldown = 0.5f;
+    public float cooldown = 2f;
+    public float finalCooldown;
     private bool attackBlocked;
 
     public Transform areaOrigin;
@@ -16,11 +17,11 @@ public class WeaponParent : MonoBehaviour
     public float playerDamage = 4;
     public float finalDamage;
 
-    public TextMeshProUGUI playerDamageText;
-    public TextMeshProUGUI playerDamageCooldownText;
-
     public TextMeshProUGUI playerDamagePauseText;
     public TextMeshProUGUI playerDamageCooldownPauseText;
+
+    public TextMeshProUGUI swordFinalDamageText;
+    public TextMeshProUGUI swordFinalCooldownText;
 
     public PlayerStatsMultiplier statsMultiplier;
 
@@ -42,19 +43,18 @@ public class WeaponParent : MonoBehaviour
         }
         transform.localScale = scale;
 
-
-        // Wartość ataku
-        playerDamageText.text = "Atak: " + playerDamage;
-
-        // Wartość cooldownu ataku
-        playerDamageCooldownText.text = "Cooldown ataku: " + cooldown.ToString("F2") + "s";
-
+        finalDamage = (playerDamage + statsMultiplier.swordBonus) * statsMultiplier.damageMultiplier;
+        finalCooldown = cooldown * statsMultiplier.cooldownMultiplier;
 
         // Wartość ataku
         playerDamagePauseText.text = "Atak: " + playerDamage;
 
         // Wartość cooldownu ataku
         playerDamageCooldownPauseText.text = "Cooldown ataku: " + cooldown.ToString("F2") + "s";
+
+
+        swordFinalDamageText.text = finalDamage.ToString("F2");
+        swordFinalCooldownText.text = finalCooldown.ToString("F2") + "s";
     }
 
     // Metoda animacji ataku
@@ -72,8 +72,6 @@ public class WeaponParent : MonoBehaviour
     // Cooldown ataku
     private IEnumerator AttackCooldown()
     {
-        float finalCooldown = cooldown * statsMultiplier.cooldownMultiplier;
-
         yield return new WaitForSeconds(finalCooldown);
         attackBlocked = false;
     }
@@ -89,8 +87,6 @@ public class WeaponParent : MonoBehaviour
     // Metoda zadająca obrażenia
     public void DealDamage()
     {
-        finalDamage = (playerDamage + statsMultiplier.swordBonus) * statsMultiplier.damageMultiplier;
-
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(areaOrigin.position, area))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
@@ -105,14 +101,4 @@ public class WeaponParent : MonoBehaviour
             }
         }
     }
-
-    // public void AddDamageBonus(float bonus)
-    // {
-    //     playerDamage += bonus;
-    // }
-
-    // public void AddAttackCooldownBonus(float bonus)
-    // {
-    //     cooldown -= bonus;
-    // }
 }

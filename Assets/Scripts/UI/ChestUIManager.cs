@@ -70,8 +70,6 @@ public class ChestUIManager : MonoBehaviour
         var weapon = currentButtons[i];
         secondaryWeapons.ActivateWeapon(weapon);
 
-        // RefreshWeaponsPanel();
-
         if(weapon.weaponPerk != null)
         {
             levelUpPanelManager.AddWeaponPerk(weapon.weaponPerk);
@@ -79,16 +77,27 @@ public class ChestUIManager : MonoBehaviour
 
         Time.timeScale = 1;
         chestPanel.SetActive(false);
+
+        RefreshWeaponsPanel();
     }
 
     public void RefreshWeaponsPanel()
     {
-        foreach(var weapon in secondaryWeapons.currentSecondaryWeapons)
+        foreach (var icon in spawnedIcons)
+        {
+            Destroy(icon);
+        }
+        spawnedIcons.Clear();
+
+        foreach(var weapon in secondaryWeapons.ownedSecondaryWeapons)
         {
             GameObject iconObject = Instantiate(weaponIconPrefab, weaponsPanel);
-            Image image = iconObject.GetComponent<Image>();
+            Image image = iconObject.transform.Find("Icon").GetComponent<Image>();
 
             image.sprite = weapon.weaponIcon;
+
+            var hover = iconObject.GetComponent<WeaponIconHover>();
+            hover.Setup(weapon);
 
             spawnedIcons.Add(iconObject);
         }

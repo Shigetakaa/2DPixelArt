@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject characterStats;
     public GameObject characterParameters;
+    public GameObject equipmentPanel;
 
     public UnityEvent<Vector2> OnMovement, OnPointer;
     public UnityEvent OnAttack;
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 1;
             characterStats.SetActive(true);
             characterParameters.SetActive(false);
+            equipmentPanel.SetActive(false);
             // Wyłączenie pauzy
             pauseMenu.SetActive(false);
         }
@@ -96,6 +98,7 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 0;
             characterStats.SetActive(false);
             characterParameters.SetActive(true);
+            equipmentPanel.SetActive(true);
             // Aktywowanie menu pauzy
             pauseMenu.SetActive(true);
         }

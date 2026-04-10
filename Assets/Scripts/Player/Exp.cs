@@ -17,6 +17,7 @@ public class Exp : MonoBehaviour
 
     public GameObject characterStats;
     public GameObject characterParameters;
+    public GameObject equipmentPanel;
 
     public LevelUpPanelManager levelUpPanelManager;
     public LevelUpUIManager levelUpUIManager;
@@ -75,6 +76,7 @@ public class Exp : MonoBehaviour
 
         characterStats.SetActive(false);
         characterParameters.SetActive(true);
+        equipmentPanel.SetActive(true);
 
         Time.timeScale = 0;
     }

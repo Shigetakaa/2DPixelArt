@@ -12,6 +12,7 @@ public class InGameUIManager : MonoBehaviour
     public GameObject healthBar;
     public GameObject characterParameters;
     public GameObject characterStats;
+    public GameObject equipmentPanel;
     public GameObject timerText;
     public Health player;
 
@@ -35,6 +36,7 @@ public class InGameUIManager : MonoBehaviour
     {
         characterParameters.SetActive(true);
         characterStats.SetActive(false);
+        equipmentPanel.SetActive(false);
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
