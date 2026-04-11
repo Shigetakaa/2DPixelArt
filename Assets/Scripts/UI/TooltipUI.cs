@@ -26,4 +26,17 @@ public class TooltipUI : MonoBehaviour
     {
         tooltipPanel.SetActive(false);
     }
+
+    void Start()
+    {
+        Cursor.visible = true;
+    }
+
+    void Update()
+    {
+        if (tooltipPanel.activeSelf)
+        {
+            tooltipPanel.transform.position = Input.mousePosition;
+        }
+    }
 }
