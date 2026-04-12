@@ -96,9 +96,6 @@ public class ChestUIManager : MonoBehaviour
 
             image.sprite = weapon.weaponIcon;
 
-            var hover = iconObject.transform.Find("Icon").GetComponent<WeaponIconHover>();
-            hover.Setup(weapon);
-
             spawnedIcons.Add(iconObject);
         }
     }
