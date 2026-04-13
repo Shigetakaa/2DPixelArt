@@ -2,11 +2,13 @@ using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Staff : MonoBehaviour
+public class Staff : MonoBehaviour, SecondaryWeaponStats
 {
     public GameObject staffAttack;
 
+    public float staffDamage = 10f;
     public float staffAttackCooldown = 4f;
+    public float finalCooldown;
     public float staffAttackSpeed = 10f;
     public int staffNumber = 1;
     public float finalNumber;
@@ -31,13 +33,12 @@ public class Staff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        finalNumber = (staffNumber + statsMultiplier.staffNumberBonus) * statsMultiplier.numberMultiplier;
+        finalCooldown = staffAttackCooldown * statsMultiplier.cooldownMultiplier;
     }
 
     private IEnumerator StaffAttackCooldown()
     {
-        float finalCooldown = staffAttackCooldown * statsMultiplier.cooldownMultiplier;
-
         while (true)
         {
             GameObject enemy = FindEnemy();
@@ -82,14 +83,27 @@ public class Staff : MonoBehaviour
 
     private IEnumerator Shoot(GameObject enemy)
     {
-        finalNumber = (staffNumber + statsMultiplier.staffNumberBonus) * statsMultiplier.numberMultiplier;
-
         for(int i = 0; i < finalNumber; i++)
         {
             GameObject staffAttackObject = Instantiate(staffAttack, transform.position, Quaternion.identity);
-            staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed);
+            staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed, GetDamage());
 
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    public float GetDamage()
+    {
+        return (staffDamage + statsMultiplier.staffBonus) * statsMultiplier.damageMultiplier;
+    }
+
+    public float GetNumber()
+    {
+        return finalNumber;
+    }
+
+    public float GetCooldown()
+    {
+        return finalCooldown;
     }
 }

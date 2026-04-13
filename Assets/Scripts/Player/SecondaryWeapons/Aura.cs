@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Aura : MonoBehaviour
+public class Aura : MonoBehaviour, SecondaryWeaponStats
 {
     public float auraDamage = 10f;
     public float finalDamage;
@@ -62,5 +62,20 @@ public class Aura : MonoBehaviour
                 enemyHealth.GetHit(finalDamage, player);
             }
         }
+    }
+
+    public float GetDamage()
+    {
+        return finalDamage;
+    }
+
+    public float GetCooldown()
+    {
+        return finalCooldown;
+    }
+
+    public float GetNumber()
+    {
+        return 1f;
     }
 }

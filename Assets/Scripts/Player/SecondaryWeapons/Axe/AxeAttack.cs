@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AxeAttack : MonoBehaviour
 {
-    public float axeDamage = 2f;
     public float finalDamage;
     public float axeAttackRadius = 0.5f;
     private float axeRotateSpeed;
@@ -53,12 +52,13 @@ public class AxeAttack : MonoBehaviour
         DealDamage();
     }
 
-    public void Initialize(Transform center, float axeRotateSpeed, float timeLimit, float axeRadius)
+    public void Initialize(Transform center, float axeRotateSpeed, float timeLimit, float axeRadius, float axeDamage)
     {
         this.center = center;
         this.axeRotateSpeed = axeRotateSpeed;
         this.timeLimit = timeLimit;
         this.axeRadius = axeRadius;
+        this.finalDamage = axeDamage;
 
         Vector2 diff = transform.position - center.position;
         axeAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -67,8 +67,6 @@ public class AxeAttack : MonoBehaviour
     private void DealDamage()
     {
         if(Time.time < nextAxeDamage) return;
-
-        finalDamage = (axeDamage + statsMultiplier.axeBonus) * statsMultiplier.damageMultiplier;
 
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, axeAttackRadius))
         {

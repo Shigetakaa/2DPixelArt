@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class StaffAttack : MonoBehaviour
 {
-    public float staffDamage = 10f;
     public float finalDamage;
     public float staffAttackRadius = 0.03f;
     private float speed;
@@ -47,16 +46,15 @@ public class StaffAttack : MonoBehaviour
         }
     }
 
-    public void Initialize(Transform enemy, float speed)
+    public void Initialize(Transform enemy, float speed, float staffDamage)
     {
         this.enemy = enemy;
         this.speed = speed;
+        this.finalDamage = staffDamage;
     }
 
     public void DealDamage()
     {
-        finalDamage = (staffDamage + statsMultiplier.staffBonus) * statsMultiplier.damageMultiplier;
-
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, staffAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();

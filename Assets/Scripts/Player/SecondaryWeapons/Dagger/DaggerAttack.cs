@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class DaggerAttack : MonoBehaviour
 {
-    public float daggerDamage = 2f;
-    public float finalDamage;
+    private float finalDamage;
     public Vector2 daggerAttackXY = new Vector2(-0.35f, 0.01f);
     public int pierceNumber = 3;
     public float maxTimeLimit = 1f;
@@ -49,10 +48,11 @@ public class DaggerAttack : MonoBehaviour
         DealDamage();
     }
 
-    public void Initialize(Transform enemy, float speed, float angle)
+    public void Initialize(Transform enemy, float speed, float angle, float daggerDamage)
     {
         this.enemy = enemy;
         this.speed = speed;
+        this.finalDamage = daggerDamage;
 
         if (enemy != null)
         {
@@ -70,8 +70,6 @@ public class DaggerAttack : MonoBehaviour
 
     private void DealDamage()
     {
-        finalDamage = (daggerDamage + statsMultiplier.daggerBonus) * statsMultiplier.damageMultiplier;
-
         foreach (Collider2D collision in Physics2D.OverlapCapsuleAll(
             transform.position, 
             daggerAttackXY,

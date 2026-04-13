@@ -2,17 +2,18 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Axe : MonoBehaviour
+public class Axe : MonoBehaviour, SecondaryWeaponStats
 {
     public GameObject axeAttack;
 
+    public float axeDamage = 2f;
     public int axeNumber = 2;
     public float finalNumber;
     public float axeSpawnRadius = 1.5f;
     public float axeRotateSpeed = 10f;
     public float timeLimit = 4f;
     public float axeAttackCooldown = 4f;
-    float finalCooldown;
+    public float finalCooldown;
 
     private GameObject player;
     private PlayerStatsMultiplier statsMultiplier;
@@ -29,13 +30,12 @@ public class Axe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        finalNumber = (axeNumber + statsMultiplier.axeNumberBonus) * statsMultiplier.numberMultiplier;
+        finalCooldown = axeAttackCooldown * statsMultiplier.cooldownMultiplier;
     }
 
     private IEnumerator AxeAttackCooldown()
     {
-        finalCooldown = axeAttackCooldown * statsMultiplier.cooldownMultiplier;
-
         while (true)
         {
             SpawnAxeAttack();
@@ -45,8 +45,6 @@ public class Axe : MonoBehaviour
 
     private void SpawnAxeAttack()
     {
-        finalNumber = (axeNumber + statsMultiplier.axeNumberBonus) * statsMultiplier.numberMultiplier;
-
         float axeAngle = 360f / finalNumber;
 
         for(int i = 0; i < finalNumber; i++)
@@ -62,8 +60,24 @@ public class Axe : MonoBehaviour
                 this.transform,
                 axeRotateSpeed,
                 timeLimit,
-                axeSpawnRadius
+                axeSpawnRadius,
+                GetDamage()
             );
         }
+    }
+
+    public float GetDamage()
+    {
+        return (axeDamage + statsMultiplier.axeBonus) * statsMultiplier.damageMultiplier;
+    }
+
+    public float GetNumber()
+    {
+        return finalNumber;
+    }
+
+    public float GetCooldown()
+    {
+        return finalCooldown;
     }
 }

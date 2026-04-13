@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Ring : MonoBehaviour
+public class Ring : MonoBehaviour, SecondaryWeaponStats
 {
     public GameObject ringAttack;
+
+    public float ringDamage = 10f;
     public float ringAttackCooldown = 4f;
+    public float finalCooldown;
     public int attackAmount = 3;
     public float finalNumber;
     public Vector2 areaMinPos = new Vector2(-10f, -10f);
@@ -26,13 +29,12 @@ public class Ring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        finalNumber = (attackAmount + statsMultiplier.ringNumberBonus) * statsMultiplier.numberMultiplier;
+        finalCooldown = ringAttackCooldown * statsMultiplier.cooldownMultiplier;
     }
 
     private IEnumerator RingAttackCooldown()
     {
-        float finalCooldown = ringAttackCooldown * statsMultiplier.cooldownMultiplier;
-
         while (true)
         {
             yield return new WaitForSeconds(finalCooldown);
@@ -43,8 +45,6 @@ public class Ring : MonoBehaviour
 
     private void SpawnRingAttack()
     {
-        finalNumber = (attackAmount + statsMultiplier.ringNumberBonus) * statsMultiplier.numberMultiplier;
-
         for (int i = 0; i < finalNumber; i++)
         {
             Vector2 attackPos = new Vector2(
@@ -54,8 +54,29 @@ public class Ring : MonoBehaviour
 
             Vector2 spawnAttackPos = (Vector2)transform.position + attackPos;
 
-            GameObject attack = Instantiate(ringAttack, spawnAttackPos, Quaternion.identity);
-            attack.transform.position = new Vector3(attack.transform.position.x, spawnAttackPos.y, -1f);
+            Vector3 spawnPos = new Vector3(spawnAttackPos.x, spawnAttackPos.y, -1f);
+
+            GameObject ringAttackObject = Instantiate(ringAttack, spawnPos, Quaternion.identity);
+            RingAttack attack = ringAttackObject.GetComponent<RingAttack>();
+
+            attack.Initialize(GetDamage(), player);
+
+            // attack.transform.position = new Vector3(attack.transform.position.x, spawnAttackPos.y, -1f);
         }
+    }
+
+    public float GetDamage()
+    {
+        return (ringDamage + statsMultiplier.ringBonus) * statsMultiplier.damageMultiplier;
+    }
+
+    public float GetNumber()
+    {
+        return finalNumber;
+    }
+
+    public float GetCooldown()
+    {
+        return finalCooldown;
     }
 }

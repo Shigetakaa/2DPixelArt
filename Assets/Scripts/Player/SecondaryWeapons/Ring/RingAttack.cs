@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RingAttack : MonoBehaviour
 {
-    public float ringDamage = 10f;
+
     public float finalDamage;
     public float ringAttackRadius = 0.3f;
     public float warnTime = 2f;
@@ -37,6 +37,12 @@ public class RingAttack : MonoBehaviour
         
     }
 
+    public void Initialize(float ringDamage, GameObject player)
+    {
+        this.finalDamage = ringDamage;
+        this.player = player;
+    }
+
     private IEnumerator ActivateRingAttack()
     {
         yield return new WaitForSeconds(warnTime);
@@ -48,8 +54,6 @@ public class RingAttack : MonoBehaviour
 
     public void DealDamage()
     {
-        finalDamage = (ringDamage + statsMultiplier.ringBonus) * statsMultiplier.damageMultiplier;
-
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, ringAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();

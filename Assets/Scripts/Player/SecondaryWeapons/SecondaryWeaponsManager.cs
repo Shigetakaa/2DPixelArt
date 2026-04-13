@@ -6,6 +6,7 @@ public class SecondaryWeaponsManager : MonoBehaviour
     public List<SecondaryWeapons> secondaryWeapons;
     public List<SecondaryWeapons> currentSecondaryWeapons;
     public List<SecondaryWeapons> ownedSecondaryWeapons;
+    public List<SecondaryWeaponStats> activeWeaponsIcons = new List<SecondaryWeaponStats>();
 
     public Transform secondaryWeaponsManager;
 
@@ -22,11 +23,19 @@ public class SecondaryWeaponsManager : MonoBehaviour
         
     }
 
-    public void ActivateWeapon(SecondaryWeapons chosenWeapon)
+    public GameObject ActivateWeapon(SecondaryWeapons chosenWeapon)
     {
-        Instantiate(chosenWeapon.secondaryWeapon, secondaryWeaponsManager);
+        GameObject obj = Instantiate(chosenWeapon.secondaryWeapon, secondaryWeaponsManager);
 
         currentSecondaryWeapons.Remove(chosenWeapon);
         ownedSecondaryWeapons.Add(chosenWeapon);
+
+        SecondaryWeaponStats weaponStats = obj.GetComponent<SecondaryWeaponStats>();
+        if(weaponStats != null)
+        {
+            activeWeaponsIcons.Add(weaponStats);
+        }
+
+        return obj;
     }
 }
