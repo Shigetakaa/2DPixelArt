@@ -9,16 +9,20 @@ public class MainMenuManager : MonoBehaviour
     public GameObject mainMenu;
     public GameObject startGameScreen;
     public GameObject scoreboardScreen;
+    public GameObject controls;
+    public GameObject settingsScreen;
+    public GameObject weaponsScreen;
 
     void Update()
     {
-        coinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
+        coinsText.text = CoinsManager.Instance.Coins.ToString();
     }
 
     // Przycisk rozpocznij
     public void OnStartPress()
     {
         mainMenu.SetActive(false);
+        controls.SetActive(false);
         startGameScreen.SetActive(true);
     }
 
@@ -32,12 +36,14 @@ public class MainMenuManager : MonoBehaviour
     public void OnScoreboardPress()
     {
         mainMenu.SetActive(false);
+        controls.SetActive(false);
         scoreboardScreen.SetActive(true);
     }
 
     public void OnScoreboardBackPress()
     {
         mainMenu.SetActive(true);
+        controls.SetActive(true);
         scoreboardScreen.SetActive(false);
     }
 

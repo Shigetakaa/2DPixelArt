@@ -31,6 +31,6 @@ public class SecondaryWeaponUI : MonoBehaviour
     {
         damageText.text = secondaryWeapon.GetDamage().ToString("F2");
         numberText.text = secondaryWeapon.GetNumber().ToString("F0");
-        cooldownText.text = secondaryWeapon.GetCooldown().ToString("F2");
+        cooldownText.text = secondaryWeapon.GetCooldown().ToString("F2") + "s";
     }
 }

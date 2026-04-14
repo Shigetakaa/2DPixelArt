@@ -14,6 +14,7 @@ public class StartGameManager : MonoBehaviour
 
     public GameObject mainMenu;
     public GameObject startGameScreen;
+    public GameObject controls;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,6 +72,7 @@ public class StartGameManager : MonoBehaviour
     public void OnBackPress()
     {
         mainMenu.SetActive(true);
+        controls.SetActive(true);
         startGameScreen.SetActive(false);
     }
 }

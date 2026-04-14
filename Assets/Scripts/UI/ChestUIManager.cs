@@ -24,6 +24,8 @@ public class ChestUIManager : MonoBehaviour
     private List<SecondaryWeapons> currentButtons;
 
     public LevelUpPanelManager levelUpPanelManager;
+    public GameObject equipmentPanel;
+    public GameObject characterStats;
     public Transform weaponsPanel;
     public GameObject weaponIconPrefab;
 
@@ -50,6 +52,8 @@ public class ChestUIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         chestPanel.SetActive(true);
+        characterStats.SetActive(true);
+        equipmentPanel.SetActive(true);
         currentButtons = buttons;
 
         button1Text.text = buttons[0].weaponName;
@@ -77,6 +81,8 @@ public class ChestUIManager : MonoBehaviour
 
         Time.timeScale = 1;
         chestPanel.SetActive(false);
+        characterStats.SetActive(false);
+        equipmentPanel.SetActive(false);
 
         AddWeaponIcon();
     }
