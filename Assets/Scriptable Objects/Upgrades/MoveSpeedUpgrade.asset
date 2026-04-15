@@ -18,5 +18,5 @@ MonoBehaviour:
   cost: 500
   costMultiplier: 2
   maxLevel: 5
-  statBonusPerLevel: 0.3
+  statBonusPerLevel: 0.1
   upgradeType: 0
