@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 27bdb876939215f41bd72bd2f5ad21f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9efd91bd84b28fc42a379040bea511b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,8 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061fd006d5995c04a8ea65aea6282827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AxeAttack
-  axeDamage: 2
   finalDamage: 0
   axeAttackRadius: 0.5
-  axeKnockback: 10
   axeDamageCooldown: 0.3

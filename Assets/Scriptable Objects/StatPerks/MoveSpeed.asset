@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: "Pr\u0119dko\u015B\u0107"
   perkDescription: "Zwi\u0119ksza pr\u0119dkos\u0107 ruchu."
-  perkIcon: {fileID: 0}
+  perkIcon: {fileID: 21300000, guid: 8a8b4c4f778a345b38a4c42504e8712b, type: 3}
   perkType: 4
   perkValue: 0.1

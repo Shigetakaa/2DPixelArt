@@ -28,7 +28,7 @@ public class InGameUIManager : MonoBehaviour
 
     void Update()
     {
-        coinsText.text = "Monety: " + player.coins;
+        coinsText.text = player.coins.ToString();
     }
 
     // Przycisk wróć do gry
@@ -57,8 +57,10 @@ public class InGameUIManager : MonoBehaviour
     public void GameOverScreen()
     {
         gameOverScreen.SetActive(true);
+        characterParameters.SetActive(false);
+        timerText.SetActive(false);
 
-        gameOverCoinsText.text = "Zdobyte monety: " + player.coins;
+        gameOverCoinsText.text = player.coins.ToString();
         
         if (healthBar != null)
         {
@@ -72,8 +74,8 @@ public class InGameUIManager : MonoBehaviour
         Time.timeScale = 0;
         victoryScreen.SetActive(true);
 
-        killedEnemiesText.text = "Wrogowie: " + killedEnemies;
-        victoryCoinsText.text = "Zdobyte monety: " + player.coins;
+        killedEnemiesText.text = killedEnemies.ToString();
+        victoryCoinsText.text = player.coins.ToString();
 
         characterParameters.SetActive(false);
         timerText.SetActive(false);

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c6a995b6b3cc2664fbddcfcb3a83293b, type: 3}
+  m_Sprite: {fileID: -1041754904, guid: 6eb16e372762d6b4cb708c44ebfab931, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -141,8 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db2494ef38df704b984a068930acf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DaggerAttack
-  daggerDamage: 2
-  finalDamage: 0
   daggerAttackXY: {x: -0.35, y: 0.01}
   pierceNumber: 3
   maxTimeLimit: 1

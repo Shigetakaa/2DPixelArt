@@ -105,7 +105,7 @@ public class EnemyHealth : MonoBehaviour
                 player.killedEnemies++;
                 if (player.killedEnemiesText != null)
                 {
-                    player.killedEnemiesText.text = "Pokonani wrogowie: " + player.killedEnemies;
+                    player.killedEnemiesText.text = player.killedEnemies.ToString();
                 }
             }
         }

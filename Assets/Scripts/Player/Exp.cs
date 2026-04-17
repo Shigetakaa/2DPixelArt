@@ -37,19 +37,9 @@ public class Exp : MonoBehaviour
         expBar.maxValue = maxExp;
         expBar.value = exp;
 
-        // // Wartość slidera doświadczenia = wartość doświadczenia gracza
-        // GameObject.Find("ExpBar").GetComponent<Slider>().value = exp;
-
         // Wrtość poziomu postaci w UI
-        levelText.text = "Poziom: " + level.ToString();
+        levelText.text = "LVL: " + level.ToString();
     }
-
-    // // Inicjujemy doświadczenie Gracza
-    // public void InitializeExp(float expValue)
-    // {
-    //     exp = expValue;
-    //     maxExp = expValue;
-    // }
 
     // Metoda otrzymywania doświadczenia
     public void GetExp(float amount)

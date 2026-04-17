@@ -31,9 +31,6 @@ public class Health : MonoBehaviour
     public TextMeshProUGUI parametersHealthText;
     public TextMeshProUGUI parametersHealthRegenText;
 
-    // public TextMeshProUGUI parametersHealthPauseText;
-    // public TextMeshProUGUI parametersHealthRegenPauseText;
-
     public TextMeshProUGUI killedEnemiesText;
 
     public Slider healthBar;
@@ -68,9 +65,6 @@ public class Health : MonoBehaviour
         // // Wartość slidera zdrowia = wartość zdrowia gracza
         healthBar.maxValue = currentMaxHealth;
         healthBar.value = health;
-
-        // // Wartość slidera zdrowia = wartość zdrowia gracza
-        // healthBar.GetComponent<Slider>().value = health;
         
         // Wartość zdrowia
         healthText.text = health.ToString("F2") + " / " + currentMaxHealth.ToString("F2");
@@ -80,22 +74,7 @@ public class Health : MonoBehaviour
 
         // Wartość regeneracji zdrowia w panelu statystyk
         parametersHealthRegenText.text = finalRegenHealthAmount.ToString("F2") + " na s";
-
-
-        // // Wartość zdrowia w panelu pauzy
-        // parametersHealthPauseText.text = "Zdrowie: " + health.ToString("F2") + " / " + maxHealth.ToString("F2");
-
-        // // Wartość regeneracji zdrowia w panelu pauzy
-        // parametersHealthRegenPauseText.text = "Regeneracja: " + regenHealthAmount.ToString("F2") + " na s";
     }
-
-    // // Inicjujemy zdrowie obiektu
-    // public void InitializeHealth(float healthValue)
-    // {
-    //     health = healthValue;
-    //     maxHealth = healthValue;
-    //     isDead = false;
-    // }
 
     public float GetFinalMaxHealth()
     {

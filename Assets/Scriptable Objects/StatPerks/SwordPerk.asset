@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Miecz
   perkDescription: "Zwi\u0119ksza obra\u017Cenia miecza."
-  perkIcon: {fileID: 0}
+  perkIcon: {fileID: -1259760662, guid: 6eb16e372762d6b4cb708c44ebfab931, type: 3}
   perkType: 13
   perkValue: 1
