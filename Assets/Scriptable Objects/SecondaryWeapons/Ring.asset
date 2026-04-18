@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ring
   m_EditorClassIdentifier: Assembly-CSharp::SecondaryWeapons
   weaponName: Piorun
-  weaponIcon: {fileID: -946000942377729262, guid: 284e94ec97dfd604ba0cc871504d5876, type: 3}
+  weaponIcon: {fileID: -3695763429619087883, guid: e1e761de2b1ae3b4082ccb09fd165d82, type: 3}
   weaponDescription: Strzela piorunami z nieba w losowe miejsca.
   secondaryWeapon: {fileID: 7446267848933028548, guid: 3cf2c417a15a7fb4a86cf238bcb168d6, type: 3}
   weaponPerk: {fileID: 11400000, guid: 748b83450d25ecd48a2967fb6c58e42d, type: 2}

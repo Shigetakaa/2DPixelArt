@@ -6,7 +6,7 @@ using UnityEngine;
 public class DaggerAttack : MonoBehaviour
 {
     private float finalDamage;
-    public Vector2 daggerAttackXY = new Vector2(-0.35f, 0.01f);
+    public Vector2 daggerAttackXY = new Vector2(-0.12f, 0.0006f);
     public int pierceNumber = 3;
     public float maxTimeLimit = 1f;
     private float speed;

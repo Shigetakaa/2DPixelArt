@@ -4,12 +4,12 @@ using UnityEngine;
 public class AxeAttack : MonoBehaviour
 {
     public float finalDamage;
-    public float axeAttackRadius = 0.5f;
+    public float axeAttackRadius = 0.1f;
     private float axeRotateSpeed;
     private float timeLimit;
     private float axeRadius;
     private float axeAngle;
-    public float axeDamageCooldown = 0.3f;
+    public float axeDamageCooldown = 0.1f;
     private float nextAxeDamage;
 
     private Transform center;

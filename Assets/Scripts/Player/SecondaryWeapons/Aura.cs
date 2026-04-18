@@ -18,6 +18,7 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         auraCollider = GetComponent<CircleCollider2D>();
         statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
 
@@ -30,13 +31,11 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private IEnumerator ActivateAura()
     {
-        finalCooldown = (auraCooldown + statsMultiplier.auraCooldownBonus) * statsMultiplier.cooldownMultiplier;
-
         while (true)
         {
             yield return new WaitForSeconds(finalCooldown);
@@ -47,8 +46,6 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     // Metoda zadająca obrażenia
     public void DealDamage()
     {
-        finalDamage = (auraDamage + statsMultiplier.auraBonus) * statsMultiplier.damageMultiplier;
-
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, auraRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
@@ -66,12 +63,12 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
 
     public float GetDamage()
     {
-        return finalDamage;
+        return finalDamage = (auraDamage + statsMultiplier.auraBonus) * statsMultiplier.damageMultiplier;
     }
 
     public float GetCooldown()
     {
-        return finalCooldown;
+        return finalCooldown = (auraCooldown + statsMultiplier.auraCooldownBonus) * statsMultiplier.cooldownMultiplier;
     }
 
     public float GetNumber()

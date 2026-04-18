@@ -238,9 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Controller
   rigidbody2D: {fileID: 6904465659730336049}
-  moveSpeed: 4
-  moveSpeedText: {fileID: 0}
-  moveSpeedPauseText: {fileID: 0}
+  moveSpeed: 3
 --- !u!114 &1870892961957706505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,13 +269,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHealth
   bossHealth: 100
-  maxBossHealth: 100
+  baseMaxBossHealth: 100
   OnHit:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  healthBar: {fileID: 0}
+  statsMultiplier: {fileID: 0}
 --- !u!1 &1917190924535793714
 GameObject:
   m_ObjectHideFlags: 0

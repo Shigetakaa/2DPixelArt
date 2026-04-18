@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7f0910294d274cb0141141a08fe64, type: 3}
   m_Name: RingPerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
-  perkName: "B\u0142yskawice"
-  perkDescription: "Zwi\u0119ksza obra\u017Cenia b\u0142yskawic."
-  perkIcon: {fileID: 21300000, guid: 33c9c23e70cdf4a8eb30767b17d5a795, type: 3}
+  perkName: Piorun
+  perkDescription: "Zwi\u0119ksza obra\u017Cenia piorun\xF3w."
+  perkIcon: {fileID: -3695763429619087883, guid: e1e761de2b1ae3b4082ccb09fd165d82, type: 3}
   perkType: 12
   perkValue: 2
