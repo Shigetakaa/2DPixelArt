@@ -5,7 +5,7 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
 {
     public float auraDamage = 10f;
     public float finalDamage;
-    public float auraRadius = 5f;
+    public float auraRadius = 2f;
     public float auraCooldown = 2f;
     float finalCooldown;
 

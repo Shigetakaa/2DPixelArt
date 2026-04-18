@@ -59,7 +59,7 @@ public class Exp : MonoBehaviour
     {
         level++;
         exp -= maxExp;
-        maxExp += 4f;
+        maxExp *= 1.25f;
 
         var perks = levelUpPanelManager.GetRandomPerks();
         levelUpUIManager.ShowButtons(perks);
