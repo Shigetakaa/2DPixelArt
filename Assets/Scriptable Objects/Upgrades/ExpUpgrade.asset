@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrades
   upgradeName: "Bonus do\u015Bwiadczenia"
   upgradeDescription: "Zwi\u0119ksza zdobywane do\u015Bwiadczenie."
-  upgradeIcon: {fileID: 21300000, guid: 59dceeb1278244b429441fc1a4d16dc7, type: 3}
+  upgradeIcon: {fileID: -6492938374172118243, guid: 6833ab8bf6099084f87e2ace9ee223b4, type: 3}
   cost: 500
   costMultiplier: 2
   maxLevel: 5

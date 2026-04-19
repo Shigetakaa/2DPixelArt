@@ -34,7 +34,10 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        weaponParent.PointerPosition = attackDirection;
+        if(weaponParent != null)
+        {
+           weaponParent.PointerPosition = attackDirection; 
+        }
     }
 
     private void FixedUpdate()

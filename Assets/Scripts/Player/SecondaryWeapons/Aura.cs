@@ -5,7 +5,7 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
 {
     public float auraDamage = 5f;
     public float finalDamage;
-    public float auraRadius = 2f;
+    public float auraRadius = 4.5f;
     public float auraCooldown = 2f;
     public float finalCooldown;
 
@@ -32,15 +32,17 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-        finalDamage = GetDamage();
-        finalCooldown = GetCooldown();
+        
     }
 
     private IEnumerator ActivateAura()
     {
         while (true)
         {
+            finalCooldown = GetCooldown();
+
             yield return new WaitForSeconds(finalCooldown);
+
             DealDamage();
         }
     }
@@ -49,6 +51,8 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     public void DealDamage()
     {
         Instantiate(auraAttack, transform.position, Quaternion.identity);
+
+        finalDamage = GetDamage();
 
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, auraRadius))
         {

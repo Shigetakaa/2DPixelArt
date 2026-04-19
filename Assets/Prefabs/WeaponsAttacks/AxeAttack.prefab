@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 636521988557298964}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -62.05239, y: 59.51459, z: 0}
+  m_LocalPosition: {x: -62.05239, y: 59.51459, z: -1}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -143,4 +143,3 @@ MonoBehaviour:
   finalDamage: 0
   axeAttackRadius: 0.1
   axeDamageCooldown: 0.1
-  axeWeapon: {fileID: 2154573775454088442, guid: 524c2f5b19c705e49b70a37134af64ca, type: 3}

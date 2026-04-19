@@ -67,7 +67,7 @@ public class Health : MonoBehaviour
         healthBar.value = health;
         
         // Wartość zdrowia
-        healthText.text = health.ToString("F2") + " / " + currentMaxHealth.ToString("F2");
+        healthText.text = health.ToString("F0") + " / " + currentMaxHealth.ToString("F0");
 
         // Wartość zdrowia w panelu statystyk
         parametersHealthText.text = health.ToString("F2") + " / " + currentMaxHealth.ToString("F2");
