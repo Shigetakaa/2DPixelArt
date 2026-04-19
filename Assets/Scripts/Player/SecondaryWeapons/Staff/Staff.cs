@@ -42,7 +42,7 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
         while (true)
         {
             GameObject enemy = FindEnemy();
-    
+
             if(enemy != null)
             {
                 StartCoroutine(Shoot(enemy));

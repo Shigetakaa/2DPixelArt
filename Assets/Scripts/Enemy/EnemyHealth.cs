@@ -14,13 +14,15 @@ public class EnemyHealth : MonoBehaviour
     private bool isDead = false;
 
     public GameObject expItem;
-    public GameObject coinItem;
 
     public UnityEvent<GameObject> OnHit, OnDeath;
 
     public TextMeshProUGUI killedEnemiesText;
 
     private PlayerStatsMultiplier statsMultiplier;
+
+    public int minCoinAmount = 1;
+    public int maxCoinsAmount = 5;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -94,7 +96,7 @@ public class EnemyHealth : MonoBehaviour
 
             // Pojawia się doświadczenie i moneta po śmierci wroga
             Instantiate(expItem, transform.position, Quaternion.identity);
-            Instantiate(coinItem, transform.position, Quaternion.identity);
+            // Instantiate(coinItem, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
 
@@ -102,6 +104,9 @@ public class EnemyHealth : MonoBehaviour
             Health player = sender.GetComponent<Health>();
             if (player != null && player.isPlayer)
             {
+                int randomCoinAmount = UnityEngine.Random.Range(minCoinAmount, maxCoinsAmount);
+                player.GetInGameCoins(randomCoinAmount);
+
                 player.killedEnemies++;
                 if (player.killedEnemiesText != null)
                 {

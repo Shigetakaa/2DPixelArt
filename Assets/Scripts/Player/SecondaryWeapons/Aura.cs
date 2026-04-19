@@ -3,14 +3,15 @@ using UnityEngine;
 
 public class Aura : MonoBehaviour, SecondaryWeaponStats
 {
-    public float auraDamage = 10f;
+    public float auraDamage = 5f;
     public float finalDamage;
     public float auraRadius = 2f;
     public float auraCooldown = 2f;
-    float finalCooldown;
+    public float finalCooldown;
 
     private CircleCollider2D auraCollider;
 
+    public GameObject auraAttack;
     public GameObject player;
 
     private PlayerStatsMultiplier statsMultiplier;
@@ -31,7 +32,8 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-
+        finalDamage = GetDamage();
+        finalCooldown = GetCooldown();
     }
 
     private IEnumerator ActivateAura()
@@ -46,6 +48,8 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     // Metoda zadająca obrażenia
     public void DealDamage()
     {
+        Instantiate(auraAttack, transform.position, Quaternion.identity);
+
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, auraRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();

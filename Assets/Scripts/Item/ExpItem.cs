@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ExpItem : MonoBehaviour
 {
-    public float expAmount = 4f;
+    public float expAmount = 2f;
 
     // Exp jest dodawany po interakcji z graczem
     public void OnTriggerEnter2D(Collider2D collision)

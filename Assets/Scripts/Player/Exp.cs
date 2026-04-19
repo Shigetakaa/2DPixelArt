@@ -7,7 +7,7 @@ public class Exp : MonoBehaviour
     public float exp = 0f;
     public float maxExp = 10f;
 
-    public int level = 1;
+    public int level = 0;
 
     public TextMeshProUGUI levelText;
 

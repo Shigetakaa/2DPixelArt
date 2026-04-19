@@ -143,3 +143,4 @@ MonoBehaviour:
   finalDamage: 0
   axeAttackRadius: 0.1
   axeDamageCooldown: 0.1
+  axeWeapon: {fileID: 2154573775454088442, guid: 524c2f5b19c705e49b70a37134af64ca, type: 3}
