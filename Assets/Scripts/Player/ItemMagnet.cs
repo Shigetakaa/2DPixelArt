@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ItemMagnet : MonoBehaviour
 {
-    public float itemMagnetRadius = 3.0f;
+    public float itemMagnetRadius = 1f;
     public CircleCollider2D itemMagnet;
 
     public PlayerStatsMultiplier statsMultiplier;
