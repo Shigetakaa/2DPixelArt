@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3695722181870485312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.11, y: 0.02, z: -1}
+  m_LocalPosition: {x: 2.50093, y: -0.45674, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -141,5 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaffAttack
   finalDamage: 0
-  staffAttackRadius: 0.03
+  staffAttackRadius: 0.3
+  areaOrigin: {fileID: 1803267261222814450}
   player: {fileID: 0}

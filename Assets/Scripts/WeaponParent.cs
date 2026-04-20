@@ -76,7 +76,7 @@ public class WeaponParent : MonoBehaviour
         attackBlocked = false;
     }
 
-    // Metoda rysująca Gizmo (powierzchnia ataku)
+    // Metoda rysująca powierzchnie ataku
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

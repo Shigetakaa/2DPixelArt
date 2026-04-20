@@ -9,6 +9,9 @@ public class Controller : MonoBehaviour
 
     private Vector2 moveDirection, attackDirection;
 
+    public Animator animator;
+    public SpriteRenderer sprite;
+
     public Vector2 AttackDirection { get => attackDirection; set => attackDirection = value; }
     public Vector2 MoveDirection { get => moveDirection; set => moveDirection = value; }
 
@@ -37,6 +40,18 @@ public class Controller : MonoBehaviour
         if(weaponParent != null)
         {
            weaponParent.PointerPosition = attackDirection; 
+        }
+
+        bool isRunning = moveDirection.magnitude > 0.1f;
+        animator.SetBool("isRunning", isRunning);
+
+        if(moveDirection.x > 0.1f)
+        {
+            sprite.flipX = true;
+        }
+        else if (moveDirection.x < -0.1f)
+        {
+            sprite.flipX = false;
         }
     }
 

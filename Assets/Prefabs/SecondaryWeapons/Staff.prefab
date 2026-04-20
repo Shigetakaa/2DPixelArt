@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Staff
   staffAttack: {fileID: 3695722181870485312, guid: f7f7f683a2546a341842a3a2dbe058a8, type: 3}
+  staffDamage: 5
   staffAttackCooldown: 2
+  finalCooldown: 0
   staffAttackSpeed: 10
+  staffNumber: 1
+  finalNumber: 0
   areaMinPos: {x: -20, y: -20}
   areaMaxPos: {x: 20, y: 20}

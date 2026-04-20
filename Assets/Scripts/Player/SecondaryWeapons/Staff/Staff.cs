@@ -6,7 +6,7 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
 {
     public GameObject staffAttack;
 
-    public float staffDamage = 10f;
+    public float staffDamage = 5f;
     public float staffAttackCooldown = 4f;
     public float finalCooldown;
     public float staffAttackSpeed = 10f;
@@ -52,7 +52,7 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
         }
     }
 
-    private GameObject FindEnemy()
+    public GameObject FindEnemy()
     {
         GameObject closeEnemy = null;
         float shortDistance = Mathf.Infinity;
@@ -86,9 +86,9 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
         for(int i = 0; i < finalNumber; i++)
         {
             GameObject staffAttackObject = Instantiate(staffAttack, transform.position, Quaternion.identity);
-            staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed, GetDamage());
+            staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed, GetDamage(), this);
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 

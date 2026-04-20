@@ -5,10 +5,10 @@ using UnityEngine.UIElements;
 public class BossAttack : MonoBehaviour
 {
     public GameObject aoeAttack;
-    public float aoeAttackCooldown = 4f;
-    public int aoeAmount = 4;
-    public Vector2 areaMinPos = new Vector2(-4f, -3f);
-    public Vector2 areaMaxPos = new Vector2(4f, 3f);
+    public float aoeAttackCooldown = 3f;
+    public int aoeAmount = 5;
+    public Vector2 areaMinPos = new Vector2(-8f, -8f);
+    public Vector2 areaMaxPos = new Vector2(8f, 8f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -140,10 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a55613439060e41abe0bee36f91f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aura
-  auraDamage: 5
+  auraDamage: 3
   finalDamage: 0
   auraRadius: 4.5
-  auraCooldown: 2
+  auraCooldown: 4
   finalCooldown: 0
   auraAttack: {fileID: 872760106322338443, guid: 78e4a6f6b856a3a4aa846f0ac35cf57e, type: 3}
   player: {fileID: 0}

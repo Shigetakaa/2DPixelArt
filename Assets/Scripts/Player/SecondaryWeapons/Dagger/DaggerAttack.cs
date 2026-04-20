@@ -6,15 +6,19 @@ using UnityEngine;
 public class DaggerAttack : MonoBehaviour
 {
     private float finalDamage;
-    public Vector2 daggerAttackXY = new Vector2(-0.12f, 0.0006f);
+    public float daggerAttackRadius = 0.3f;
     public int pierceNumber = 3;
     public float maxTimeLimit = 1f;
     private float speed;
     private Vector2 direction;
     private float timeLimit;
+    public float daggerDamageCooldown = 0.2f;
+    private float nextDaggerDamage;
 
     private Transform enemy;
     private SpriteRenderer sprite;
+    public Vector2 hitboxOffset = new Vector2(-1.4f, 0f);
+    public Transform areaOrigin;
     private CapsuleCollider2D daggerAttack;
 
     public GameObject player;
@@ -68,13 +72,24 @@ public class DaggerAttack : MonoBehaviour
         transform.right = -direction;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 position = transform.right * hitboxOffset.x +
+            transform.up * hitboxOffset.y;
+        Gizmos.DrawWireSphere(transform.position + position, daggerAttackRadius);
+    }
+
     private void DealDamage()
     {
-        foreach (Collider2D collision in Physics2D.OverlapCapsuleAll(
-            transform.position, 
-            daggerAttackXY,
-            CapsuleDirection2D.Horizontal,
-            0f))
+        if(Time.time < nextDaggerDamage) return;
+
+        Vector2 position = (Vector2)(transform.right * hitboxOffset.x +
+            transform.up * hitboxOffset.y);
+
+        Vector2 hitboxPosition = (Vector2)transform.position + position;
+
+        foreach (Collider2D collision in Physics2D.OverlapCircleAll(hitboxPosition, daggerAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
@@ -87,5 +102,7 @@ public class DaggerAttack : MonoBehaviour
                 enemyHealth.GetHit(finalDamage, player);
             }
         }
+
+        nextDaggerDamage = Time.time + daggerDamageCooldown;
     }
 }

@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
-        // Okroślenie obszaru po którym gracz może się poruszać
+        // Obszaru po którym gracz może się poruszać
         Vector3 position = transform.position;
 
         position.x = Mathf.Clamp(position.x, minBounds.x, maxBounds.x);

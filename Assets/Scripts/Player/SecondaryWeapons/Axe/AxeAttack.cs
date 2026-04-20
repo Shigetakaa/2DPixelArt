@@ -4,17 +4,19 @@ using UnityEngine;
 public class AxeAttack : MonoBehaviour
 {
     public float finalDamage;
-    public float axeAttackRadius = 0.1f;
+    public float axeAttackRadius = 2f;
     private float axeRotateSpeed;
     private float timeLimit;
     private float axeRadius;
     private float axeAngle;
-    public float axeDamageCooldown = 0.1f;
+    public float axeDamageCooldown = 0.2f;
     private float nextAxeDamage;
 
     private Transform center;
     private GameObject player;
     private SpriteRenderer sprite;
+    public Vector2 hitboxOffset = new Vector2(-0.3f, 0.6f);
+    public Transform areaOrigin;
     private CircleCollider2D axeAttack;
     private PlayerStatsMultiplier statsMultiplier;
 
@@ -64,11 +66,24 @@ public class AxeAttack : MonoBehaviour
         axeAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 position = transform.right * hitboxOffset.x +
+            transform.up * hitboxOffset.y;
+        Gizmos.DrawWireSphere(transform.position + position, axeAttackRadius);
+    }
+
     private void DealDamage()
     {
         if(Time.time < nextAxeDamage) return;
 
-        foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, axeAttackRadius))
+        Vector2 position = (Vector2)(transform.right * hitboxOffset.x +
+            transform.up * hitboxOffset.y);
+
+        Vector2 hitboxPosition = (Vector2)transform.position + position;
+
+        foreach (Collider2D collision in Physics2D.OverlapCircleAll(hitboxPosition, axeAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();

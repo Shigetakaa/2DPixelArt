@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 697937896431318708}
   - component: {fileID: 5626785403074787418}
   - component: {fileID: 4029910418335611399}
+  - component: {fileID: 3675160698645673530}
   m_Layer: 8
   m_Name: Enemy_1
   m_TagString: Enemy
@@ -117,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 6814836053055430672}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33607, y: 0.27526, z: 0}
+  m_LocalPosition: {x: 0.99123, y: 0.09262, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -269,8 +270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 3416435313707119773}
   moveSpeed: 2
-  moveSpeedText: {fileID: 0}
-  moveSpeedPauseText: {fileID: 0}
+  animator: {fileID: 3675160698645673530}
+  sprite: {fileID: 5970387280298806706}
 --- !u!114 &5626785403074787418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,10 +339,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   enemyHealth: 10
-  maxEnemyHealth: 10
+  baseMaxEnemyHealth: 10
   killedEnemies: 0
   expItem: {fileID: 5484196263596612912, guid: e0b8241f2dac1314d9eb89a7a530ea1b, type: 3}
-  coinItem: {fileID: 4689065624876683220, guid: c592b154a770ca744b69a44f66d40fff, type: 3}
   OnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -349,3 +349,27 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   killedEnemiesText: {fileID: 0}
+  minCoinAmount: 1
+  maxCoinsAmount: 5
+--- !u!95 &3675160698645673530
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6814836053055430672}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 10197f8b0b6625d46aa067b7c846be7f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

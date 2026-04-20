@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7193771098965196037}
   - component: {fileID: 2276873294666407726}
   - component: {fileID: 9219547424031261158}
+  - component: {fileID: -7318786755893472617}
+  - component: {fileID: 2099563368241933780}
   m_Layer: 0
   m_Name: RingAttack
   m_TagString: Untagged
@@ -81,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -946000942377729262, guid: 284e94ec97dfd604ba0cc871504d5876, type: 3}
+  m_Sprite: {fileID: 5096900023035236499, guid: 022e91f61cb7ab84f9a49e8068f27035, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -141,6 +143,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingAttack
   finalDamage: 0
-  ringAttackRadius: 0.3
+  ringAttackRadius: 2
   warnTime: 2
+  areaOrigin: {fileID: 4489130838440866812}
+  animator: {fileID: -7318786755893472617}
   player: {fileID: 0}
+--- !u!95 &-7318786755893472617
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865566587898826812}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 535be442ad6cbc949ab4c1f0da459114, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2099563368241933780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865566587898826812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13275508d1f3367408b2daf9c0786951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventHelper
+  OnAttackPerformed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnThunderTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9219547424031261158}
+        m_TargetAssemblyTypeName: RingAttack, Assembly-CSharp
+        m_MethodName: DealDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

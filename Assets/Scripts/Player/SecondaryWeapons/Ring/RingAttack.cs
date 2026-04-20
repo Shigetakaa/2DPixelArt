@@ -9,6 +9,8 @@ public class RingAttack : MonoBehaviour
     public float warnTime = 2f;
 
     private SpriteRenderer sprite;
+    public Transform areaOrigin;
+    public Animator animator;
     private CircleCollider2D ringAttack;
 
     public GameObject player;
@@ -25,8 +27,6 @@ public class RingAttack : MonoBehaviour
 
         ringAttack.isTrigger = true;
         ringAttack.radius = ringAttackRadius;
-
-        sprite.color = new Color(0f, 0f, 1f, 0.35f);
 
         StartCoroutine(ActivateRingAttack());
     }
@@ -46,10 +46,17 @@ public class RingAttack : MonoBehaviour
     private IEnumerator ActivateRingAttack()
     {
         yield return new WaitForSeconds(warnTime);
-        sprite.color = Color.blue;
-        yield return new WaitForSeconds(0.1f);
+        Attack();
+        yield return new WaitForSeconds(0.5f);
         DealDamage();
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 position = areaOrigin == null ? Vector3.zero : areaOrigin.position;
+        Gizmos.DrawWireSphere(position, ringAttackRadius);
     }
 
     public void DealDamage()
@@ -67,5 +74,10 @@ public class RingAttack : MonoBehaviour
                 enemyHealth.GetHit(finalDamage, player);
             }
         }
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
     }
 }

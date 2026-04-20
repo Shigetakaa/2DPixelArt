@@ -3,14 +3,16 @@ using UnityEngine;
 public class StaffAttack : MonoBehaviour
 {
     public float finalDamage;
-    public float staffAttackRadius = 0.03f;
+    public float staffAttackRadius = 0.3f;
     private float speed;
 
     private Transform enemy;
     private SpriteRenderer sprite;
+    public Transform areaOrigin;
     private CircleCollider2D staffAttack;
 
     public GameObject player;
+    private Staff staff;
 
     private PlayerStatsMultiplier statsMultiplier;
 
@@ -31,8 +33,17 @@ public class StaffAttack : MonoBehaviour
     {
         if(enemy == null)
         {
-            Destroy(gameObject);
-            return;
+            if(staff != null)
+            {
+                GameObject newEnemy = staff.FindEnemy();
+                enemy = newEnemy != null ? newEnemy.transform : null;
+            }
+
+            if(enemy == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
 
         Vector2 direction = (enemy.position - transform.position).normalized;
@@ -46,11 +57,19 @@ public class StaffAttack : MonoBehaviour
         }
     }
 
-    public void Initialize(Transform enemy, float speed, float staffDamage)
+    public void Initialize(Transform enemy, float speed, float staffDamage, Staff staff)
     {
         this.enemy = enemy;
         this.speed = speed;
         this.finalDamage = staffDamage;
+        this.staff = staff;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 position = areaOrigin == null ? Vector3.zero : areaOrigin.position;
+        Gizmos.DrawWireSphere(position, staffAttackRadius);
     }
 
     public void DealDamage()
