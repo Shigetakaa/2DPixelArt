@@ -7,7 +7,7 @@ public class Exp : MonoBehaviour
     public float exp = 0f;
     public float maxExp = 10f;
 
-    public int level = 1;
+    public int level = 0;
 
     public TextMeshProUGUI levelText;
 
@@ -17,6 +17,7 @@ public class Exp : MonoBehaviour
 
     public GameObject characterStats;
     public GameObject characterParameters;
+    public GameObject equipmentPanel;
 
     public LevelUpPanelManager levelUpPanelManager;
     public LevelUpUIManager levelUpUIManager;
@@ -36,19 +37,9 @@ public class Exp : MonoBehaviour
         expBar.maxValue = maxExp;
         expBar.value = exp;
 
-        // // Wartość slidera doświadczenia = wartość doświadczenia gracza
-        // GameObject.Find("ExpBar").GetComponent<Slider>().value = exp;
-
         // Wrtość poziomu postaci w UI
-        levelText.text = "Poziom: " + level.ToString();
+        levelText.text = "LVL: " + level.ToString();
     }
-
-    // // Inicjujemy doświadczenie Gracza
-    // public void InitializeExp(float expValue)
-    // {
-    //     exp = expValue;
-    //     maxExp = expValue;
-    // }
 
     // Metoda otrzymywania doświadczenia
     public void GetExp(float amount)
@@ -68,13 +59,14 @@ public class Exp : MonoBehaviour
     {
         level++;
         exp -= maxExp;
-        maxExp += 4f;
+        maxExp *= 1.25f;
 
         var perks = levelUpPanelManager.GetRandomPerks();
         levelUpUIManager.ShowButtons(perks);
 
         characterStats.SetActive(false);
         characterParameters.SetActive(true);
+        equipmentPanel.SetActive(true);
 
         Time.timeScale = 0;
     }

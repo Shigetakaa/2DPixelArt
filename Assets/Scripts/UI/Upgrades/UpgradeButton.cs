@@ -9,6 +9,7 @@ public class UpgradeButton : MonoBehaviour
     public Upgrades upgrades;
     public TextMeshProUGUI buttonNameText;
     public TextMeshProUGUI buttonDescriptionText;
+    public Image buttonIcon;
     public TextMeshProUGUI buttonLevelText;
     public TextMeshProUGUI buttonCostText;
     public Button button;
@@ -21,14 +22,14 @@ public class UpgradeButton : MonoBehaviour
     {
         RefreshUI();
 
-        // button.onClick.AddListener(OnBuyUpgradePress);
-
         UpgradesManager.OnUpgradeReset += RefreshUI;
+        CoinsManager.OnCoinsChanged += RefreshUI;
     }
 
     void OnDestroy()
     {
         UpgradesManager.OnUpgradeReset -= RefreshUI;
+        CoinsManager.OnCoinsChanged -= RefreshUI;
     }
 
     public void RefreshUI()
@@ -39,6 +40,7 @@ public class UpgradeButton : MonoBehaviour
         buttonNameText.text = upgrades.upgradeName;
         buttonLevelText.text = "Poziom: " + upgradeLevel;
         buttonCostText.text = "Koszt: " + upgradeCost;
+        buttonIcon.sprite = upgrades.upgradeIcon;
         buttonDescriptionText.text = upgrades.upgradeDescription;
 
         button.interactable = (CoinsManager.Instance.Coins >= upgradeCost);
@@ -50,7 +52,7 @@ public class UpgradeButton : MonoBehaviour
         {
             return;
         }
-        else if(upgradeLevel == upgrades.maxLevel)
+        else if(upgradeLevel >= upgrades.maxLevel)
         {
             return;
         }

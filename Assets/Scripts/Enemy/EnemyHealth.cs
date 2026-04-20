@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,18 +15,27 @@ public class EnemyHealth : MonoBehaviour
     private bool isDead = false;
 
     public GameObject expItem;
-    public GameObject coinItem;
 
     public UnityEvent<GameObject> OnHit, OnDeath;
 
     public TextMeshProUGUI killedEnemiesText;
 
+    public SpriteRenderer sprite;
+    private Coroutine flashCoroutine;
+    public float flashTime = 0.1f;
+    private Color originalColor;
+
     private PlayerStatsMultiplier statsMultiplier;
+
+    public int minCoinAmount = 1;
+    public int maxCoinsAmount = 5;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+
+        originalColor = sprite.color;
 
         GetDifficulty();
 
@@ -94,7 +104,7 @@ public class EnemyHealth : MonoBehaviour
 
             // Pojawia się doświadczenie i moneta po śmierci wroga
             Instantiate(expItem, transform.position, Quaternion.identity);
-            Instantiate(coinItem, transform.position, Quaternion.identity);
+            // Instantiate(coinItem, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
 
@@ -102,16 +112,37 @@ public class EnemyHealth : MonoBehaviour
             Health player = sender.GetComponent<Health>();
             if (player != null && player.isPlayer)
             {
+                int randomCoinAmount = UnityEngine.Random.Range(minCoinAmount, maxCoinsAmount);
+                player.GetInGameCoins(randomCoinAmount);
+
                 player.killedEnemies++;
                 if (player.killedEnemiesText != null)
                 {
-                    player.killedEnemiesText.text = "Pokonani wrogowie: " + player.killedEnemies;
+                    player.killedEnemiesText.text = player.killedEnemies.ToString();
                 }
             }
         }
         else
         {
             OnHit?.Invoke(sender);
+            PlayFlash();
         }
+    }
+
+    private void PlayFlash()
+    {
+        if(flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+        }
+
+        flashCoroutine = StartCoroutine(Flash());
+    }
+
+    private IEnumerator Flash()
+    {
+        sprite.color = new Color(255, 250, 240, 255);
+        yield return new WaitForSeconds(flashTime);
+        sprite.color = originalColor;
     }
 }

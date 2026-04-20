@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 6713748529886720383}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -946000942377729262, guid: 284e94ec97dfd604ba0cc871504d5876, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -4252470447102282240, guid: d78afaa9a85e02a49a55fb93f5f359dd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.62352943}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,8 +126,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 7
+  m_Offset: {x: -0.0020293237, y: 0.00007747015}
+  m_Radius: 4.5
 --- !u!114 &5405741674475792967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a55613439060e41abe0bee36f91f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aura
-  auraDamage: 10
-  baseDamage: 3
-  auraRadius: 7
-  auraCooldown: 2
+  auraDamage: 3
+  finalDamage: 0
+  auraRadius: 4.5
+  auraCooldown: 4
+  finalCooldown: 0
+  auraAttack: {fileID: 872760106322338443, guid: 78e4a6f6b856a3a4aa846f0ac35cf57e, type: 3}
   player: {fileID: 0}

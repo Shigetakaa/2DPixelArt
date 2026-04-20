@@ -20,23 +20,23 @@ public class Health : MonoBehaviour
     public bool isBoss = false;
 
     public int killedEnemies = 0;
-
-    public GameObject expItem;
+    public int coins;
 
     public UnityEvent<GameObject> OnHit, OnDeath;
 
     private bool isDead = false;
     private InGameUIManager gameOverScreen;
-    private InGameUIManager victoryScreen;
 
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI parametersHealthText;
     public TextMeshProUGUI parametersHealthRegenText;
 
-    // public TextMeshProUGUI parametersHealthPauseText;
-    // public TextMeshProUGUI parametersHealthRegenPauseText;
-
     public TextMeshProUGUI killedEnemiesText;
+
+    public SpriteRenderer sprite;
+    private Coroutine flashCoroutine;
+    public float flashTime = 0.1f;
+    private Color originalColor;
 
     public Slider healthBar;
 
@@ -48,6 +48,8 @@ public class Health : MonoBehaviour
 
         // Wczytanie UI
         gameOverScreen = FindObjectOfType<InGameUIManager>();
+
+        originalColor = sprite.color;
 
         float maxHealth = GetFinalMaxHealth();
         health = maxHealth;
@@ -70,34 +72,16 @@ public class Health : MonoBehaviour
         // // Wartość slidera zdrowia = wartość zdrowia gracza
         healthBar.maxValue = currentMaxHealth;
         healthBar.value = health;
-
-        // // Wartość slidera zdrowia = wartość zdrowia gracza
-        // healthBar.GetComponent<Slider>().value = health;
         
         // Wartość zdrowia
-        healthText.text = health.ToString("F2") + " / " + currentMaxHealth.ToString("F2");
+        healthText.text = health.ToString("F0") + " / " + currentMaxHealth.ToString("F0");
 
         // Wartość zdrowia w panelu statystyk
         parametersHealthText.text = health.ToString("F2") + " / " + currentMaxHealth.ToString("F2");
 
         // Wartość regeneracji zdrowia w panelu statystyk
         parametersHealthRegenText.text = finalRegenHealthAmount.ToString("F2") + " na s";
-
-
-        // // Wartość zdrowia w panelu pauzy
-        // parametersHealthPauseText.text = "Zdrowie: " + health.ToString("F2") + " / " + maxHealth.ToString("F2");
-
-        // // Wartość regeneracji zdrowia w panelu pauzy
-        // parametersHealthRegenPauseText.text = "Regeneracja: " + regenHealthAmount.ToString("F2") + " na s";
     }
-
-    // // Inicjujemy zdrowie obiektu
-    // public void InitializeHealth(float healthValue)
-    // {
-    //     health = healthValue;
-    //     maxHealth = healthValue;
-    //     isDead = false;
-    // }
 
     public float GetFinalMaxHealth()
     {
@@ -138,6 +122,9 @@ public class Health : MonoBehaviour
             {
                 // Aktywowane UI końca gry
                 gameOverScreen.GameOverScreen();
+
+                CoinsManager.Instance.GetCoins(coins);
+
                 Time.timeScale = 0;
                 Destroy(gameObject);
             }
@@ -145,6 +132,7 @@ public class Health : MonoBehaviour
         else
         {
             OnHit?.Invoke(sender);
+            PlayFlash();
         }
     }
 
@@ -189,5 +177,27 @@ public class Health : MonoBehaviour
     public void AddRegenHealthBonus(float bonus)
     {
         baseRegenHealthAmount += bonus;
+    }
+
+    public void GetInGameCoins(int amount)
+    {
+        coins += amount;
+    }
+
+    private void PlayFlash()
+    {
+        if(flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+        }
+
+        flashCoroutine = StartCoroutine(Flash());
+    }
+
+    private IEnumerator Flash()
+    {
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(flashTime);
+        sprite.color = originalColor;
     }
 }

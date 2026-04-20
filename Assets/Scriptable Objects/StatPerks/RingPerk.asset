@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7f0910294d274cb0141141a08fe64, type: 3}
   m_Name: RingPerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
-  perkName: "Pier\u015Bcie\u0144"
-  perkDescription: "Zwi\u0119ksza obra\u017Cenia pier\u015Bcienia."
-  perkIcon: {fileID: 0}
+  perkName: Piorun
+  perkDescription: "Obra\u017Cenia -> +2\nCzas odnowienia -> -0.05s\nIlo\u015B\u0107
+    -> +1"
+  perkIcon: {fileID: -3695763429619087883, guid: e1e761de2b1ae3b4082ccb09fd165d82, type: 3}
   perkType: 12
   perkValue: 2

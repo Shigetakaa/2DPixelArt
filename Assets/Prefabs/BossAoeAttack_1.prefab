@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5509106844369452171}
   - component: {fileID: 7781469404389152029}
   - component: {fileID: 1265056448240545981}
+  - component: {fileID: 6395851404214606730}
+  - component: {fileID: 5823522784994808966}
   m_Layer: 7
   m_Name: BossAoeAttack_1
   m_TagString: BossAttack
@@ -28,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2707763056937896619}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.13361, y: -3.05661, z: -1}
+  m_LocalPosition: {x: -4.64, y: -1.76, z: -1}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -140,7 +142,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c6679233bae45419950fee76959426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossAoe
-  aoeDamage: 30
+  aoeDamage: 20
   aoeRadius: 0.3
   warnTime: 1
+  animator: {fileID: 6395851404214606730}
   dealDamage: 0
+--- !u!95 &6395851404214606730
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707763056937896619}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 103bc8e39e3051949b6ccd00891d704b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5823522784994808966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707763056937896619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13275508d1f3367408b2daf9c0786951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventHelper
+  OnAttackPerformed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnThunderTriggered:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBossAoeTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1265056448240545981}
+        m_TargetAssemblyTypeName: BossAoe, Assembly-CSharp
+        m_MethodName: DealDamage
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

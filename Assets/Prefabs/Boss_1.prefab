@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3381016548336897773}
   - component: {fileID: 1870892961957706505}
   - component: {fileID: 7128332163576322972}
+  - component: {fileID: 986133779128076296}
   m_Layer: 7
   m_Name: Boss_1
   m_TagString: Boss
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 1523207962583109561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33607, y: 0.27526, z: 0}
+  m_LocalPosition: {x: 0.99123, y: 0.09262, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -238,9 +239,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Controller
   rigidbody2D: {fileID: 6904465659730336049}
-  moveSpeed: 4
-  moveSpeedText: {fileID: 0}
-  moveSpeedPauseText: {fileID: 0}
+  moveSpeed: 3
+  animator: {fileID: 986133779128076296}
+  sprite: {fileID: 4764810491406410719}
 --- !u!114 &1870892961957706505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossAttack
   aoeAttack: {fileID: 2707763056937896619, guid: f9ba5ef39ba630a489168d31d98fcedc, type: 3}
   aoeAttackCooldown: 3
-  aoeAmount: 11
+  aoeAmount: 5
   areaMinPos: {x: -8, y: -8}
   areaMaxPos: {x: 8, y: 8}
 --- !u!114 &7128332163576322972
@@ -271,13 +272,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHealth
   bossHealth: 100
-  maxBossHealth: 100
+  baseMaxBossHealth: 100
   OnHit:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  healthBar: {fileID: 0}
+  sprite: {fileID: 4764810491406410719}
+  flashTime: 0.1
+  statsMultiplier: {fileID: 0}
+--- !u!95 &986133779128076296
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523207962583109561}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7fe06d2987b741d4097fcea2c20ef28b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1917190924535793714
 GameObject:
   m_ObjectHideFlags: 0

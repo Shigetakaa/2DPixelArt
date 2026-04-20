@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class BossAoe : MonoBehaviour
 {
-    public float aoeDamage = 30.0f;
+    public float aoeDamage = 20.0f;
     public float aoeRadius = 0.3f;
     public float warnTime = 1f;
 
     private SpriteRenderer sprite;
     private CircleCollider2D aoeAttack;
+    public Animator animator;
     public bool dealDamage = false;
 
     private PlayerStatsMultiplier statsMultiplier;
@@ -22,8 +23,6 @@ public class BossAoe : MonoBehaviour
 
         aoeAttack.isTrigger = true;
         aoeAttack.radius = aoeRadius;
-
-        sprite.color = new Color(1f, 0f, 0f, 0.35f);
 
         StartCoroutine(ActivateAoeAttack());
     }
@@ -39,15 +38,15 @@ public class BossAoe : MonoBehaviour
         switch (GameSettingsManager.Instance.chosenDifficulty)
         {
             case Difficulty.Easy:
-                aoeDamage = 30.0f;
+                aoeDamage = 20.0f;
                 break;
 
             case Difficulty.Normal:
-                aoeDamage = 50.0f;
+                aoeDamage = 40.0f;
                 break;
 
             case Difficulty.Hard:
-                aoeDamage = 70.0f;
+                aoeDamage = 60.0f;
                 break;
         }
     }
@@ -55,7 +54,6 @@ public class BossAoe : MonoBehaviour
     private IEnumerator ActivateAoeAttack()
     {
         yield return new WaitForSeconds(warnTime);
-        sprite.color = Color.red;
         dealDamage = true;
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
@@ -75,6 +73,8 @@ public class BossAoe : MonoBehaviour
     {
         if(!dealDamage) return;
 
+        Attack();
+
         float finalDamage = aoeDamage * statsMultiplier.difficultyMultiplier;
 
         if (collision.CompareTag("Player"))
@@ -88,5 +88,10 @@ public class BossAoe : MonoBehaviour
             }
             
         }
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
     }
 }

@@ -4157,6 +4157,10 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   startGameScreen: {fileID: 0}
   scoreboardScreen: {fileID: 0}
+  controls: {fileID: 0}
+  settingsScreen: {fileID: 0}
+  weaponsScreen: {fileID: 0}
+  upgradeScreen: {fileID: 0}
 --- !u!4 &1339224630
 Transform:
   m_ObjectHideFlags: 0
@@ -7042,7 +7046,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 685249438}
   - {fileID: 1900351878}
+  - {fileID: 1793594972}
   - {fileID: 1339224630}
   - {fileID: 1767389189}
-  - {fileID: 1793594972}
   - {fileID: 2069324646}

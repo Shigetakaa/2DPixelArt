@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class DaggerAttack : MonoBehaviour
 {
-    public float daggerDamage = 2f;
-    public float finalDamage;
-    public Vector2 daggerAttackXY = new Vector2(-0.35f, 0.01f);
+    private float finalDamage;
+    public float daggerAttackRadius = 0.3f;
     public int pierceNumber = 3;
     public float maxTimeLimit = 1f;
     private float speed;
     private Vector2 direction;
     private float timeLimit;
+    public float daggerDamageCooldown = 0.2f;
+    private float nextDaggerDamage;
 
     private Transform enemy;
     private SpriteRenderer sprite;
+    public Vector2 hitboxOffset = new Vector2(-1.4f, 0f);
+    public Transform areaOrigin;
     private CapsuleCollider2D daggerAttack;
 
     public GameObject player;
@@ -49,10 +52,11 @@ public class DaggerAttack : MonoBehaviour
         DealDamage();
     }
 
-    public void Initialize(Transform enemy, float speed, float angle)
+    public void Initialize(Transform enemy, float speed, float angle, float daggerDamage)
     {
         this.enemy = enemy;
         this.speed = speed;
+        this.finalDamage = daggerDamage;
 
         if (enemy != null)
         {
@@ -68,15 +72,24 @@ public class DaggerAttack : MonoBehaviour
         transform.right = -direction;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 position = transform.right * hitboxOffset.x +
+            transform.up * hitboxOffset.y;
+        Gizmos.DrawWireSphere(transform.position + position, daggerAttackRadius);
+    }
+
     private void DealDamage()
     {
-        finalDamage = (daggerDamage + statsMultiplier.daggerBonus) * statsMultiplier.damageMultiplier;
+        if(Time.time < nextDaggerDamage) return;
 
-        foreach (Collider2D collision in Physics2D.OverlapCapsuleAll(
-            transform.position, 
-            daggerAttackXY,
-            CapsuleDirection2D.Horizontal,
-            0f))
+        Vector2 position = (Vector2)(transform.right * hitboxOffset.x +
+            transform.up * hitboxOffset.y);
+
+        Vector2 hitboxPosition = (Vector2)transform.position + position;
+
+        foreach (Collider2D collision in Physics2D.OverlapCircleAll(hitboxPosition, daggerAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
@@ -89,5 +102,7 @@ public class DaggerAttack : MonoBehaviour
                 enemyHealth.GetHit(finalDamage, player);
             }
         }
+
+        nextDaggerDamage = Time.time + daggerDamageCooldown;
     }
 }

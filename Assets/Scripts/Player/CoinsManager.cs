@@ -6,6 +6,8 @@ public class CoinsManager : MonoBehaviour
 {
     public static CoinsManager Instance;
 
+    public static event System.Action OnCoinsChanged;
+
     public int Coins { get; private set; }
 
     private int coinsDev = -1;
@@ -41,30 +43,27 @@ public class CoinsManager : MonoBehaviour
 
     private void LoadCoins()
     {
-        Coins = PlayerPrefs.GetInt("coins", 0); 
+        Coins = PlayerPrefs.GetInt("coins", 0);
+        OnCoinsChanged?.Invoke();
     }
 
     public void GetCoins(int amount)
     {
         Coins += amount;
         SaveCoins();
+        OnCoinsChanged?.Invoke();
     }
 
-    private void SaveCoins()
+    public void SaveCoins()
     {
         PlayerPrefs.SetInt("coins", Coins);
         PlayerPrefs.Save();
-    }
-
-    [ContextMenu("Dodaj 1000 monet")]
-    void AddCoins()
-    {
-        GetCoins(1000);
     }
 
     public void SetCoins(int amount)
     {
         Coins = amount;
         SaveCoins();
+        OnCoinsChanged?.Invoke();
     }
 }

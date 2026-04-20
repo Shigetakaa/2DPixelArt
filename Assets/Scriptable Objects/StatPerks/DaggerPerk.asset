@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: DaggerPerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Sztylety
-  perkDescription: "Zwi\u0119ksza obra\u017Cenia sztylet\xF3w."
-  perkIcon: {fileID: 0}
+  perkDescription: "Obra\u017Cenia -> +1\nCzas odnowienia -> -0.05s\nIlo\u015B\u0107
+    -> +1"
+  perkIcon: {fileID: -1041754904, guid: 6eb16e372762d6b4cb708c44ebfab931, type: 3}
   perkType: 11
   perkValue: 1

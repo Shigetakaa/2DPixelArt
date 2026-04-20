@@ -5,14 +5,19 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     public TextMeshProUGUI coinsText;
+    public TextMeshProUGUI upgradeCoinsText;
 
     public GameObject mainMenu;
     public GameObject startGameScreen;
     public GameObject scoreboardScreen;
+    public GameObject settingsScreen;
+    public GameObject weaponsScreen;
+    public GameObject upgradeScreen;
 
     void Update()
     {
-        coinsText.text = "Monety: " + CoinsManager.Instance.Coins.ToString();
+        coinsText.text = CoinsManager.Instance.Coins.ToString();
+        upgradeCoinsText.text = CoinsManager.Instance.Coins.ToString();
     }
 
     // Przycisk rozpocznij
@@ -22,10 +27,29 @@ public class MainMenuManager : MonoBehaviour
         startGameScreen.SetActive(true);
     }
 
+    public void OnWeaponsPress()
+    {
+        mainMenu.SetActive(false);
+        weaponsScreen.SetActive(true);
+    }
+
+    public void OnWeaponsBackPress()
+    {
+        mainMenu.SetActive(true);
+        weaponsScreen.SetActive(false);
+    }
+
     // Przycisk ulepszenia
     public void OnUpgradesPress()
     {
-        SceneManager.LoadScene("Upgrades");
+        mainMenu.SetActive(false);
+        upgradeScreen.SetActive(true);
+    }
+
+    public void OnUpgradesBackPress()
+    {
+        mainMenu.SetActive(true);
+        upgradeScreen.SetActive(false);
     }
 
     // Przycisk wyniki
@@ -44,18 +68,19 @@ public class MainMenuManager : MonoBehaviour
     // Przycisk ustawienia
     public void OnSettingsPress()
     {
-        SceneManager.LoadScene("Settings");
+        mainMenu.SetActive(false);
+        settingsScreen.SetActive(true);
+    }
+
+    public void OnSettingsBackPress()
+    {
+        mainMenu.SetActive(true);
+        settingsScreen.SetActive(false);
     }
 
     // Przycisk wyjdź
     public void OnCloseGamePress()
     {
         Application.Quit();
-    }
-
-    // Przycisk wróć do menu głównego
-    public void OnBackPress()
-    {
-        SceneManager.LoadScene("MainMenu");
     }
 }

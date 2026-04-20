@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaxHealth
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Zdrowie
-  perkDescription: "Zwi\u0119ksz warto\u015B\u0107 zdrowia."
-  perkIcon: {fileID: 0}
+  perkDescription: Zdrowie -> +x0.1
+  perkIcon: {fileID: 21300000, guid: 496d2284a996d8647a9e8e5b328406d9, type: 3}
   perkType: 0
   perkValue: 0.1

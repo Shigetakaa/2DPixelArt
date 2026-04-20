@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrades
   upgradeName: "Trudno\u015B\u0107"
   upgradeDescription: "Zwi\u0119ksza ilo\u015B\u0107 pojawiaj\u0105cych si\u0119
-    wrog\xF3w oraz ich statystyki."
-  upgradeIcon: {fileID: 0}
+    wrog\xF3w oraz ich statystyki.\n+x0.1"
+  upgradeIcon: {fileID: 21300000, guid: 46b18a974a5d44ae5a048945217a6c00, type: 3}
   cost: 500
   costMultiplier: 2
   maxLevel: 5

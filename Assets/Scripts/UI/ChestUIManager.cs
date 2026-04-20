@@ -24,6 +24,12 @@ public class ChestUIManager : MonoBehaviour
     private List<SecondaryWeapons> currentButtons;
 
     public LevelUpPanelManager levelUpPanelManager;
+    public GameObject equipmentPanel;
+    public GameObject characterStats;
+    public Transform weaponsPanel;
+    public GameObject weaponIconPrefab;
+
+    private List<GameObject> spawnedIcons = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,6 +52,8 @@ public class ChestUIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         chestPanel.SetActive(true);
+        characterStats.SetActive(true);
+        equipmentPanel.SetActive(true);
         currentButtons = buttons;
 
         button1Text.text = buttons[0].weaponName;
@@ -73,5 +81,52 @@ public class ChestUIManager : MonoBehaviour
 
         Time.timeScale = 1;
         chestPanel.SetActive(false);
+        characterStats.SetActive(false);
+        equipmentPanel.SetActive(false);
+
+        AddWeaponIcon();
+    }
+
+    // public void RefreshWeaponsPanel()
+    // {
+    //     foreach (var icon in spawnedIcons)
+    //     {
+    //         Destroy(icon);
+    //     }
+    //     spawnedIcons.Clear();
+
+    //     for(int i = 0; i < secondaryWeapons.ownedSecondaryWeapons.Count; i++)
+    //     {
+    //         var weaponData = secondaryWeapons.ownedSecondaryWeapons[i];
+    //         var weaponStats = secondaryWeapons.activeWeaponsIcons[i];
+
+    //         GameObject iconObject = Instantiate(weaponIconPrefab, weaponsPanel);
+    //         Image image = iconObject.transform.Find("Icon").GetComponent<Image>();
+
+    //         image.sprite = weaponData.weaponIcon;
+
+    //         SecondaryWeaponUI weaponUI = iconObject.GetComponent<SecondaryWeaponUI>();
+    //         weaponUI.Initialize(weaponStats, weaponData.weaponName);
+
+    //         spawnedIcons.Add(iconObject);
+    //     }
+    // }
+
+    public void AddWeaponIcon()
+    {
+        int lastIndex = secondaryWeapons.ownedSecondaryWeapons.Count -1;
+
+        var weaponData = secondaryWeapons.ownedSecondaryWeapons[lastIndex];
+        var weaponStats = secondaryWeapons.activeWeaponsIcons[lastIndex];
+
+        GameObject iconObject = Instantiate(weaponIconPrefab, weaponsPanel);
+
+        Image image = iconObject.transform.Find("Icon").GetComponent<Image>();
+        image.sprite = weaponData.weaponIcon;
+
+        SecondaryWeaponUI weaponUI = iconObject.GetComponent<SecondaryWeaponUI>();
+        weaponUI.Initialize(weaponStats, weaponData.weaponName);
+
+        spawnedIcons.Add(iconObject);
     }
 }

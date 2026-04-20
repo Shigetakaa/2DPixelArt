@@ -9,6 +9,7 @@ public class LevelUpUIManager : MonoBehaviour
     public GameObject levelUpPanel;
     public GameObject characterStats;
     public GameObject characterParameters;
+    public GameObject equipmentPanel;
 
     public Button button1;
     public Button button2;
@@ -61,6 +62,7 @@ public class LevelUpUIManager : MonoBehaviour
         Time.timeScale = 1;
         levelUpPanel.SetActive(false);
         characterParameters.SetActive(false);
+        equipmentPanel.SetActive(false);
         characterStats.SetActive(true);
     }
 }

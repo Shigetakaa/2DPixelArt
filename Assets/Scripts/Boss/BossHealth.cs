@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -13,6 +14,11 @@ public class BossHealth : MonoBehaviour
 
     public Slider healthBar;
 
+    public SpriteRenderer sprite;
+    private Coroutine flashCoroutine;
+    public float flashTime = 0.1f;
+    private Color originalColor;
+
     private bool isDead = false;
 
     private InGameUIManager victoryScreen;
@@ -24,6 +30,8 @@ public class BossHealth : MonoBehaviour
     {
         statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
         healthBar = GameObject.Find("BossHealthBar").GetComponent<Slider>();
+
+        originalColor = sprite.color;
 
         GetDifficulty();
 
@@ -101,6 +109,7 @@ public class BossHealth : MonoBehaviour
             if(player != null)
             {
                 GameSettingsManager.Instance.SaveKilledEnemies(player.killedEnemies);
+                CoinsManager.Instance.GetCoins(player.coins);
 
                 victoryScreen.VictoryScreen(player.killedEnemies);
             }
@@ -110,6 +119,24 @@ public class BossHealth : MonoBehaviour
         else
         {
             OnHit?.Invoke(sender);
+            PlayFlash();
         }
+    }
+
+    private void PlayFlash()
+    {
+        if(flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+        }
+
+        flashCoroutine = StartCoroutine(Flash());
+    }
+
+    private IEnumerator Flash()
+    {
+        sprite.color = new Color(255, 250, 240, 255);
+        yield return new WaitForSeconds(flashTime);
+        sprite.color = originalColor;
     }
 }

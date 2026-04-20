@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 5300159611481930540}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.75, y: 0.27, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.61369, y: 0.27536, z: -1}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c6a995b6b3cc2664fbddcfcb3a83293b, type: 3}
+  m_Sprite: {fileID: -6042866985626897715, guid: fc0d818d21623ec44aad859692e9c0f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -126,8 +126,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.35, y: 0.01}
-  m_Size: {x: 2.281728, y: 0.6056426}
+  m_Offset: {x: -0.12, y: 0.0006000093}
+  m_Size: {x: 0.22520563, y: 0.08002089}
   m_Direction: 1
 --- !u!114 &2195703951780990331
 MonoBehaviour:
@@ -141,9 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db2494ef38df704b984a068930acf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DaggerAttack
-  daggerDamage: 2
-  finalDamage: 0
-  daggerAttackXY: {x: -0.35, y: 0.01}
+  daggerAttackRadius: 0.3
   pierceNumber: 3
   maxTimeLimit: 1
+  hitboxOffset: {x: -1.4, y: 0}
+  areaOrigin: {fileID: 147825995348530004}
   player: {fileID: 0}

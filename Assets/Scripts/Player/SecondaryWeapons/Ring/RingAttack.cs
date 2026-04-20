@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class RingAttack : MonoBehaviour
 {
-    public float ringDamage = 10f;
+
     public float finalDamage;
     public float ringAttackRadius = 0.3f;
     public float warnTime = 2f;
 
     private SpriteRenderer sprite;
+    public Transform areaOrigin;
+    public Animator animator;
     private CircleCollider2D ringAttack;
 
     public GameObject player;
@@ -26,8 +28,6 @@ public class RingAttack : MonoBehaviour
         ringAttack.isTrigger = true;
         ringAttack.radius = ringAttackRadius;
 
-        sprite.color = new Color(0f, 0f, 1f, 0.35f);
-
         StartCoroutine(ActivateRingAttack());
     }
 
@@ -37,19 +37,30 @@ public class RingAttack : MonoBehaviour
         
     }
 
+    public void Initialize(float ringDamage, GameObject player)
+    {
+        this.finalDamage = ringDamage;
+        this.player = player;
+    }
+
     private IEnumerator ActivateRingAttack()
     {
         yield return new WaitForSeconds(warnTime);
-        sprite.color = Color.blue;
-        yield return new WaitForSeconds(0.1f);
+        Attack();
+        yield return new WaitForSeconds(0.5f);
         DealDamage();
         Destroy(gameObject);
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 position = areaOrigin == null ? Vector3.zero : areaOrigin.position;
+        Gizmos.DrawWireSphere(position, ringAttackRadius);
+    }
+
     public void DealDamage()
     {
-        finalDamage = (ringDamage + statsMultiplier.ringBonus) * statsMultiplier.damageMultiplier;
-
         foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, ringAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
@@ -63,5 +74,10 @@ public class RingAttack : MonoBehaviour
                 enemyHealth.GetHit(finalDamage, player);
             }
         }
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
     }
 }

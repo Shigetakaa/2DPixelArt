@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: StaffPerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: "R\xF3\u017Cd\u017Cka"
-  perkDescription: "Zwi\u0119ksza obra\u017Cenia r\xF3\u017Cd\u017Cki ognia."
-  perkIcon: {fileID: 0}
+  perkDescription: "Obra\u017Cenia -> +1\nCzas odnowienia -> -0.05s\nIlo\u015B\u0107
+    -> +1"
+  perkIcon: {fileID: 21300000, guid: 0874c05b82a4bbd4f9ea1b2e9acbcce0, type: 3}
   perkType: 10
   perkValue: 1

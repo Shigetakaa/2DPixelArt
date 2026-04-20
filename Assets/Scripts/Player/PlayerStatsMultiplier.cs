@@ -43,6 +43,7 @@ public class PlayerStatsMultiplier : MonoBehaviour
     public TextMeshProUGUI expMultiplierText;
     public TextMeshProUGUI itemMagnetMultiplierText;
     public TextMeshProUGUI difficultyMultiplierText;
+    public TextMeshProUGUI numberMultiplierText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,6 +60,7 @@ public class PlayerStatsMultiplier : MonoBehaviour
         expMultiplierText.text = "x" + expMultiplier.ToString("F2");
         itemMagnetMultiplierText.text = "x" + itemMagnetMultiplier.ToString("F2");
         difficultyMultiplierText.text = "x" + difficultyMultiplier.ToString("F2");
+        numberMultiplierText.text = "x" + numberMultiplier.ToString("F2");
     }
 
     public void AddDamageBonus(float bonus)

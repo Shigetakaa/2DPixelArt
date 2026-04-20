@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
+using NUnit.Framework;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Dagger : MonoBehaviour
+public class Dagger : MonoBehaviour, SecondaryWeaponStats
 {
     public GameObject daggerAttack;
 
+    public float daggerDamage = 2f;
     public int daggerNumber = 1;
     public float finalNumber;
     public float daggerAttackSpeed = 10f;
@@ -33,13 +35,12 @@ public class Dagger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        finalNumber = (daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier;
+        finalCooldown = (daggerAttackCooldown + statsMultiplier.daggerCooldownBonus) * statsMultiplier.cooldownMultiplier;
     }
 
     private IEnumerator DaggerAttackCooldown()
     {
-        finalCooldown = (daggerAttackCooldown + statsMultiplier.daggerCooldownBonus) * statsMultiplier.cooldownMultiplier;
-
         while (true)
         {
             GameObject enemy = FindEnemy();
@@ -84,8 +85,6 @@ public class Dagger : MonoBehaviour
 
     private void Throw(Transform enemy)
     {
-        finalNumber = (daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier;
-
         float spread = Mathf.Clamp(20f + finalNumber * 4f, 20f, 100f);
 
         float angleStep = 0f;
@@ -111,7 +110,22 @@ public class Dagger : MonoBehaviour
             }
 
             GameObject daggerAttackObject = Instantiate(daggerAttack, transform.position, Quaternion.identity);
-            daggerAttackObject.GetComponent<DaggerAttack>().Initialize(enemy, daggerAttackSpeed, angle);
+            daggerAttackObject.GetComponent<DaggerAttack>().Initialize(enemy, daggerAttackSpeed, angle, GetDamage());
         }
+    }
+
+    public float GetDamage()
+    {
+        return (daggerDamage + statsMultiplier.daggerBonus) * statsMultiplier.damageMultiplier;
+    }
+
+    public float GetNumber()
+    {
+        return finalNumber;
+    }
+
+    public float GetCooldown()
+    {
+        return finalCooldown;
     }
 }
