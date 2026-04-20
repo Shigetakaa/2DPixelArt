@@ -4,6 +4,7 @@ using UnityEngine;
 public class StatPerk : ScriptableObject
 {
     public string perkName;
+    [TextArea]
     public string perkDescription;
     public Sprite perkIcon;
 

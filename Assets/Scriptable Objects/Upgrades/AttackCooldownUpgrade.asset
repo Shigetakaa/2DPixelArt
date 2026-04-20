@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackCooldownUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Upgrades
   upgradeName: Czas odnowienia
-  upgradeDescription: "Zmniejsza czas oczekiwania na nast\u0119pny atak."
+  upgradeDescription: "Zmniejsza czas oczekiwania na nast\u0119pny atak.\n-x0.05"
   upgradeIcon: {fileID: 21300000, guid: afb251e75e4e74ba08e1ef36487ea88b, type: 3}
   cost: 500
   costMultiplier: 2

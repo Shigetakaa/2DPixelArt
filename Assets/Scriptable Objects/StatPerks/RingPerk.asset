@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: RingPerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Piorun
-  perkDescription: "Zwi\u0119ksza obra\u017Cenia piorun\xF3w."
+  perkDescription: "Obra\u017Cenia -> +2\nCzas odnowienia -> -0.05s\nIlo\u015B\u0107
+    -> +1"
   perkIcon: {fileID: -3695763429619087883, guid: e1e761de2b1ae3b4082ccb09fd165d82, type: 3}
   perkType: 12
   perkValue: 2

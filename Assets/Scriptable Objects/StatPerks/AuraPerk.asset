@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AuraPerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Aura
-  perkDescription: "Zwi\u0119ksza obra\u017Cenia aury."
+  perkDescription: "Obra\u017Cenia -> +1\nCzas odnowienia -> -0.05s"
   perkIcon: {fileID: 2115872294727875321, guid: b61e3a439941f7c40a454d91d0da6dea, type: 3}
   perkType: 9
   perkValue: 1

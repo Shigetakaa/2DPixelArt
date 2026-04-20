@@ -16,6 +16,7 @@ public enum UpgradeType
 public class Upgrades : ScriptableObject
 {
     public string upgradeName;
+    [TextArea]
     public string upgradeDescription;
     public Sprite upgradeIcon;
 

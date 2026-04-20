@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Difficulty
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: "Trudno\u015B\u0107"
-  perkDescription: "Zwi\u0119ksza ilo\u015B\u0107 pojawianych si\u0119 wrog\xF3w
-    oraz ich statystyki."
+  perkDescription: "Trudno\u015B\u0107 -> +x0.1"
   perkIcon: {fileID: 21300000, guid: 46b18a974a5d44ae5a048945217a6c00, type: 3}
   perkType: 7
   perkValue: 0.1

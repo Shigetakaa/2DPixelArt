@@ -92,7 +92,7 @@ public class LevelUpPanelManager : MonoBehaviour
             case PerkType.RingPerk:
                 statsMultiplier.ringBonus += perk.perkValue;
                 statsMultiplier.ringCooldownBonus -= 0.05f;
-                statsMultiplier.ringNumberBonus += 1;
+                statsMultiplier.ringNumberBonus += 1f;
                 break;
 
             case PerkType.StaffPerk:

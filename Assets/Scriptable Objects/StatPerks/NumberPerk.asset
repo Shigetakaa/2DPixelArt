@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NumberPerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: "Ilo\u015B\u0107"
-  perkDescription: "Zwi\u0119ksza ilo\u015B\u0107 pocisk\xF3w."
+  perkDescription: "Ilo\u015B\u0107 -> +x0.1"
   perkIcon: {fileID: 21300000, guid: af8723400bea6484087c47f48e97e0b4, type: 3}
   perkType: 14
   perkValue: 0.1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemMagnetUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Upgrades
   upgradeName: "Przyci\u0105ganie"
-  upgradeDescription: "Zwi\u0119ksza zasi\u0119g przyci\u0105gania przedmiot\xF3w."
+  upgradeDescription: "Zwi\u0119ksza zasi\u0119g przyci\u0105gania przedmiot\xF3w.\n+x0.3"
   upgradeIcon: {fileID: 21300000, guid: 7bc115b3c5e6145f5a3e7130323c2b4c, type: 3}
   cost: 500
   costMultiplier: 2

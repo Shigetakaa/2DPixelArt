@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: AxePerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Siekiery
-  perkDescription: "Zwi\u0119ksza obra\u017Cenia siekier."
+  perkDescription: "Obra\u017Cenia -> +1\nCzas odnowienia -> -0.05s\nIlo\u015B\u0107
+    -> +1"
   perkIcon: {fileID: 21300000, guid: 9efd91bd84b28fc42a379040bea511b3, type: 3}
   perkType: 8
   perkValue: 1
