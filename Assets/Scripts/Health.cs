@@ -33,6 +33,11 @@ public class Health : MonoBehaviour
 
     public TextMeshProUGUI killedEnemiesText;
 
+    public SpriteRenderer sprite;
+    private Coroutine flashCoroutine;
+    public float flashTime = 0.1f;
+    private Color originalColor;
+
     public Slider healthBar;
 
     public PlayerStatsMultiplier statsMultiplier;
@@ -43,6 +48,8 @@ public class Health : MonoBehaviour
 
         // Wczytanie UI
         gameOverScreen = FindObjectOfType<InGameUIManager>();
+
+        originalColor = sprite.color;
 
         float maxHealth = GetFinalMaxHealth();
         health = maxHealth;
@@ -125,6 +132,7 @@ public class Health : MonoBehaviour
         else
         {
             OnHit?.Invoke(sender);
+            PlayFlash();
         }
     }
 
@@ -174,5 +182,22 @@ public class Health : MonoBehaviour
     public void GetInGameCoins(int amount)
     {
         coins += amount;
+    }
+
+    private void PlayFlash()
+    {
+        if(flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+        }
+
+        flashCoroutine = StartCoroutine(Flash());
+    }
+
+    private IEnumerator Flash()
+    {
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(flashTime);
+        sprite.color = originalColor;
     }
 }

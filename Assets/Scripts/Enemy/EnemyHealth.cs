@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,6 +20,11 @@ public class EnemyHealth : MonoBehaviour
 
     public TextMeshProUGUI killedEnemiesText;
 
+    public SpriteRenderer sprite;
+    private Coroutine flashCoroutine;
+    public float flashTime = 0.1f;
+    private Color originalColor;
+
     private PlayerStatsMultiplier statsMultiplier;
 
     public int minCoinAmount = 1;
@@ -28,6 +34,8 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
+
+        originalColor = sprite.color;
 
         GetDifficulty();
 
@@ -117,6 +125,24 @@ public class EnemyHealth : MonoBehaviour
         else
         {
             OnHit?.Invoke(sender);
+            PlayFlash();
         }
+    }
+
+    private void PlayFlash()
+    {
+        if(flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+        }
+
+        flashCoroutine = StartCoroutine(Flash());
+    }
+
+    private IEnumerator Flash()
+    {
+        sprite.color = new Color(255, 250, 240, 255);
+        yield return new WaitForSeconds(flashTime);
+        sprite.color = originalColor;
     }
 }

@@ -173,7 +173,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -6629923417512373234, guid: ec10b46feb584e647b5bebf8b2c7afb2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9803922, b: 0.9411765, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -349,6 +349,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   killedEnemiesText: {fileID: 0}
+  sprite: {fileID: 5970387280298806706}
+  flashTime: 0.1
   minCoinAmount: 1
   maxCoinsAmount: 5
 --- !u!95 &3675160698645673530

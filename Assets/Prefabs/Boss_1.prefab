@@ -280,6 +280,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   healthBar: {fileID: 0}
+  sprite: {fileID: 4764810491406410719}
+  flashTime: 0.1
   statsMultiplier: {fileID: 0}
 --- !u!95 &986133779128076296
 Animator:
