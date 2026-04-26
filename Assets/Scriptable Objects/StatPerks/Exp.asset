@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Exp
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: "Do\u015Bwiadczenie"
-  perkDescription: Bonus -> +x0.1
+  perkDescription: Bonus --> +x0.1
   perkIcon: {fileID: -6492938374172118243, guid: 6833ab8bf6099084f87e2ace9ee223b4, type: 3}
   perkType: 5
   perkValue: 0.1

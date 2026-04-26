@@ -10,7 +10,7 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
 
     public float daggerDamage = 2f;
     public int daggerNumber = 1;
-    public float finalNumber;
+    public int finalNumber;
     public float daggerAttackSpeed = 10f;
     public float daggerAttackCooldown = 2f;
     float finalCooldown;
@@ -35,7 +35,7 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-        finalNumber = (daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier;
+        finalNumber = Mathf.RoundToInt((daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = (daggerAttackCooldown + statsMultiplier.daggerCooldownBonus) * statsMultiplier.cooldownMultiplier;
     }
 

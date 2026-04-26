@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SwordPerk
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Miecz
-  perkDescription: "Obra\u017Cenia -> +1\nCzas odnowienia -> -0.05s"
+  perkDescription: "Obra\u017Cenia --> +1\nCzas odnowienia --> -0.05s"
   perkIcon: {fileID: -1259760662, guid: 6eb16e372762d6b4cb708c44ebfab931, type: 3}
   perkType: 13
   perkValue: 1

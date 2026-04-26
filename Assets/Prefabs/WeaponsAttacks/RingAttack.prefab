@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1671600297
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 5096900023035236499, guid: 022e91f61cb7ab84f9a49e8068f27035, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -200,3 +200,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnBossAoeTriggered:
+    m_PersistentCalls:
+      m_Calls: []

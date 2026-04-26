@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Aura : MonoBehaviour, SecondaryWeaponStats
 {
-    public float auraDamage = 3f;
+    public float auraDamage = 5f;
     public float finalDamage;
     public float auraRadius = 4.5f;
     public float auraCooldown = 4f;

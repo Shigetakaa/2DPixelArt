@@ -24,6 +24,8 @@ public class BossAoe : MonoBehaviour
         aoeAttack.isTrigger = true;
         aoeAttack.radius = aoeRadius;
 
+        GetDifficulty();
+
         StartCoroutine(ActivateAoeAttack());
     }
 
@@ -54,6 +56,7 @@ public class BossAoe : MonoBehaviour
     private IEnumerator ActivateAoeAttack()
     {
         yield return new WaitForSeconds(warnTime);
+        Attack();
         dealDamage = true;
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
@@ -73,8 +76,6 @@ public class BossAoe : MonoBehaviour
     {
         if(!dealDamage) return;
 
-        Attack();
-
         float finalDamage = aoeDamage * statsMultiplier.difficultyMultiplier;
 
         if (collision.CompareTag("Player"))
@@ -93,5 +94,10 @@ public class BossAoe : MonoBehaviour
     public void Attack()
     {
         animator.SetTrigger("Attack");
+    }
+
+    public void ActivateAoeAnimation()
+    {
+        dealDamage = true;
     }
 }

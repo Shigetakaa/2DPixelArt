@@ -87,31 +87,6 @@ public class ChestUIManager : MonoBehaviour
         AddWeaponIcon();
     }
 
-    // public void RefreshWeaponsPanel()
-    // {
-    //     foreach (var icon in spawnedIcons)
-    //     {
-    //         Destroy(icon);
-    //     }
-    //     spawnedIcons.Clear();
-
-    //     for(int i = 0; i < secondaryWeapons.ownedSecondaryWeapons.Count; i++)
-    //     {
-    //         var weaponData = secondaryWeapons.ownedSecondaryWeapons[i];
-    //         var weaponStats = secondaryWeapons.activeWeaponsIcons[i];
-
-    //         GameObject iconObject = Instantiate(weaponIconPrefab, weaponsPanel);
-    //         Image image = iconObject.transform.Find("Icon").GetComponent<Image>();
-
-    //         image.sprite = weaponData.weaponIcon;
-
-    //         SecondaryWeaponUI weaponUI = iconObject.GetComponent<SecondaryWeaponUI>();
-    //         weaponUI.Initialize(weaponStats, weaponData.weaponName);
-
-    //         spawnedIcons.Add(iconObject);
-    //     }
-    // }
-
     public void AddWeaponIcon()
     {
         int lastIndex = secondaryWeapons.ownedSecondaryWeapons.Count -1;

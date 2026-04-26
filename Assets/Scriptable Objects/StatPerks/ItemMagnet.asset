@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7f0910294d274cb0141141a08fe64, type: 3}
   m_Name: ItemMagnet
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
-  perkName: "Przyci\u0105ganie"
-  perkDescription: "Przyci\u0105ganie -> +x0.1"
+  perkName: Zbieranie
+  perkDescription: "Zasi\u0119g zbierania --> +x0.1"
   perkIcon: {fileID: 21300000, guid: 7bc115b3c5e6145f5a3e7130323c2b4c, type: 3}
   perkType: 6
   perkValue: 0.1

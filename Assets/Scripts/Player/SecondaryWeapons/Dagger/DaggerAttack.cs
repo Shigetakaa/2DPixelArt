@@ -12,7 +12,7 @@ public class DaggerAttack : MonoBehaviour
     private float speed;
     private Vector2 direction;
     private float timeLimit;
-    public float daggerDamageCooldown = 0.2f;
+    public float daggerDamageCooldown = 0.1f;
     private float nextDaggerDamage;
 
     private Transform enemy;

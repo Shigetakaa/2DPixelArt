@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealthRegen
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: Regeneracja
-  perkDescription: Regeneracja -> +x0.1
+  perkDescription: Regeneracja --> +x0.1
   perkIcon: {fileID: 21300000, guid: f2b81f36500871a4787e12da2e51ca4e, type: 3}
   perkType: 2
   perkValue: 0.1

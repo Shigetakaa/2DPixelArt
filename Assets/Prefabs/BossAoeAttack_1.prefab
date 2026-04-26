@@ -116,8 +116,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 52909135
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -946000942377729262, guid: 284e94ec97dfd604ba0cc871504d5876, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -192,11 +192,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1265056448240545981}
         m_TargetAssemblyTypeName: BossAoe, Assembly-CSharp
-        m_MethodName: DealDamage
-        m_Mode: 2
+        m_MethodName: ActivateAoeAnimation
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

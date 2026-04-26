@@ -9,7 +9,7 @@ public class AxeAttack : MonoBehaviour
     private float timeLimit;
     private float axeRadius;
     private float axeAngle;
-    public float axeDamageCooldown = 0.2f;
+    public float axeDamageCooldown = 0.1f;
     private float nextAxeDamage;
 
     private Transform center;

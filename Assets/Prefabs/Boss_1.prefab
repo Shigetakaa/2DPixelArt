@@ -85,8 +85,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1834961577
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -4250375987827614263, guid: 76a59ef996c53c64bb48fae131d5727d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossAttack
   aoeAttack: {fileID: 2707763056937896619, guid: f9ba5ef39ba630a489168d31d98fcedc, type: 3}
   aoeAttackCooldown: 3
-  aoeAmount: 5
+  aoeAmount: 4
   areaMinPos: {x: -8, y: -8}
   areaMaxPos: {x: 8, y: 8}
 --- !u!114 &7128332163576322972
