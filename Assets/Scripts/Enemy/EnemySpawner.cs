@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     private Timer timerScript;
 
     public LayerMask waterLayer;
-    public float checkRadius = 0.5f;
+    public float checkRadius = 5f;
     public int spawnAttempts = 20;
 
     public PlayerStatsMultiplier statsMultiplier;
@@ -67,7 +67,6 @@ public class EnemySpawner : MonoBehaviour
                 float spawnAngle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
                 float spawnDistance = UnityEngine.Random.Range(spawnRadius * 0.8f, spawnRadius);
                 positionSpawn = player.position + new Vector3(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle), 0) * spawnDistance;
-                positionSpawn.z = -2f;
 
                 if(!Physics2D.OverlapCircle(positionSpawn, checkRadius, waterLayer))
                 {

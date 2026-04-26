@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     public GameObject characterParameters;
     public GameObject equipmentPanel;
 
+    public GameObject levelUpPanel;
+    public GameObject chooseWeaponPanel;
+    public GameObject victoryPanel;
+    public GameObject gameOverPanel;
+
     public UnityEvent<Vector2> OnMovement, OnPointer;
     public UnityEvent OnAttack;
 
@@ -83,6 +88,12 @@ public class PlayerController : MonoBehaviour
 
     public void ShowPause(InputAction.CallbackContext context)
     {
+        if(levelUpPanel.activeSelf || chooseWeaponPanel.activeSelf ||
+            victoryPanel.activeSelf || gameOverPanel.activeSelf)
+        {
+            return;
+        }
+
         if (pauseMenu.activeSelf)
         {
             Time.timeScale = 1;
