@@ -4173,6 +4173,7 @@ MonoBehaviour:
   buttonLevelText: {fileID: 1605394371}
   buttonCostText: {fileID: 746337162}
   button: {fileID: 354908412}
+  upgradeSound: {fileID: 8300000, guid: b059248229c4af94dbad0759f81276f1, type: 3}
 --- !u!114 &354908412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7069,6 +7070,7 @@ MonoBehaviour:
   buttonLevelText: {fileID: 1715232223}
   buttonCostText: {fileID: 992615547}
   button: {fileID: 577167018}
+  upgradeSound: {fileID: 8300000, guid: b059248229c4af94dbad0759f81276f1, type: 3}
 --- !u!114 &577167018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7560,7 +7562,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &587110444
@@ -10083,6 +10085,7 @@ MonoBehaviour:
   buttonLevelText: {fileID: 890268843}
   buttonCostText: {fileID: 2107206270}
   button: {fileID: 741709969}
+  upgradeSound: {fileID: 8300000, guid: b059248229c4af94dbad0759f81276f1, type: 3}
 --- !u!114 &741709969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19362,6 +19365,7 @@ MonoBehaviour:
   buttonLevelText: {fileID: 815302470}
   buttonCostText: {fileID: 1675250503}
   button: {fileID: 1445035359}
+  upgradeSound: {fileID: 8300000, guid: b059248229c4af94dbad0759f81276f1, type: 3}
 --- !u!114 &1445035359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22080,6 +22084,7 @@ MonoBehaviour:
   buttonLevelText: {fileID: 1168786011}
   buttonCostText: {fileID: 574581288}
   button: {fileID: 1629738350}
+  upgradeSound: {fileID: 8300000, guid: b059248229c4af94dbad0759f81276f1, type: 3}
 --- !u!114 &1629738350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24170,6 +24175,7 @@ MonoBehaviour:
   buttonLevelText: {fileID: 121973692}
   buttonCostText: {fileID: 460084565}
   button: {fileID: 1770268865}
+  upgradeSound: {fileID: 8300000, guid: b059248229c4af94dbad0759f81276f1, type: 3}
 --- !u!114 &1770268865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24316,6 +24322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19f42256d43bad48a03eaa58b3bdfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResetUpgradesButton
+  resetSound: {fileID: 8300000, guid: f16aae4bef070cd42908f0b829b2dfa0, type: 3}
 --- !u!114 &1780712822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24596,6 +24603,7 @@ MonoBehaviour:
   buttonLevelText: {fileID: 1090012112}
   buttonCostText: {fileID: 1082741435}
   button: {fileID: 1812033129}
+  upgradeSound: {fileID: 8300000, guid: b059248229c4af94dbad0759f81276f1, type: 3}
 --- !u!114 &1812033129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26356,6 +26364,7 @@ MonoBehaviour:
   buttonLevelText: {fileID: 498923474}
   buttonCostText: {fileID: 1657536113}
   button: {fileID: 1943230675}
+  upgradeSound: {fileID: 8300000, guid: b059248229c4af94dbad0759f81276f1, type: 3}
 --- !u!114 &1943230675
 MonoBehaviour:
   m_ObjectHideFlags: 0

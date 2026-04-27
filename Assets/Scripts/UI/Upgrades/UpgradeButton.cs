@@ -17,6 +17,8 @@ public class UpgradeButton : MonoBehaviour
     private int upgradeLevel;
     private int upgradeCost;
 
+    public AudioClip upgradeSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,6 +58,8 @@ public class UpgradeButton : MonoBehaviour
         {
             return;
         }
+
+        SoundManager.instance.PlaySound(upgradeSound, transform, 1f);
 
         CoinsManager.Instance.GetCoins(-upgradeCost);
         UpgradeSaveManager.IncreaseUpgradeLevel(upgrades.upgradeName);

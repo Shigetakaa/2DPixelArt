@@ -147,6 +147,8 @@ public class Health : MonoBehaviour
     {
         health += amount;
 
+        PlayHealFlash();
+
         float maxHealth = GetFinalMaxHealth();
         
         if(health > maxHealth)
@@ -204,6 +206,23 @@ public class Health : MonoBehaviour
     private IEnumerator Flash()
     {
         sprite.color = Color.red;
+        yield return new WaitForSeconds(flashTime);
+        sprite.color = originalColor;
+    }
+
+    private void PlayHealFlash()
+    {
+        if(flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+        }
+
+        flashCoroutine = StartCoroutine(HealFlash());
+    }
+
+    private IEnumerator HealFlash()
+    {
+        sprite.color = Color.green;
         yield return new WaitForSeconds(flashTime);
         sprite.color = originalColor;
     }

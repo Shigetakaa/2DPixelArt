@@ -31,6 +31,8 @@ public class ChestUIManager : MonoBehaviour
 
     private List<GameObject> spawnedIcons = new List<GameObject>();
 
+    public AudioClip weaponSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -79,6 +81,8 @@ public class ChestUIManager : MonoBehaviour
             levelUpPanelManager.AddWeaponPerk(weapon.weaponPerk);
         }
 
+        SoundManager.instance.PlaySound(weaponSound, transform, 1f);
+        
         Time.timeScale = 1;
         chestPanel.SetActive(false);
         characterStats.SetActive(false);
