@@ -147,6 +147,7 @@ MonoBehaviour:
   warnTime: 1
   animator: {fileID: 6395851404214606730}
   dealDamage: 0
+  attackSound: {fileID: 8300000, guid: 09c7fddfed13d8f4b82ab7439df69d5d, type: 3}
 --- !u!95 &6395851404214606730
 Animator:
   serializedVersion: 7

@@ -24,6 +24,8 @@ public class Exp : MonoBehaviour
 
     public PlayerStatsMultiplier statsMultiplier;
 
+    public AudioClip levelUpSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,6 +52,7 @@ public class Exp : MonoBehaviour
 
         if (exp >= maxExp)
         {
+            SoundManager.instance.PlaySound(levelUpSound, transform, 1f);
             GetLevel();
         }
     }

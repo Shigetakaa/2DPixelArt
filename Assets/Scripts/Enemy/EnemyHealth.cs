@@ -30,6 +30,8 @@ public class EnemyHealth : MonoBehaviour
     public int minCoinAmount = 1;
     public int maxCoinsAmount = 5;
 
+    public AudioClip[] damageSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -96,6 +98,8 @@ public class EnemyHealth : MonoBehaviour
             return;
 
         enemyHealth -= damage;
+
+        SoundManager.instance.PlayRandomSounds(damageSound, transform, 1f);
 
         if(enemyHealth <= 0)
         {

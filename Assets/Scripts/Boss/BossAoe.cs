@@ -14,6 +14,8 @@ public class BossAoe : MonoBehaviour
 
     private PlayerStatsMultiplier statsMultiplier;
 
+    public AudioClip attackSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,6 +61,7 @@ public class BossAoe : MonoBehaviour
         Attack();
         dealDamage = true;
         yield return new WaitForSeconds(0.1f);
+        SoundManager.instance.PlaySound(attackSound, transform, 1f);
         Destroy(gameObject);
     }
 

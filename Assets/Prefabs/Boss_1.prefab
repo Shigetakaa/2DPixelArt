@@ -86,7 +86,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1834961577
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -4250375987827614263, guid: 76a59ef996c53c64bb48fae131d5727d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -283,6 +283,10 @@ MonoBehaviour:
   sprite: {fileID: 4764810491406410719}
   flashTime: 0.1
   statsMultiplier: {fileID: 0}
+  damageSound:
+  - {fileID: 8300000, guid: 7942478f97d0a714087eb5847759fc25, type: 3}
+  - {fileID: 8300000, guid: bcf8c2819f6ee544baa23b379aae54ce, type: 3}
+  victorySound: {fileID: 8300000, guid: 9217988262813e847bf9d17590f83921, type: 3}
 --- !u!95 &986133779128076296
 Animator:
   serializedVersion: 7

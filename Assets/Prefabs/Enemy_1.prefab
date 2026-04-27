@@ -353,6 +353,9 @@ MonoBehaviour:
   flashTime: 0.1
   minCoinAmount: 1
   maxCoinsAmount: 5
+  damageSound:
+  - {fileID: 8300000, guid: 7942478f97d0a714087eb5847759fc25, type: 3}
+  - {fileID: 8300000, guid: bcf8c2819f6ee544baa23b379aae54ce, type: 3}
 --- !u!95 &3675160698645673530
 Animator:
   serializedVersion: 7

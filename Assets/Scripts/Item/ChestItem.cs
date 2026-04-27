@@ -6,6 +6,8 @@ public class ChestItem : MonoBehaviour
     public SecondaryWeaponsManager secondaryWeapons;
     public ChestUIManager chestUI;
 
+    public AudioClip chestSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,6 +32,7 @@ public class ChestItem : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            SoundManager.instance.PlaySound(chestSound, transform, 1f);
             ChestUI();
             Destroy(gameObject);
         }

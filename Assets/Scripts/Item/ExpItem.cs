@@ -8,6 +8,8 @@ public class ExpItem : MonoBehaviour
     private float speed = 0f;
     private bool isMoving = false;
 
+    public AudioClip expSound;
+
     public void MoveTo(Transform player)
     {
         target = player;
@@ -31,6 +33,7 @@ public class ExpItem : MonoBehaviour
 
         if (player != null)
         {
+            SoundManager.instance.PlaySound(expSound, transform, 1f);
             player.GetExp(expAmount);
             Destroy(gameObject);
         }

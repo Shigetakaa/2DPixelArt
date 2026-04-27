@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PotionItem
   healthAmoount: 15
+  itemSound: {fileID: 8300000, guid: 38bde5898d894be4c994b49f341dc3f8, type: 3}
 --- !u!114 &-98271132439760195
 MonoBehaviour:
   m_ObjectHideFlags: 0

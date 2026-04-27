@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChestItem
   secondaryWeapons: {fileID: 0}
   chestUI: {fileID: 0}
+  chestSound: {fileID: 8300000, guid: 2c31ff3468aa892449b3600d0196dc4a, type: 3}
 --- !u!58 &3042701639312084732
 CircleCollider2D:
   m_ObjectHideFlags: 0

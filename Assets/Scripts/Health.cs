@@ -42,6 +42,9 @@ public class Health : MonoBehaviour
 
     public PlayerStatsMultiplier statsMultiplier;
 
+    public AudioClip[] damageSound;
+    public AudioClip deathSound;
+
     private void Start()
     {
         UpgradesManager.Instance.SetUpgrades(this);
@@ -117,6 +120,8 @@ public class Health : MonoBehaviour
             OnDeath?.Invoke(sender);
             isDead = true;
 
+            SoundManager.instance.PlaySound(deathSound, transform, 1f);
+
             // Sprawdzenie czy obiekt to gracz
             if (isPlayer && gameOverScreen != null)
             {
@@ -133,6 +138,8 @@ public class Health : MonoBehaviour
         {
             OnHit?.Invoke(sender);
             PlayFlash();
+
+            SoundManager.instance.PlayRandomSounds(damageSound, transform, 1f);
         }
     }
 
