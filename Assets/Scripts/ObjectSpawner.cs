@@ -11,10 +11,10 @@ public class ObjectSpawner : MonoBehaviour
     public int elementsNumber = 20000;
     public int waterNumber = 50;
 
-    public Vector2 elementsMinPos = new Vector2(-209f, -151f);
-    public Vector2 elementsMaxPos = new Vector2(233f, 142f);
-    public Vector2 waterMinPos = new Vector2(-207f, -146f);
-    public Vector2 waterMaxPos = new Vector2(229f, 139f);
+    public Vector2 elementsMinPos = new Vector2(-205f, -149f);
+    public Vector2 elementsMaxPos = new Vector2(232f, 142f);
+    public Vector2 waterMinPos = new Vector2(-200f, -144f);
+    public Vector2 waterMaxPos = new Vector2(227f, 137f);
 
     public GameSettingsManager settings;
 
