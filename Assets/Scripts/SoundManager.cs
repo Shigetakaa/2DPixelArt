@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class SoundManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -38,8 +44,6 @@ public class SoundManager : MonoBehaviour
         audioSource.volume = volume * GetVolume();
 
         audioSource.Play();
-
-        float audioLength = audioSource.clip.length;
 
         Destroy(audioSource.gameObject, audioSource.clip.length);
     }
@@ -64,8 +68,6 @@ public class SoundManager : MonoBehaviour
         audioSource.volume = volume * GetVolume();
 
         audioSource.Play();
-
-        float audioLength = audioSource.clip.length;
 
         Destroy(audioSource.gameObject, audioSource.clip.length);
     }
