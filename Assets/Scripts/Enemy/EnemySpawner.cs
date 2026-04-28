@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject timer;
 
     public float spawnRadius = 30.0f;
-    public float spawnCooldown = 1.0f;
+    public float spawnCooldown = 1.2f;
     private float spawnTime;
 
     private Timer timerScript;
@@ -35,11 +35,11 @@ public class EnemySpawner : MonoBehaviour
         switch (GameSettingsManager.Instance.chosenMap)
         {
             case Map.Forest:
-                spawnCooldown = 1.0f;
+                spawnCooldown = 1.2f;
                 break;
 
             case Map.Beach:
-                spawnCooldown = 0.5f;
+                spawnCooldown = 0.7f;
                 break;
         }
     }
