@@ -28,7 +28,7 @@ public class StartGameManager : MonoBehaviour
         
     }
 
-    public void ChosenMap(string map)
+    public void ChosenMap(int mapIndex)
     {
         Button pressedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
 
@@ -39,7 +39,7 @@ public class StartGameManager : MonoBehaviour
         pressedMapButton = pressedButton;
         pressedMapButton.Select();
 
-        GameSettingsManager.Instance.chosenMap = map;
+        GameSettingsManager.Instance.chosenMap = (Map)mapIndex;
         UpdateStartButton();
     }
 
@@ -65,7 +65,7 @@ public class StartGameManager : MonoBehaviour
 
     public void OnStartGamePress()
     {
-        SceneManager.LoadScene(GameSettingsManager.Instance.chosenMap);
+        SceneManager.LoadScene(GameSettingsManager.Instance.chosenMap.ToString());
         Time.timeScale = 1;
     }
 

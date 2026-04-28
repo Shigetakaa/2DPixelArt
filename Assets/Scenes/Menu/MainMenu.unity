@@ -2675,7 +2675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d185b38b74b0de0429699007052ff985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreboardManager
-  mapName: Beach
+  mapName: 1
   easyScore: {fileID: 1604701457}
   normalScore: {fileID: 1676799940}
   hardScore: {fileID: 424386340}
@@ -3578,11 +3578,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1705996301}
         m_TargetAssemblyTypeName: StartGameManager, Assembly-CSharp
         m_MethodName: ChosenMap
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: Beach
           m_BoolArgument: 0
@@ -10593,7 +10593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d185b38b74b0de0429699007052ff985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreboardManager
-  mapName: Forest
+  mapName: 0
   easyScore: {fileID: 1912691545}
   normalScore: {fileID: 1332790924}
   hardScore: {fileID: 1300209776}
@@ -21749,7 +21749,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1705996301}
         m_TargetAssemblyTypeName: StartGameManager, Assembly-CSharp
         m_MethodName: ChosenMap
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25604,7 +25604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b529213000dfe4c8ab6d4cc68ff14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSettingsManager
-  chosenMap: 
+  chosenMap: 0
   chosenDifficulty: 0
 --- !u!4 &1888671835
 Transform:

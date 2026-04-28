@@ -31,6 +31,21 @@ public class ObjectSpawner : MonoBehaviour
         WaterSpawner();
     }
 
+    public GameObject[] GetMapElements()
+    {
+        switch (GameSettingsManager.Instance.chosenMap)
+        {
+            case Map.Forest:
+                return elementsMeadow;
+
+            case Map.Beach:
+                return elementsDesert;
+
+            default:
+                return elementsMeadow;
+        }
+    }
+
     public void WaterSpawner()
     {
         for(int i = 0; i < waterNumber; i++)
@@ -63,6 +78,8 @@ public class ObjectSpawner : MonoBehaviour
 
     public void ElementsSpawner()
     {
+        GameObject[] elements = GetMapElements();
+
         for(int i = 0; i < elementsNumber; i++)
         {
             Vector2 elementPos = new Vector2(
@@ -70,23 +87,9 @@ public class ObjectSpawner : MonoBehaviour
                 UnityEngine.Random.Range(elementsMinPos.y, elementsMaxPos.y)
             );
 
-            if(settings.chosenMap.Contains("Forest"))
-            {
-                int randomSpawn = UnityEngine.Random.Range(0, elementsMeadow.Length);
-                GameObject chosenElement = elementsMeadow[randomSpawn];
-                Instantiate(chosenElement, new Vector3(elementPos.x, elementPos.y, -1), Quaternion.identity);
-            } else
-            {
-                int randomSpawn = UnityEngine.Random.Range(0, elementsDesert.Length);
-                GameObject chosenElement = elementsDesert[randomSpawn];
-                Instantiate(chosenElement, new Vector3(elementPos.x, elementPos.y, -1), Quaternion.identity);
-            }
+            int randomSpawn = UnityEngine.Random.Range(0, elements.Length);
+            GameObject chosenElement = elements[randomSpawn];
+            Instantiate(chosenElement, new Vector3(elementPos.x, elementPos.y, -1), Quaternion.identity);  
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -23,8 +23,25 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnTime = spawnCooldown;
         timerScript = timer.GetComponent<Timer>();
+
+        GetMap();
+
+        spawnTime = spawnCooldown;
+    }
+
+    public void GetMap()
+    {
+        switch (GameSettingsManager.Instance.chosenMap)
+        {
+            case Map.Forest:
+                spawnCooldown = 1.0f;
+                break;
+
+            case Map.Beach:
+                spawnCooldown = 0.5f;
+                break;
+        }
     }
 
     // Update is called once per frame
