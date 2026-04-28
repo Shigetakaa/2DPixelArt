@@ -6,7 +6,7 @@ public class Ring : MonoBehaviour, SecondaryWeaponStats
 {
     public GameObject ringAttack;
 
-    public float ringDamage = 7f;
+    public float ringDamage = 4f;
     public float ringAttackCooldown = 4f;
     public float finalCooldown;
     public int attackAmount = 3;
@@ -60,8 +60,6 @@ public class Ring : MonoBehaviour, SecondaryWeaponStats
             RingAttack attack = ringAttackObject.GetComponent<RingAttack>();
 
             attack.Initialize(GetDamage(), player);
-
-            // attack.transform.position = new Vector3(attack.transform.position.x, spawnAttackPos.y, -1f);
         }
     }
 

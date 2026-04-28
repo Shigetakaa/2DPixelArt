@@ -43,7 +43,7 @@ public class RingAttack : MonoBehaviour
         this.player = player;
     }
 
-    private IEnumerator ActivateRingAttack()
+    public IEnumerator ActivateRingAttack()
     {
         yield return new WaitForSeconds(warnTime);
         Attack();
