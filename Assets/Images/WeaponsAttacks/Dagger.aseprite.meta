@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Dagger
     originalName: 
-    pivot: {x: 0.7378658, y: 0.4984086}
+    pivot: {x: 0.7357229, y: 0.660047}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 

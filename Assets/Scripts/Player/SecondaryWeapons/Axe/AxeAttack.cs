@@ -17,7 +17,6 @@ public class AxeAttack : MonoBehaviour
     private SpriteRenderer sprite;
     public Vector2 hitboxOffset = new Vector2(-0.3f, 0.6f);
     public Transform areaOrigin;
-    private CircleCollider2D axeAttack;
     private PlayerStatsMultiplier statsMultiplier;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,11 +24,8 @@ public class AxeAttack : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
-        axeAttack = GetComponent<CircleCollider2D>();
-        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
 
-        axeAttack.isTrigger = true;
-        axeAttack.radius = axeAttackRadius;
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
     }
 
     // Update is called once per frame

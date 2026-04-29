@@ -8,6 +8,7 @@ public class Ring : MonoBehaviour, SecondaryWeaponStats
 
     public float ringDamage = 4f;
     public float ringAttackCooldown = 4f;
+    public float minCooldown = 0.1f;
     public float finalCooldown;
     public int attackAmount = 3;
     public int finalNumber;
@@ -31,6 +32,7 @@ public class Ring : MonoBehaviour, SecondaryWeaponStats
     {
         finalNumber = Mathf.RoundToInt((attackAmount + statsMultiplier.ringNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = ringAttackCooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator RingAttackCooldown()

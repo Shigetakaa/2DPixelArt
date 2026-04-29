@@ -13,6 +13,7 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
     public int finalNumber;
     public float daggerAttackSpeed = 10f;
     public float daggerAttackCooldown = 2f;
+    public float minCooldown = 0.1f;
     float finalCooldown;
 
     public Vector2 areaMinPos = new Vector2(-10, -10);
@@ -37,6 +38,7 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
     {
         finalNumber = Mathf.RoundToInt((daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = (daggerAttackCooldown + statsMultiplier.daggerCooldownBonus) * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator DaggerAttackCooldown()

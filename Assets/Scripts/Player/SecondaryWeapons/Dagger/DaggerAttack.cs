@@ -19,7 +19,6 @@ public class DaggerAttack : MonoBehaviour
     private SpriteRenderer sprite;
     public Vector2 hitboxOffset = new Vector2(-1.4f, 0f);
     public Transform areaOrigin;
-    private CapsuleCollider2D daggerAttack;
 
     public GameObject player;
 
@@ -30,10 +29,8 @@ public class DaggerAttack : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
-        daggerAttack = GetComponent<CapsuleCollider2D>();
-        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
 
-        daggerAttack.isTrigger = true;
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
     }
 
     // Update is called once per frame

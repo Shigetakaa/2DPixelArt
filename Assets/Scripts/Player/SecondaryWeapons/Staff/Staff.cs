@@ -8,6 +8,7 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
 
     public float staffDamage = 4f;
     public float staffAttackCooldown = 4f;
+    public float minCooldown = 0.1f;
     public float finalCooldown;
     public float staffAttackSpeed = 10f;
     public int staffNumber = 1;
@@ -35,6 +36,7 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
     {
         finalNumber = Mathf.RoundToInt((staffNumber + statsMultiplier.staffNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = staffAttackCooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator StaffAttackCooldown()

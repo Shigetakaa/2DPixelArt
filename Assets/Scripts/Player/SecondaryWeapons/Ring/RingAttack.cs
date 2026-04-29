@@ -11,7 +11,6 @@ public class RingAttack : MonoBehaviour
     private SpriteRenderer sprite;
     public Transform areaOrigin;
     public Animator animator;
-    private CircleCollider2D ringAttack;
 
     public GameObject player;
 
@@ -22,11 +21,8 @@ public class RingAttack : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
-        ringAttack = GetComponent<CircleCollider2D>();
-        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
 
-        ringAttack.isTrigger = true;
-        ringAttack.radius = ringAttackRadius;
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
 
         StartCoroutine(ActivateRingAttack());
     }

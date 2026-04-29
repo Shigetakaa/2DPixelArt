@@ -13,6 +13,7 @@ public class Axe : MonoBehaviour, SecondaryWeaponStats
     public float axeRotateSpeed = 10f;
     public float timeLimit = 4f;
     public float axeAttackCooldown = 4f;
+    public float minCooldown = 0.1f;
     public float finalCooldown;
 
     private GameObject player;
@@ -32,6 +33,7 @@ public class Axe : MonoBehaviour, SecondaryWeaponStats
     {
         finalNumber = Mathf.RoundToInt((axeNumber + statsMultiplier.axeNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = axeAttackCooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator AxeAttackCooldown()

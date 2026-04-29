@@ -10,7 +10,6 @@ public class StaffAttack : MonoBehaviour
     private SpriteRenderer sprite;
     public Vector2 hitboxOffset = new Vector2(0.05f, 0.05f);
     public Transform areaOrigin;
-    private CircleCollider2D staffAttack;
 
     public GameObject player;
     private Staff staff;
@@ -22,11 +21,8 @@ public class StaffAttack : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
-        staffAttack = GetComponent<CircleCollider2D>();
-        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
 
-        staffAttack.isTrigger = true;
-        staffAttack.radius = staffAttackRadius;
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
     }
 
     // Update is called once per frame
