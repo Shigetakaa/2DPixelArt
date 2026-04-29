@@ -36,14 +36,22 @@ public class SettingsManager : MonoBehaviour
 
         resolutionDropdown.ClearOptions();
 
-        var options = new System.Collections.Generic.List<string>();
+        var options = new List<string>();
+        var unique = new HashSet<string>();
+        var uniqueResolutions = new List<Resolution>();
 
-        for(int i = 0; i < resolutions.Length; i++)
+        foreach(var res in resolutions)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+            string key = res.width + "x" + res.height;
+
+            if (unique.Add(key))
+            {
+                options.Add(res.width + " x " + res.height);
+                uniqueResolutions.Add(res);
+            }
         }
 
+        resolutions = uniqueResolutions.ToArray();
         resolutionDropdown.AddOptions(options);
     }
 
@@ -86,6 +94,7 @@ public class SettingsManager : MonoBehaviour
 
 
         int index = PlayerPrefs.GetInt("resolutionIndex", 0);
+        index = Mathf.Clamp(index, 0, resolutions.Length - 1);
         resolutionDropdown.value = index;
         resolutionDropdown.RefreshShownValue();
         SetResolution(index);
