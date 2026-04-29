@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,16 +17,17 @@ public class StartGameManager : MonoBehaviour
     public GameObject startGameScreen;
     public GameObject controls;
 
+    public AudioClip buttonSound;
+    public AudioClip startGameSound;
+    private AudioSource audioSource;
+    public AudioMixer audioMixer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         startGameButton.interactable = false;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void ChosenMap(int mapIndex)
@@ -65,6 +67,10 @@ public class StartGameManager : MonoBehaviour
 
     public void OnStartGamePress()
     {
+        audioSource.clip = startGameSound;
+        audioSource.volume = GetVolume();
+        audioSource.Play();
+
         SceneManager.LoadScene(GameSettingsManager.Instance.chosenMap.ToString());
         Time.timeScale = 1;
     }
@@ -74,5 +80,20 @@ public class StartGameManager : MonoBehaviour
         mainMenu.SetActive(true);
         controls.SetActive(true);
         startGameScreen.SetActive(false);
+
+        audioSource.clip = buttonSound;
+        audioSource.volume = GetVolume();
+        audioSource.Play();
+    }
+
+    public float GetVolume()
+    {
+        float db;
+        if(audioMixer.GetFloat("volume", out db))
+        {
+            return Mathf.Pow(10f, db / 20f);
+        }
+
+        return 1f;
     }
 }
