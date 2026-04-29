@@ -724,7 +724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1258.5092, y: 713.89526}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1811212890444496545
@@ -781,6 +781,7 @@ MonoBehaviour:
   damageText: {fileID: 2357120850384764985}
   numberText: {fileID: 4880842618000933608}
   cooldownText: {fileID: 2780285535393873096}
+  numberTextArea: {fileID: 797545824818866285}
 --- !u!1 &6807908537273031277
 GameObject:
   m_ObjectHideFlags: 0

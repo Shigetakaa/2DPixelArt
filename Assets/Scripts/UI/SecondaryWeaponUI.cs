@@ -9,6 +9,8 @@ public class SecondaryWeaponUI : MonoBehaviour
     public TextMeshProUGUI numberText;
     public TextMeshProUGUI cooldownText;
 
+    public TextMeshProUGUI numberTextArea;
+
     private SecondaryWeaponStats secondaryWeapon;
 
     public void Initialize(SecondaryWeaponStats weapon, string weaponName)
@@ -30,7 +32,18 @@ public class SecondaryWeaponUI : MonoBehaviour
     private void UpdateUI()
     {
         damageText.text = secondaryWeapon.GetDamage().ToString("F2");
-        numberText.text = secondaryWeapon.GetNumber().ToString("F0");
         cooldownText.text = secondaryWeapon.GetCooldown().ToString("F2") + "s";
+
+        if(secondaryWeapon is Aura)
+        {
+            numberText.gameObject.SetActive(false);
+            numberTextArea.gameObject.SetActive(false);
+        }
+        else
+        {
+            numberText.gameObject.SetActive(true);
+            numberTextArea.gameObject.SetActive(true);
+            numberText.text = secondaryWeapon.GetNumber().ToString("F0");
+        }
     }
 }
