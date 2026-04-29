@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoveSpeed
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: "Pr\u0119dko\u015B\u0107"
-  perkDescription: "Pr\u0119dko\u015B\u0107 ruchu -> +x0.1"
+  perkDescription: "Pr\u0119dko\u015B\u0107 ruchu --> +x0.05"
   perkIcon: {fileID: 21300000, guid: 8a8b4c4f778a345b38a4c42504e8712b, type: 3}
   perkType: 4
-  perkValue: 0.1
+  perkValue: 0.05

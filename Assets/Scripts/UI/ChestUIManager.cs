@@ -31,6 +31,8 @@ public class ChestUIManager : MonoBehaviour
 
     private List<GameObject> spawnedIcons = new List<GameObject>();
 
+    public AudioClip weaponSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -79,6 +81,8 @@ public class ChestUIManager : MonoBehaviour
             levelUpPanelManager.AddWeaponPerk(weapon.weaponPerk);
         }
 
+        SoundManager.instance.PlaySound(weaponSound, transform, 1f);
+        
         Time.timeScale = 1;
         chestPanel.SetActive(false);
         characterStats.SetActive(false);
@@ -86,31 +90,6 @@ public class ChestUIManager : MonoBehaviour
 
         AddWeaponIcon();
     }
-
-    // public void RefreshWeaponsPanel()
-    // {
-    //     foreach (var icon in spawnedIcons)
-    //     {
-    //         Destroy(icon);
-    //     }
-    //     spawnedIcons.Clear();
-
-    //     for(int i = 0; i < secondaryWeapons.ownedSecondaryWeapons.Count; i++)
-    //     {
-    //         var weaponData = secondaryWeapons.ownedSecondaryWeapons[i];
-    //         var weaponStats = secondaryWeapons.activeWeaponsIcons[i];
-
-    //         GameObject iconObject = Instantiate(weaponIconPrefab, weaponsPanel);
-    //         Image image = iconObject.transform.Find("Icon").GetComponent<Image>();
-
-    //         image.sprite = weaponData.weaponIcon;
-
-    //         SecondaryWeaponUI weaponUI = iconObject.GetComponent<SecondaryWeaponUI>();
-    //         weaponUI.Initialize(weaponStats, weaponData.weaponName);
-
-    //         spawnedIcons.Add(iconObject);
-    //     }
-    // }
 
     public void AddWeaponIcon()
     {

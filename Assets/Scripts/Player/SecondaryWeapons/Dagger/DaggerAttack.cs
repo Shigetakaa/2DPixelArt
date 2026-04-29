@@ -6,20 +6,19 @@ using UnityEngine;
 public class DaggerAttack : MonoBehaviour
 {
     private float finalDamage;
-    public float daggerAttackRadius = 0.3f;
+    public float daggerAttackRadius = 0.5f;
     public int pierceNumber = 3;
     public float maxTimeLimit = 1f;
     private float speed;
     private Vector2 direction;
     private float timeLimit;
-    public float daggerDamageCooldown = 0.2f;
+    public float daggerDamageCooldown = 0.1f;
     private float nextDaggerDamage;
 
     private Transform enemy;
     private SpriteRenderer sprite;
-    public Vector2 hitboxOffset = new Vector2(-1.4f, 0f);
+    public Vector2 hitboxOffset = new Vector2(-1.4f, -0.15f);
     public Transform areaOrigin;
-    private CapsuleCollider2D daggerAttack;
 
     public GameObject player;
 
@@ -30,10 +29,8 @@ public class DaggerAttack : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
-        daggerAttack = GetComponent<CapsuleCollider2D>();
-        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
 
-        daggerAttack.isTrigger = true;
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
     }
 
     // Update is called once per frame

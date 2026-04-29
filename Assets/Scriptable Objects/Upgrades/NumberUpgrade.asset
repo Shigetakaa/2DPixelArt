@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994caffd8c53c9a41ab9e71f8e666c5b, type: 3}
+  m_Name: NumberUpgrade
+  m_EditorClassIdentifier: Assembly-CSharp::Upgrades
+  upgradeName: "Liczba pocisk\xF3w"
+  upgradeDescription: "Zwi\u0119ksza liczb\u0119 atak\xF3w broni dodatkowych.\n+x0.1"
+  upgradeIcon: {fileID: 21300000, guid: 795215ef0b7634ecb83c779e2b6c6237, type: 3}
+  cost: 500
+  costMultiplier: 2
+  maxLevel: 5
+  statBonusPerLevel: 0.1
+  upgradeType: 8

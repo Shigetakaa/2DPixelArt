@@ -42,6 +42,9 @@ public class Health : MonoBehaviour
 
     public PlayerStatsMultiplier statsMultiplier;
 
+    public AudioClip[] damageSound;
+    public AudioClip deathSound;
+
     private void Start()
     {
         UpgradesManager.Instance.SetUpgrades(this);
@@ -117,6 +120,8 @@ public class Health : MonoBehaviour
             OnDeath?.Invoke(sender);
             isDead = true;
 
+            SoundManager.instance.PlaySound(deathSound, transform, 1f);
+
             // Sprawdzenie czy obiekt to gracz
             if (isPlayer && gameOverScreen != null)
             {
@@ -133,12 +138,16 @@ public class Health : MonoBehaviour
         {
             OnHit?.Invoke(sender);
             PlayFlash();
+
+            SoundManager.instance.PlayRandomSounds(damageSound, transform, 1f);
         }
     }
 
     public void GetHealth(float amount)
     {
         health += amount;
+
+        PlayHealFlash();
 
         float maxHealth = GetFinalMaxHealth();
         
@@ -197,6 +206,23 @@ public class Health : MonoBehaviour
     private IEnumerator Flash()
     {
         sprite.color = Color.red;
+        yield return new WaitForSeconds(flashTime);
+        sprite.color = originalColor;
+    }
+
+    private void PlayHealFlash()
+    {
+        if(flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+        }
+
+        flashCoroutine = StartCoroutine(HealFlash());
+    }
+
+    private IEnumerator HealFlash()
+    {
+        sprite.color = Color.green;
         yield return new WaitForSeconds(flashTime);
         sprite.color = originalColor;
     }

@@ -10,9 +10,10 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
 
     public float daggerDamage = 2f;
     public int daggerNumber = 1;
-    public float finalNumber;
+    public int finalNumber;
     public float daggerAttackSpeed = 10f;
     public float daggerAttackCooldown = 2f;
+    public float minCooldown = 0.1f;
     float finalCooldown;
 
     public Vector2 areaMinPos = new Vector2(-10, -10);
@@ -35,8 +36,9 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-        finalNumber = (daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier;
+        finalNumber = Mathf.RoundToInt((daggerNumber + statsMultiplier.daggerNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = (daggerAttackCooldown + statsMultiplier.daggerCooldownBonus) * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator DaggerAttackCooldown()
@@ -87,6 +89,8 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
     {
         float spread = Mathf.Clamp(20f + finalNumber * 4f, 20f, 100f);
 
+        bool isEven = finalNumber % 2 ==0;
+
         float angleStep = 0f;
 
         if(finalNumber > 1)
@@ -100,9 +104,22 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
         {
             float angle;
 
-            if(finalNumber == 1)
+            if (isEven)
             {
-                angle = 0f;
+                int middleIndex = finalNumber / 2;
+
+                if(i == middleIndex)
+                {
+                    angle = 0f;
+                }
+                else if(i > middleIndex)
+                {
+                    angle = startAngle + ((i -1) * angleStep);
+                }
+                else
+                {
+                    angle = startAngle + (i * angleStep);
+                }
             }
             else
             {

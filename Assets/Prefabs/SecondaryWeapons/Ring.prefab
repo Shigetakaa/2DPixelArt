@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ring
   ringAttack: {fileID: 4865566587898826812, guid: 94fc66f81454e4e4883dd5e8b092f225, type: 3}
+  ringDamage: 4
   ringAttackCooldown: 4
+  finalCooldown: 0
   attackAmount: 3
   finalNumber: 0
   areaMinPos: {x: -10, y: -10}

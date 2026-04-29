@@ -8,11 +8,12 @@ public class Axe : MonoBehaviour, SecondaryWeaponStats
 
     public float axeDamage = 2f;
     public int axeNumber = 2;
-    public float finalNumber;
+    public int finalNumber;
     public float axeSpawnRadius = 1.5f;
     public float axeRotateSpeed = 10f;
     public float timeLimit = 4f;
     public float axeAttackCooldown = 4f;
+    public float minCooldown = 0.1f;
     public float finalCooldown;
 
     private GameObject player;
@@ -30,8 +31,9 @@ public class Axe : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-        finalNumber = (axeNumber + statsMultiplier.axeNumberBonus) * statsMultiplier.numberMultiplier;
+        finalNumber = Mathf.RoundToInt((axeNumber + statsMultiplier.axeNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = axeAttackCooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator AxeAttackCooldown()

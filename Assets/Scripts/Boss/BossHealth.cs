@@ -25,6 +25,9 @@ public class BossHealth : MonoBehaviour
 
     public PlayerStatsMultiplier statsMultiplier;
 
+    public AudioClip[] damageSound;
+    public AudioClip victorySound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -105,6 +108,8 @@ public class BossHealth : MonoBehaviour
             OnDeath?.Invoke(sender);
             isDead = true;
 
+            SoundManager.instance.PlaySound(victorySound, transform, 1f);
+
             Health player = sender.GetComponent<Health>();
             if(player != null)
             {
@@ -120,6 +125,8 @@ public class BossHealth : MonoBehaviour
         {
             OnHit?.Invoke(sender);
             PlayFlash();
+
+            SoundManager.instance.PlayRandomSounds(damageSound, transform, 1f);
         }
     }
 

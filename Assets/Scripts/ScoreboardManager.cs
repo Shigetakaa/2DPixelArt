@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreboardManager : MonoBehaviour
 {
-    public string mapName;
+    public Map mapName;
 
     public TextMeshProUGUI easyScore;
     public TextMeshProUGUI normalScore;

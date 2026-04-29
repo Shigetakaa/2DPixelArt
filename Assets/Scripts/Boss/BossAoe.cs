@@ -14,6 +14,8 @@ public class BossAoe : MonoBehaviour
 
     private PlayerStatsMultiplier statsMultiplier;
 
+    public AudioClip attackSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +25,8 @@ public class BossAoe : MonoBehaviour
 
         aoeAttack.isTrigger = true;
         aoeAttack.radius = aoeRadius;
+
+        GetDifficulty();
 
         StartCoroutine(ActivateAoeAttack());
     }
@@ -54,8 +58,10 @@ public class BossAoe : MonoBehaviour
     private IEnumerator ActivateAoeAttack()
     {
         yield return new WaitForSeconds(warnTime);
+        Attack();
         dealDamage = true;
         yield return new WaitForSeconds(0.1f);
+        SoundManager.instance.PlaySound(attackSound, transform, 1f);
         Destroy(gameObject);
     }
 
@@ -72,8 +78,6 @@ public class BossAoe : MonoBehaviour
     public void DealDamage(Collider2D collision)
     {
         if(!dealDamage) return;
-
-        Attack();
 
         float finalDamage = aoeDamage * statsMultiplier.difficultyMultiplier;
 
@@ -93,5 +97,10 @@ public class BossAoe : MonoBehaviour
     public void Attack()
     {
         animator.SetTrigger("Attack");
+    }
+
+    public void ActivateAoeAnimation()
+    {
+        dealDamage = true;
     }
 }

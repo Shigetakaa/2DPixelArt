@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
@@ -14,6 +15,15 @@ public class MainMenuManager : MonoBehaviour
     public GameObject weaponsScreen;
     public GameObject upgradeScreen;
 
+    public AudioClip buttonSound;
+    private AudioSource audioSource;
+    public AudioMixer audioMixer;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         coinsText.text = CoinsManager.Instance.Coins.ToString();
@@ -25,18 +35,24 @@ public class MainMenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         startGameScreen.SetActive(true);
+
+        PlayButtonSound();
     }
 
     public void OnWeaponsPress()
     {
         mainMenu.SetActive(false);
         weaponsScreen.SetActive(true);
+
+        PlayButtonSound();
     }
 
     public void OnWeaponsBackPress()
     {
         mainMenu.SetActive(true);
         weaponsScreen.SetActive(false);
+
+        PlayButtonSound();
     }
 
     // Przycisk ulepszenia
@@ -44,12 +60,16 @@ public class MainMenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         upgradeScreen.SetActive(true);
+
+        PlayButtonSound();
     }
 
     public void OnUpgradesBackPress()
     {
         mainMenu.SetActive(true);
         upgradeScreen.SetActive(false);
+
+        PlayButtonSound();
     }
 
     // Przycisk wyniki
@@ -57,12 +77,16 @@ public class MainMenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         scoreboardScreen.SetActive(true);
+
+        PlayButtonSound();
     }
 
     public void OnScoreboardBackPress()
     {
         mainMenu.SetActive(true);
         scoreboardScreen.SetActive(false);
+
+        PlayButtonSound();
     }
 
     // Przycisk ustawienia
@@ -70,17 +94,39 @@ public class MainMenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         settingsScreen.SetActive(true);
+
+        PlayButtonSound();
     }
 
     public void OnSettingsBackPress()
     {
         mainMenu.SetActive(true);
         settingsScreen.SetActive(false);
+
+        PlayButtonSound();
     }
 
     // Przycisk wyjdź
     public void OnCloseGamePress()
     {
         Application.Quit();
+    }
+
+    public void PlayButtonSound()
+    {
+        audioSource.clip = buttonSound;
+        audioSource.volume = GetVolume();
+        audioSource.Play();
+    }
+
+    public float GetVolume()
+    {
+        float db;
+        if(audioMixer.GetFloat("volume", out db))
+        {
+            return Mathf.Pow(10f, db / 20f);
+        }
+
+        return 1f;
     }
 }

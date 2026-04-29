@@ -6,12 +6,13 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
 {
     public GameObject staffAttack;
 
-    public float staffDamage = 5f;
+    public float staffDamage = 4f;
     public float staffAttackCooldown = 4f;
+    public float minCooldown = 0.1f;
     public float finalCooldown;
     public float staffAttackSpeed = 10f;
     public int staffNumber = 1;
-    public float finalNumber;
+    public int finalNumber;
     
     public Vector2 areaMinPos = new Vector2(-10f, -10f);
     public Vector2 areaMaxPos = new Vector2(10f, 10f);
@@ -33,8 +34,9 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-        finalNumber = (staffNumber + statsMultiplier.staffNumberBonus) * statsMultiplier.numberMultiplier;
+        finalNumber = Mathf.RoundToInt((staffNumber + statsMultiplier.staffNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = staffAttackCooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator StaffAttackCooldown()

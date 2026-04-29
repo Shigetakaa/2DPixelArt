@@ -9,7 +9,8 @@ public enum UpgradeType
     Damage,
     BonusExp,
     ItemMagnet,
-    Difficulty
+    Difficulty,
+    Number
 }
 
 [CreateAssetMenu(fileName = "Upgrades", menuName = "Scriptable Objects/Upgrades")]

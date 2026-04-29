@@ -13,14 +13,14 @@ public class ItemSpawner : MonoBehaviour
     public SecondaryWeaponsManager secondaryWeapons;
     public ChestUIManager chestUI;
 
-    public Vector2 chestMinPos = new Vector2(-7f, -7f);
-    public Vector2 chestMaxPos = new Vector2(7f, 7f);
+    public Vector2 chestMinPos = new Vector2(-200f, -144f);
+    public Vector2 chestMaxPos = new Vector2(227f, 137f);
 
-    public Vector2 itemMinPos = new Vector2(-207f, -141f);
-    public Vector2 itemMaxPos = new Vector2(207f, 141f);
+    public Vector2 itemMinPos = new Vector2(-205f, -149f);
+    public Vector2 itemMaxPos = new Vector2(232f, 143f);
 
     public LayerMask waterLayer;
-    public float checkRadius = 0.5f;
+    public float checkRadius = 5f;
     public int spawnAttempts = 10;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -1,48 +1,108 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
-    Resolution[] resolutions;
+    public AudioMixer audioMixer;
+    private Resolution[] resolutions;
     public TMP_Dropdown resolutionDropdown;
+    public Toggle fullScreenToggle;
+    public Slider volumeSlider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+        GetResolutions();
+        GetSettings();
+    }
+
+    void SavedResolutionIndex()
+    {
+        if (PlayerPrefs.HasKey("resolutionIndex"))
+        {
+            int savedIndex = PlayerPrefs.GetInt("resolutionIndex");
+
+            resolutionDropdown.value = savedIndex;
+            resolutionDropdown.RefreshShownValue();
+        }
+    }
+
+    void GetResolutions()
     {
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
 
-        List<string> options = new List<string>();
+        var options = new List<string>();
+        var unique = new HashSet<string>();
+        var uniqueResolutions = new List<Resolution>();
 
-        int currentResolutionsIndex = 0;
-
-        for(int i = 0; i < resolutions.Length; i++)
+        foreach(var res in resolutions)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+            string key = res.width + "x" + res.height;
 
-            if(resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
+            if (unique.Add(key))
             {
-                currentResolutionsIndex = i;
+                options.Add(res.width + " x " + res.height);
+                uniqueResolutions.Add(res);
             }
         }
 
+        resolutions = uniqueResolutions.ToArray();
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionsIndex;
-        resolutionDropdown.RefreshShownValue();
+    }
+
+    public void SetVolume(float volume)
+    {
+        float db = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20f;
+
+        audioMixer.SetFloat("volume", db);
+        PlayerPrefs.SetFloat("volume", volume);
+        PlayerPrefs.Save();
     }
 
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+        PlayerPrefs.SetInt("fullscreen", isFullScreen ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
-    public void SetResolution(int resolutionIndex)
+    public void SetResolution(int index)
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        Resolution res = resolutions[index];
+
+        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+
+        PlayerPrefs.SetInt("resolutionIndex", index);
+        PlayerPrefs.Save();
+    }
+
+    public void GetSettings()
+    {
+        if (PlayerPrefs.HasKey("volume"))
+        {
+            float vol = PlayerPrefs.GetFloat("volume");
+            volumeSlider.value = vol;
+
+            float db = Mathf.Log10(Mathf.Clamp(vol, 0.0001f, 1f)) * 20f;
+            audioMixer.SetFloat("volume", db);
+        }
+
+
+        int index = PlayerPrefs.GetInt("resolutionIndex", 0);
+        index = Mathf.Clamp(index, 0, resolutions.Length - 1);
+        resolutionDropdown.value = index;
+        resolutionDropdown.RefreshShownValue();
+        SetResolution(index);
+
+
+        bool isFullScreen = PlayerPrefs.GetInt("fullscreen", 1) == 1;
+        fullScreenToggle.isOn = isFullScreen;
+        Screen.fullScreen = isFullScreen;
+
     }
 }

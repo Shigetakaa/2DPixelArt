@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4489130838440866812}
   - component: {fileID: 7193771098965196037}
-  - component: {fileID: 2276873294666407726}
   - component: {fileID: 9219547424031261158}
   - component: {fileID: -7318786755893472617}
   - component: {fileID: 2099563368241933780}
@@ -30,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4865566587898826812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 3.06728, y: -0.07538, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1671600297
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 5096900023035236499, guid: 022e91f61cb7ab84f9a49e8068f27035, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,42 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2276873294666407726
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4865566587898826812}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.023675084, y: 0.047350198}
-  m_Radius: 0.3
 --- !u!114 &9219547424031261158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,9 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationEventHelper
   OnAttackPerformed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnThunderTriggered:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9219547424031261158}

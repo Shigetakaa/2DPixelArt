@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class Aura : MonoBehaviour, SecondaryWeaponStats
 {
-    public float auraDamage = 3f;
+    public float auraDamage = 5f;
     public float finalDamage;
     public float auraRadius = 4.5f;
     public float auraCooldown = 4f;
+    public float minCooldown = 0.1f;
     public float finalCooldown;
-
-    private CircleCollider2D auraCollider;
 
     public GameObject auraAttack;
     public GameObject player;
@@ -20,11 +19,7 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        auraCollider = GetComponent<CircleCollider2D>();
         statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
-
-        auraCollider.isTrigger = true;
-        auraCollider.radius = auraRadius;
 
         StartCoroutine(ActivateAura());
     }
@@ -32,17 +27,15 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-        
+        finalCooldown = (auraCooldown + statsMultiplier.auraCooldownBonus) * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator ActivateAura()
     {
         while (true)
         {
-            finalCooldown = GetCooldown();
-
             yield return new WaitForSeconds(finalCooldown);
-
             DealDamage();
         }
     }
@@ -76,7 +69,7 @@ public class Aura : MonoBehaviour, SecondaryWeaponStats
 
     public float GetCooldown()
     {
-        return finalCooldown = (auraCooldown + statsMultiplier.auraCooldownBonus) * statsMultiplier.cooldownMultiplier;
+        return finalCooldown;
     }
 
     public float GetNumber()

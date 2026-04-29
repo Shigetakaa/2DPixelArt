@@ -8,8 +8,8 @@ public class StaffAttack : MonoBehaviour
 
     private Transform enemy;
     private SpriteRenderer sprite;
+    public Vector2 hitboxOffset = new Vector2(0.05f, 0.05f);
     public Transform areaOrigin;
-    private CircleCollider2D staffAttack;
 
     public GameObject player;
     private Staff staff;
@@ -21,11 +21,8 @@ public class StaffAttack : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
-        staffAttack = GetComponent<CircleCollider2D>();
-        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
 
-        staffAttack.isTrigger = true;
-        staffAttack.radius = staffAttackRadius;
+        statsMultiplier = player.GetComponent<PlayerStatsMultiplier>();
     }
 
     // Update is called once per frame
@@ -68,23 +65,29 @@ public class StaffAttack : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Vector3 position = areaOrigin == null ? Vector3.zero : areaOrigin.position;
-        Gizmos.DrawWireSphere(position, staffAttackRadius);
+        Vector3 position = transform.right * hitboxOffset.x +
+            transform.up * hitboxOffset.y;
+        Gizmos.DrawWireSphere(transform.position + position, staffAttackRadius);
     }
 
     public void DealDamage()
     {
-        foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, staffAttackRadius))
+        Vector2 position = (Vector2)(transform.right * hitboxOffset.x +
+            transform.up * hitboxOffset.y);
+
+        Vector2 hitboxPosition = (Vector2)transform.position + position;
+
+        foreach (Collider2D collision in Physics2D.OverlapCircleAll(hitboxPosition, staffAttackRadius))
         {
             BossHealth bossHealth = collision.GetComponent<BossHealth>();
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
-                bossHealth.GetHit(finalDamage, player);
+                bossHealth.GetHit(finalDamage, gameObject);
             }
             else if (enemyHealth != null)
             {
-                enemyHealth.GetHit(finalDamage, player);
+                enemyHealth.GetHit(finalDamage, gameObject);
             }
         }
     }

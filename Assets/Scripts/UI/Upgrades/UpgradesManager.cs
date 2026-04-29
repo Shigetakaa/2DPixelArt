@@ -30,17 +30,12 @@ public class UpgradesManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // controller = FindAnyObjectByType<Controller>();
-        // weaponParent = FindAnyObjectByType<WeaponParent>();
-        // health = FindAnyObjectByType<Health>();
 
-        // GetUpgrades();
     }
 
     public void SetUpgrades(Health newHealth)
     {
         health = newHealth;
-        // controller = newHealth.GetComponent<Controller>();
         statsMultiplier = newHealth.GetComponent<PlayerStatsMultiplier>();
 
         GetUpgrades();
@@ -59,11 +54,11 @@ public class UpgradesManager : MonoBehaviour
 
             float bonus = upgradeLevel * upgrade.statBonusPerLevel;
 
-            GetBonus(upgrade.upgradeType, bonus);
+            GetUpgrade(upgrade.upgradeType, bonus);
         }
     }
 
-    private void GetBonus(UpgradeType upgradeType, float bonus)
+    private void GetUpgrade(UpgradeType upgradeType, float bonus)
     {
         switch (upgradeType)
         {
@@ -97,6 +92,10 @@ public class UpgradesManager : MonoBehaviour
 
             case UpgradeType.Difficulty:
                 statsMultiplier?.AddDifficultyBonus(bonus);
+                break;
+
+            case UpgradeType.Number:
+                statsMultiplier?.AddNumberBonus(bonus);
                 break;
         }
     }

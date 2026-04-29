@@ -781,6 +781,7 @@ MonoBehaviour:
   damageText: {fileID: 2357120850384764985}
   numberText: {fileID: 4880842618000933608}
   cooldownText: {fileID: 2780285535393873096}
+  numberTextArea: {fileID: 797545824818866285}
 --- !u!1 &6807908537273031277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1133,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ilo\u015B\u0107:"
+  m_text: 'Liczba:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

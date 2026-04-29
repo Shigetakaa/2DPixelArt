@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Damage
   m_EditorClassIdentifier: Assembly-CSharp::StatPerk
   perkName: "Obra\u017Cenia"
-  perkDescription: "Obra\u017Cenia -> +x0.1"
+  perkDescription: "Obra\u017Cenia --> +x0.1"
   perkIcon: {fileID: 21300000, guid: 04d58332964c84f98aef2065a165326e, type: 3}
   perkType: 1
   perkValue: 0.1

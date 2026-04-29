@@ -7,7 +7,7 @@ public class GameSettingsManager : MonoBehaviour
 {
     public static GameSettingsManager Instance;
 
-    public string chosenMap;
+    public Map chosenMap;
     public Difficulty chosenDifficulty;
 
     void Awake()
@@ -23,7 +23,7 @@ public class GameSettingsManager : MonoBehaviour
         }
     }
 
-    private string GetScoreKey(string map, Difficulty difficulty)
+    private string GetScoreKey(Map map, Difficulty difficulty)
     {
         return "Wynik: " + map + " " + difficulty;
     }
@@ -46,7 +46,7 @@ public class GameSettingsManager : MonoBehaviour
         }
     }
 
-    public int GetKilledEnemies(string map, Difficulty difficulty)
+    public int GetKilledEnemies(Map map, Difficulty difficulty)
     {
         string key = GetScoreKey(map, difficulty);
         return PlayerPrefs.GetInt(key, 0);

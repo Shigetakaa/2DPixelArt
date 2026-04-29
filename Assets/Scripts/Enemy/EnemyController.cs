@@ -11,11 +11,8 @@ public class EnemyController : MonoBehaviour
 
     public float chaseDistance = 200, attackDistance = 0.8f;
 
-    public float attackCooldown = 1;
-    public float passedTime = 1;
-
     public LayerMask waterLayer;
-    public float waterDistance = 2f;
+    public float waterDistance = 3f;
 
     private void Start()
     {
@@ -49,11 +46,6 @@ public class EnemyController : MonoBehaviour
             {
                 // Atakowanie gracza
                 OnMovement?.Invoke(Vector2.zero);
-                if (passedTime >= attackCooldown)
-                {
-                    passedTime = 0;
-                    OnAttack?.Invoke();
-                }
             }
             else
             {
@@ -65,23 +57,36 @@ public class EnemyController : MonoBehaviour
                 Color rayColor = hit.collider != null ? Color.blue : Color.red;
                 Debug.DrawRay(transform.position, direction * waterDistance, rayColor);
 
-                // Skręt w bok gdy wykrywa wode
+                // Skręt gdy wykrywa wode
                 if(hit.collider != null)
                 {
-                    Vector2 avoidDirection = Vector2.Perpendicular(direction);
-                    OnMovement?.Invoke(avoidDirection.normalized);
+                    Vector2 left = new Vector2(-direction.y, direction.x);
+                    Vector2 right = new Vector2(direction.y, -direction.x);
+
+                    RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, left, waterDistance, waterLayer);
+                    RaycastHit2D hitRight = Physics2D.Raycast(transform.position, right, waterDistance, waterLayer);
+
+                    Debug.DrawRay(transform.position, left * waterDistance, Color.blue);
+                    Debug.DrawRay(transform.position, right * waterDistance, Color.blue);
+
+                    if(hitLeft.collider == null)
+                    {
+                        OnMovement?.Invoke(left.normalized);
+                    }
+                    else if( hitRight.collider == null)
+                    {
+                        OnMovement?.Invoke(right.normalized);
+                    }
+                    else
+                    {
+                        OnMovement?.Invoke(-direction);
+                    }
                 }
                 else
                 {
                     OnMovement?.Invoke(direction);
                 }
             }
-        }
-
-        // Zmniejszanie czasu oczekiwania na atak
-        if (passedTime < attackCooldown)
-        {
-            passedTime += Time.deltaTime;
         }
     }
 }

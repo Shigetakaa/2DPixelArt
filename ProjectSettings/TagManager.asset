@@ -45,8 +45,35 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Item
+  - name: Background
     uniqueID: 2870872239
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1774288715
+    locked: 0
+  - name: Water
+    uniqueID: 3312491641
+    locked: 0
+  - name: Chest
+    uniqueID: 2124593345
+    locked: 0
+  - name: Items
+    uniqueID: 837828867
+    locked: 0
+  - name: EnemyAttaks
+    uniqueID: 52909135
+    locked: 0
+  - name: PlayerAttacks
+    uniqueID: 2533125783
+    locked: 0
+  - name: Enemy
+    uniqueID: 2460005719
+    locked: 0
+  - name: Player
+    uniqueID: 1671600297
+    locked: 0
+  - name: UI
+    uniqueID: 3668790063
     locked: 0
   m_RenderingLayers:
   - Default

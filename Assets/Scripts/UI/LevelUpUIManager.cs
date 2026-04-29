@@ -32,6 +32,8 @@ public class LevelUpUIManager : MonoBehaviour
     public LevelUpPanelManager levelUpPanelManager;
     private List<StatPerk> currentPerks;
 
+    public AudioClip perkSound;
+
     public void ShowButtons(List<StatPerk> buttons)
     {
         Time.timeScale = 0;
@@ -59,6 +61,8 @@ public class LevelUpUIManager : MonoBehaviour
     {
         levelUpPanelManager.ApplyPerk(currentPerks[i]);
 
+        SoundManager.instance.PlaySound(perkSound, transform, 1f);
+        
         Time.timeScale = 1;
         levelUpPanel.SetActive(false);
         characterParameters.SetActive(false);

@@ -6,11 +6,12 @@ public class Ring : MonoBehaviour, SecondaryWeaponStats
 {
     public GameObject ringAttack;
 
-    public float ringDamage = 10f;
+    public float ringDamage = 4f;
     public float ringAttackCooldown = 4f;
+    public float minCooldown = 0.1f;
     public float finalCooldown;
     public int attackAmount = 3;
-    public float finalNumber;
+    public int finalNumber;
     public Vector2 areaMinPos = new Vector2(-10f, -10f);
     public Vector2 areaMaxPos = new Vector2(10f, 10f);
 
@@ -29,8 +30,9 @@ public class Ring : MonoBehaviour, SecondaryWeaponStats
     // Update is called once per frame
     void Update()
     {
-        finalNumber = (attackAmount + statsMultiplier.ringNumberBonus) * statsMultiplier.numberMultiplier;
+        finalNumber = Mathf.RoundToInt((attackAmount + statsMultiplier.ringNumberBonus) * statsMultiplier.numberMultiplier);
         finalCooldown = ringAttackCooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
     }
 
     private IEnumerator RingAttackCooldown()
@@ -60,8 +62,6 @@ public class Ring : MonoBehaviour, SecondaryWeaponStats
             RingAttack attack = ringAttackObject.GetComponent<RingAttack>();
 
             attack.Initialize(GetDamage(), player);
-
-            // attack.transform.position = new Vector3(attack.transform.position.x, spawnAttackPos.y, -1f);
         }
     }
 
