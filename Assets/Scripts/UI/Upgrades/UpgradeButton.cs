@@ -1,7 +1,9 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
@@ -18,6 +20,8 @@ public class UpgradeButton : MonoBehaviour
     private int upgradeCost;
 
     public AudioClip upgradeSound;
+    private AudioSource audioSource;
+    public AudioMixer audioMixer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +30,8 @@ public class UpgradeButton : MonoBehaviour
 
         UpgradesManager.OnUpgradeReset += RefreshUI;
         CoinsManager.OnCoinsChanged += RefreshUI;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnDestroy()
@@ -63,8 +69,21 @@ public class UpgradeButton : MonoBehaviour
         UpgradeSaveManager.IncreaseUpgradeLevel(upgrades.upgradeName);
         UpgradesManager.Instance.GetUpgrades();
 
-        // SoundManager.instance.PlaySound(upgradeSound, transform, 1f);
+        audioSource.clip = upgradeSound;
+        audioSource.volume = GetVolume();
+        audioSource.Play();
         
         RefreshUI();
+    }
+
+    public float GetVolume()
+    {
+        float db;
+        if(audioMixer.GetFloat("volume", out db))
+        {
+            return Mathf.Pow(10f, db / 20f);
+        }
+
+        return 1f;
     }
 }

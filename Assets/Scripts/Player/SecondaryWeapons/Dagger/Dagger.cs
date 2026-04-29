@@ -87,6 +87,8 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
     {
         float spread = Mathf.Clamp(20f + finalNumber * 4f, 20f, 100f);
 
+        bool isEven = finalNumber % 2 ==0;
+
         float angleStep = 0f;
 
         if(finalNumber > 1)
@@ -100,9 +102,22 @@ public class Dagger : MonoBehaviour, SecondaryWeaponStats
         {
             float angle;
 
-            if(finalNumber == 1)
+            if (isEven)
             {
-                angle = 0f;
+                int middleIndex = finalNumber / 2;
+
+                if(i == middleIndex)
+                {
+                    angle = 0f;
+                }
+                else if(i > middleIndex)
+                {
+                    angle = startAngle + ((i -1) * angleStep);
+                }
+                else
+                {
+                    angle = startAngle + (i * angleStep);
+                }
             }
             else
             {
