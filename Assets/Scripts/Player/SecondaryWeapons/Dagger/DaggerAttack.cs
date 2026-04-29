@@ -17,7 +17,7 @@ public class DaggerAttack : MonoBehaviour
 
     private Transform enemy;
     private SpriteRenderer sprite;
-    public Vector2 hitboxOffset = new Vector2(-1.4f, 0f);
+    public Vector2 hitboxOffset = new Vector2(-1.4f, -0.15f);
     public Transform areaOrigin;
 
     public GameObject player;

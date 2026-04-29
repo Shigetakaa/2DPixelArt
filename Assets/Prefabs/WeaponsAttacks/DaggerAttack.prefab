@@ -107,6 +107,6 @@ MonoBehaviour:
   pierceNumber: 3
   maxTimeLimit: 1
   daggerDamageCooldown: 0.1
-  hitboxOffset: {x: -1.4, y: 0}
+  hitboxOffset: {x: -1.4, y: -0.15}
   areaOrigin: {fileID: 147825995348530004}
   player: {fileID: 0}
