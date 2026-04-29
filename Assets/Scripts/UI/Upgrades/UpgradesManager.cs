@@ -93,6 +93,10 @@ public class UpgradesManager : MonoBehaviour
             case UpgradeType.Difficulty:
                 statsMultiplier?.AddDifficultyBonus(bonus);
                 break;
+
+            case UpgradeType.Number:
+                statsMultiplier?.AddNumberBonus(bonus);
+                break;
         }
     }
 

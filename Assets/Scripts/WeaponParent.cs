@@ -9,6 +9,7 @@ public class WeaponParent : MonoBehaviour
 
     public Animator animator;
     public float cooldown = 2f;
+    public float minCooldown = 0.1f;
     public float finalCooldown;
     private bool attackBlocked;
 
@@ -45,6 +46,7 @@ public class WeaponParent : MonoBehaviour
 
         finalDamage = (playerDamage + statsMultiplier.swordBonus) * statsMultiplier.damageMultiplier;
         finalCooldown = cooldown * statsMultiplier.cooldownMultiplier;
+        finalCooldown = Mathf.Max(minCooldown, finalCooldown);
 
         // Wartość ataku
         playerDamagePauseText.text = "Atak: " + playerDamage;

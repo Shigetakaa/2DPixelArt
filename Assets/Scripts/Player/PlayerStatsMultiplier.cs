@@ -92,4 +92,9 @@ public class PlayerStatsMultiplier : MonoBehaviour
     {
         difficultyMultiplier += bonus;
     }
+
+    public void AddNumberBonus(float bonus)
+    {
+        numberMultiplier += bonus;
+    }
 }
