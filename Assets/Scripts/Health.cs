@@ -109,9 +109,13 @@ public class Health : MonoBehaviour
     public void GetHit(float damage, GameObject sender)
     {
         if (isDead)
+        {
             return;
+        }
         if (sender.layer == gameObject.layer && !sender.CompareTag("BossAttack"))
+        {
             return;
+        }
 
         health -= damage;
 

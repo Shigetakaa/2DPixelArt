@@ -66,4 +66,10 @@ public class CoinsManager : MonoBehaviour
         SaveCoins();
         OnCoinsChanged?.Invoke();
     }
+
+    [ContextMenu("+ 500 Monet")]
+    public void AddCoins()
+    {
+        GetCoins(500);
+    }
 }
