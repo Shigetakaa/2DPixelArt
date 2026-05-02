@@ -47,25 +47,15 @@ public class InGameUIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    // Przycisk wyjdź
-    public void OnCloseGamePress()
-    {
-        Application.Quit();
-    }
-
     // UI Końca gry
     public void GameOverScreen()
     {
+        Time.timeScale = 0;
         gameOverScreen.SetActive(true);
         characterParameters.SetActive(false);
         timerText.SetActive(false);
 
         gameOverCoinsText.text = player.coins.ToString();
-        
-        if (healthBar != null)
-        {
-            healthBar.SetActive(false);
-        }
     }
 
     // UI Panelu wygranej
@@ -73,11 +63,10 @@ public class InGameUIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         victoryScreen.SetActive(true);
+        characterParameters.SetActive(false);
+        timerText.SetActive(false);
 
         killedEnemiesText.text = killedEnemies.ToString();
         victoryCoinsText.text = player.coins.ToString();
-
-        characterParameters.SetActive(false);
-        timerText.SetActive(false);
     }
 }

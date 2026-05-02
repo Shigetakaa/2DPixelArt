@@ -126,10 +126,8 @@ public class Health : MonoBehaviour
 
             SoundManager.instance.PlaySound(deathSound, transform, 1f);
 
-            // Sprawdzenie czy obiekt to gracz
             if (isPlayer && gameOverScreen != null)
             {
-                // Aktywowane UI końca gry
                 gameOverScreen.GameOverScreen();
 
                 CoinsManager.Instance.GetCoins(coins);
