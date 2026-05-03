@@ -92,10 +92,14 @@ public class EnemyHealth : MonoBehaviour
     // Metoda otrzymywania obrażeń
     public void GetHit(float damage, GameObject sender)
     {
-        if(isDead)
+        if (isDead)
+        {
             return;
-        if(sender.layer == gameObject.layer)
+        }
+        if (sender.layer == gameObject.layer)
+        {
             return;
+        }
 
         enemyHealth -= damage;
 

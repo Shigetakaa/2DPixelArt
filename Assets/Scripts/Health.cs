@@ -109,9 +109,13 @@ public class Health : MonoBehaviour
     public void GetHit(float damage, GameObject sender)
     {
         if (isDead)
+        {
             return;
+        }
         if (sender.layer == gameObject.layer && !sender.CompareTag("BossAttack"))
+        {
             return;
+        }
 
         health -= damage;
 
@@ -122,10 +126,8 @@ public class Health : MonoBehaviour
 
             SoundManager.instance.PlaySound(deathSound, transform, 1f);
 
-            // Sprawdzenie czy obiekt to gracz
             if (isPlayer && gameOverScreen != null)
             {
-                // Aktywowane UI końca gry
                 gameOverScreen.GameOverScreen();
 
                 CoinsManager.Instance.GetCoins(coins);

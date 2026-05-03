@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
@@ -87,6 +88,11 @@ public class Staff : MonoBehaviour, SecondaryWeaponStats
     {
         for(int i = 0; i < finalNumber; i++)
         {
+            if(enemy == null)
+            {
+                yield break;
+            }
+
             GameObject staffAttackObject = Instantiate(staffAttack, transform.position, Quaternion.identity);
             staffAttackObject.GetComponent<StaffAttack>().Initialize(enemy.transform, staffAttackSpeed, GetDamage(), this);
 

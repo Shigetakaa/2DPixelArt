@@ -24,6 +24,7 @@ public class BossHealth : MonoBehaviour
     private InGameUIManager victoryScreen;
 
     public PlayerStatsMultiplier statsMultiplier;
+    private Health player;
 
     public AudioClip[] damageSound;
     public AudioClip victorySound;
@@ -33,6 +34,8 @@ public class BossHealth : MonoBehaviour
     {
         statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
         healthBar = GameObject.Find("BossHealthBar").GetComponent<Slider>();
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        player = playerObj.GetComponent<Health>();
 
         originalColor = sprite.color;
 
@@ -97,26 +100,33 @@ public class BossHealth : MonoBehaviour
     public void GetHit(float damage, GameObject sender)
     {
         if (isDead)
+        {
             return;
+        }
         if (sender.layer == gameObject.layer)
+        {
             return;
+        }
 
         bossHealth -= damage;
 
-        if(bossHealth <= 0)
+        if(bossHealth <= 0 && !isDead)
         {
-            OnDeath?.Invoke(sender);
             isDead = true;
+
+            OnDeath?.Invoke(sender);
 
             SoundManager.instance.PlaySound(victorySound, transform, 1f);
 
-            Health player = sender.GetComponent<Health>();
             if(player != null)
             {
                 GameSettingsManager.Instance.SaveKilledEnemies(player.killedEnemies);
                 CoinsManager.Instance.GetCoins(player.coins);
 
-                victoryScreen.VictoryScreen(player.killedEnemies);
+                if(victoryScreen != null)
+                {
+                    victoryScreen.VictoryScreen(player.killedEnemies);
+                }
             }
 
             Destroy(gameObject);
