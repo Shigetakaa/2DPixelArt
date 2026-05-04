@@ -5,6 +5,7 @@ public class BossMelee : MonoBehaviour
 {
     public GameObject meleeAttack;
     public float meleeDamage = 10.0f;
+    public float finalDamage;
     public float meleeRadius = 0.8f;
     public float meleeAttackCooldown = 0.5f;
     private float lastAttack;
@@ -19,16 +20,16 @@ public class BossMelee : MonoBehaviour
         meleeAttackCollider = GetComponent<CircleCollider2D>();
         statsMultiplier = GameObject.FindWithTag("Player").GetComponent<PlayerStatsMultiplier>();
 
+        GetDifficulty();
+
         meleeAttackCollider.isTrigger = true;
         meleeAttackCollider.radius = meleeRadius;
-
-        //StartCoroutine(ActivateMeleeAttack());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        finalDamage = meleeDamage * statsMultiplier.difficultyMultiplier;
     }
 
     public void GetDifficulty()
@@ -61,8 +62,6 @@ public class BossMelee : MonoBehaviour
     // Metoda zadająca obrażenia graczowi
     public void DealDamage(Collider2D collision)
     {
-        float finalDamage = meleeDamage * statsMultiplier.difficultyMultiplier;
-
         if (collision.CompareTag("Player"))
         {
             if(Time.time >= lastAttack + meleeAttackCooldown)

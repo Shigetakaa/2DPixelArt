@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRadius = 30.0f;
     public float spawnCooldown = 1.2f;
     private float spawnTime;
+    public int finalSpawnAmount;
 
     private Timer timerScript;
 
@@ -47,6 +48,8 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        finalSpawnAmount = GetSpawnAmount();
+
         // Jak timer jest 0 to metoda Spanwer() się nie wywołuje oraz wszyscy wrogowie giną
         if(timerScript.remainingTime <= 0)
         {
@@ -71,8 +74,6 @@ public class EnemySpawner : MonoBehaviour
     // Metoda tworzenia wroga
     public void Spawner()
     {
-        int finalSpawnAmount = GetSpawnAmount();
-
         for(int j = 0; j < finalSpawnAmount; j++)
         {
             Vector3 positionSpawn = Vector3.zero;
