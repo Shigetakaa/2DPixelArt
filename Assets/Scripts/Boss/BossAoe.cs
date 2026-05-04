@@ -4,6 +4,7 @@ using UnityEngine;
 public class BossAoe : MonoBehaviour
 {
     public float aoeDamage = 20.0f;
+    public float finalDamage;
     public float aoeRadius = 0.3f;
     public float warnTime = 1f;
 
@@ -34,7 +35,7 @@ public class BossAoe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        finalDamage = aoeDamage * statsMultiplier.difficultyMultiplier;
     }
 
     public void GetDifficulty()
@@ -77,9 +78,10 @@ public class BossAoe : MonoBehaviour
     // Metoda zadająca obrażenia graczowi
     public void DealDamage(Collider2D collision)
     {
-        if(!dealDamage) return;
-
-        float finalDamage = aoeDamage * statsMultiplier.difficultyMultiplier;
+        if (!dealDamage)
+        {
+            return;
+        }
 
         if (collision.CompareTag("Player"))
         {
