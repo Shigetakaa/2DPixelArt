@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
-        // Obszaru po którym gracz może się poruszać
+        // Obszar po którym gracz może się poruszać
         Vector3 position = transform.position;
 
         position.x = Mathf.Clamp(position.x, minBounds.x, maxBounds.x);
